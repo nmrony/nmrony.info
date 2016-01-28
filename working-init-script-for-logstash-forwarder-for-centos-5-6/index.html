@@ -1,0 +1,420 @@
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Working Init script for Logstash Forwarder for CentOS 5/6</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#26a69a">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.3.41/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" href="../assets/css/screen.css?v=d3de6a6dee">
+    <link rel="stylesheet" href="../assets/css/animations.css?v=d3de6a6dee">
+    <link rel="stylesheet" href="../assets/css/theme.css?v=d3de6a6dee">
+
+    <link rel="canonical" href="http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta property="og:description" content="Some days ago I am working one of a project where we need to install logstash-forwader to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this...">
+    <meta property="og:url" content="http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+    <meta property="article:published_time" content="2016-01-18T19:30:19.000Z">
+    <meta property="article:modified_time" content="2016-01-18T19:37:08.000Z">
+    <meta property="article:tag" content="server administration">
+    <meta property="article:tag" content="web services">
+    <meta property="article:tag" content="centos">
+    <meta property="article:tag" content="redhat">
+    <meta property="article:tag" content="init script">
+    <meta property="article:tag" content="logstash-forwarder">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta name="twitter:description" content="Some days ago I am working one of a project where we need to install logstash-forwader to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this...">
+    <meta name="twitter:url" content="http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Coding is Poetry",
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "//www.gravatar.com/avatar/92ca2c531374f3c32ceefef5b81a5109?s=250&d=mm&r=x",
+        "url": "http://www.nmrony.info/author/nur",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Working Init script for Logstash Forwarder for CentOS 5/6",
+    "url": "http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/",
+    "datePublished": "2016-01-18T19:30:19.000Z",
+    "dateModified": "2016-01-18T19:37:08.000Z",
+    "keywords": "server administration, web services, centos, redhat, init script, logstash-forwarder",
+    "description": "Some days ago I am working one of a project where we need to install logstash-forwader to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="http://www.nmrony.info/rss/">
+
+  </head>
+
+  <body class="post-template tag-server-administration tag-web-services tag-centos tag-redhat tag-init-script tag-logstash-forwarder">
+
+    
+
+<nav class="navbar shaded fixed autohide">
+  <div class="navbar--row container">
+    <!-- Icon -->
+    <div class="navbar--icon">
+      <a class="ripple" href="http://www.nmrony.info">
+        <i class="mdi mdi-arrow-left"></i>
+      </a>
+    </div>
+    <!-- Title -->
+    <span class="navbar--title">Working Init script for Logstash Forwarder for CentOS 5/6</span>
+  </div>
+</nav>
+
+
+<header class="header shaded bg-darken">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar--row container">
+      <div class="navbar--icon">
+        <a class="ripple" href="http://www.nmrony.info">
+          <i class="mdi mdi-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="header--content onBottom container">
+    <!-- Titles -->
+    <h1 class="header--title">Working Init script for Logstash Forwarder for CentOS 5/6</h1>
+    <h5 class="header--subtitle">
+      <i class="mdi mdi-calendar"></i>
+      <time datetime="2016-01-19" itemprop="datePublished">
+        19 Jan 2016
+      </time>
+    </h5>
+  </div>
+  <!-- Background -->
+
+    <img class="bg-image" src="../content/images/2016/01/home-bg.jpg">
+  
+</header>
+
+
+<!-- Fabs -->
+<div class="fabbar large">
+  <div class="fabbar--content container">
+    <div class="action-fab large">
+  <button class="fab large ripple">
+    <i class="mdi mdi-share-variant"></i>
+  </button>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="fab ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=Working%20Init%20script%20for%20Logstash%20Forwarder%20for%20CentOS%205%2F6&amp;url=http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+      <i class="mdi mdi-twitter"></i>
+    </a>
+    <!-- Google+ -->
+    <a class="fab ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+      <i class="mdi mdi-google-plus"></i>
+    </a>
+    <!-- Facebook -->
+    <a class="fab ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+      <i class="mdi mdi-facebook"></i>
+    </a>
+  </div>
+</div>
+  </div>
+</div>
+
+
+<main class="main" role="main">
+  <article class="main--content container" role="article">
+    
+    <div class="post--content"><p>Some days ago I am working one of a project where we need to install <code>logstash-forwader</code> to collect logs from distributed servers. I found that the init script from <a href="https://github.com/jamtur01/logstashbook-code/blob/master/code/4/logstash_forwarder_redhat_init" target="_blank">here</a> is not working well and after googling I found this script working well with <code>CentOS 6</code> </p>
+
+<pre><code class="language-sh">#!/bin/bash
+# chkconfig: 345 80 20
+# description: Logstash Forwarder
+# processname: logstash-forwarder
+# config: /etc/logstash-forwarder
+# pidfile: /var/run/logstash-forwarder.pid
+
+### BEGIN INIT INFO
+# Provides: logstash-forwarder
+# Required-Start: $local_fs $network $remote_fs
+# Required-Stop: $local_fs $network $remote_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: start and stop logstash-forwarder
+# Description: Logstash Forwarder
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+prog=logstash-forwarder  
+DAEMON=/opt/logstash-forwarder/bin/logstash-forwarder  
+pidfile=/var/run/$prog.pid  
+lockfile=/var/lock/subsys/$prog
+
+# load defaults
+
+[ -e /etc/default/$prog ] &amp;&amp; . /etc/default/$prog
+[ -e /etc/sysconfig/$prog ] &amp;&amp; . /etc/sysconfig/$prog
+
+DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder -spool-size 100 -log-to-syslog}'
+
+start()  
+{
+    echo -n $'Starting $prog: '
+    nohup $DAEMON $DAEMON_ARGS &lt;/dev/null &gt;/dev/null 2&gt;&amp;1 &amp;
+    retval=$?
+    pid=$!
+    echo $pid &gt; $pidfile
+    if [ rh_status_q ]; then
+        touch $lockfile
+        success
+        echo
+    fi
+    return $retval
+}
+
+stop()  
+{
+    echo -n $'Stopping $prog: '
+    killproc -p '$pidfile' $prog
+    retval=$?
+    [ -f '$pidfile' ] &amp;&amp; rm -f $pidfile
+    echo
+    [ $retval -eq 0 ] &amp;&amp; rm -f $lockfile
+    return $retval
+}
+
+restart() {  
+    stop
+    start
+}
+
+reload() {  
+    restart
+}
+
+force_reload() {  
+    restart
+}
+
+rh_status() {  
+    status -p $pidfile $prog
+}
+
+rh_status_q() {  
+    rh_status &gt;/dev/null 2&gt;&amp;1
+}
+
+case '$1' in  
+    start)
+        rh_status_q &amp;&amp; exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    status)
+        rh_status
+        ;;
+    *)
+        echo 'Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}'
+        exit 2
+esac  
+exit $?  
+</code></pre>
+
+<p>Your instance also needed either of the following files  </p>
+
+<pre><code class="language-sh">/etc/defaults/logstash-forwarder
+/etc/sysconfig/logstash-forwarder
+</code></pre>
+
+<p>The content of the file is  </p>
+
+<pre><code>DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100}';  
+</code></pre>
+
+<p>You found the gist <a href="https://gist.github.com/nmrony/c487b4b7c0235a11a112" title="Logstash Forwarder Init Script GIST" target="_blank">Logstash Forwarder Init Script GIST</a></p></div>
+    <div class="divider"></div>
+
+    <div class="post--tags half">
+        <a class="ripple" href="../tag/server-administration/" title="server administration">server administration</a>
+        <a class="ripple" href="../tag/web-services/" title="web services">web services</a>
+        <a class="ripple" href="../tag/centos/" title="centos">centos</a>
+        <a class="ripple" href="../tag/redhat/" title="redhat">redhat</a>
+        <a class="ripple" href="../tag/init-script/" title="init script">init script</a>
+        <a class="ripple" href="../tag/logstash-forwarder/" title="logstash-forwarder">logstash-forwarder</a>
+    </div>
+
+    <div class="post--share half">
+      <div class="action-button">
+  <a class="button solid shaded ripple" href="index.html#!" style="min-width: 200px;">
+    <i class="mdi mdi-share-variant"></i> Share
+  </a>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="button solid shaded ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=Working%20Init%20script%20for%20Logstash%20Forwarder%20for%20CentOS%205%2F6&amp;url=http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+      <i class="mdi mdi-twitter"></i> Twitter
+    </a>
+    <!-- Google+ -->
+    <a class="button solid shaded ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+      <i class="mdi mdi-google-plus"></i> Google+
+    </a>
+    <!-- Facebook -->
+    <a class="button solid shaded ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+      <i class="mdi mdi-facebook"></i> Facebook
+    </a>
+  </div>
+</div>
+    </div>
+
+  </article>
+</main>
+
+
+<div>
+  <div id="disqus_thread" class="container"></div>
+</div>
+
+
+<aside class="side">
+  <div class="side--content container">
+    <div class="side--left">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">Installing Java/JDK version on Ubuntu</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-19" itemprop="datePublished">
+        19 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>Installing Java on Ubuntu is a piece of cake. Run the following commands in your terminal sudo add-apt-repository ppa:webupd8team/java -y   sudo apt-get update   echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections   sudo apt-get install oracle-java8-installer   Now…</p>
+    <a class="button solid shaded ripple right" href="../installing-java-jdk-version-on-ubuntu/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No newer post</span>
+    </div>
+    <div class="side--right">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">Install PHP 5.6 using Ubuntu PPA</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-17" itemprop="datePublished">
+        17 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>It is very easy installing PHP 5.6 using PPA   sudo add-apt-repository ppa:ondrej/php5-5.6 -y   sudo apt-get update   sudo sudo apt-get install make php5\   php5-mongo \   php-pear \   php5-dev \   php5-mysql \   php5-common \   php5-cli \   php5-curl \   php5-fpm \   php5-mcrypt \   php5-xmlrpc \   php5-gd \   php5-json \   php5-readline \   mcrypt…</p>
+    <a class="button solid shaded ripple right" href="../install-latest-php-5-6-using-ubuntu-ppa/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No older post</span>
+    </div>
+  </div>
+</aside>
+
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.identifier = 12; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    <footer class="footer">
+      <div class="footer--top">
+      <div class="footer--content container">
+        <div class="half">
+          <p><a href="http://www.nmrony.info">Coding is Poetry</a><br>
+            Thoughts, stories and ideas.</p>
+        </div>
+        <div class="half">
+          <ul class="footer--suscriptions">
+            <li>
+              <a href="https://www.twitter.com/nmrony" target="_blank">
+                <i class="mdi mdi-twitter-box"></i>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#!">
+                <i class="mdi mdi-google-plus-box"></i>
+              </a>
+            </li> -->
+            <li>
+              <a href="https://www.github.com/nmrony" target="_blank">
+                <i class="mdi mdi-github-box"></i>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.nmrony.info/rss/">
+                <i class="mdi mdi-rss-box"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=d3de6a6dee"></script>
+    
+  </body>

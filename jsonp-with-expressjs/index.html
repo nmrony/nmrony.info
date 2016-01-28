@@ -1,0 +1,347 @@
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JSONP with ExpressJS</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#26a69a">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.3.41/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" href="../assets/css/screen.css?v=d3de6a6dee">
+    <link rel="stylesheet" href="../assets/css/animations.css?v=d3de6a6dee">
+    <link rel="stylesheet" href="../assets/css/theme.css?v=d3de6a6dee">
+
+    <link rel="canonical" href="http://www.nmrony.info/jsonp-with-expressjs/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="JSONP with ExpressJS">
+    <meta property="og:description" content="This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done...">
+    <meta property="og:url" content="http://www.nmrony.info/jsonp-with-expressjs/">
+    <meta property="article:published_time" content="2016-01-17T13:17:06.000Z">
+    <meta property="article:modified_time" content="2016-01-17T13:17:06.000Z">
+    <meta property="article:tag" content="jsonp">
+    <meta property="article:tag" content="express">
+    <meta property="article:tag" content="nodejs">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="JSONP with ExpressJS">
+    <meta name="twitter:description" content="This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done...">
+    <meta name="twitter:url" content="http://www.nmrony.info/jsonp-with-expressjs/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Coding is Poetry",
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "//www.gravatar.com/avatar/92ca2c531374f3c32ceefef5b81a5109?s=250&d=mm&r=x",
+        "url": "http://www.nmrony.info/author/nur",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "JSONP with ExpressJS",
+    "url": "http://www.nmrony.info/jsonp-with-expressjs/",
+    "datePublished": "2016-01-17T13:17:06.000Z",
+    "dateModified": "2016-01-17T13:17:06.000Z",
+    "keywords": "jsonp, express, nodejs",
+    "description": "This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="http://www.nmrony.info/rss/">
+
+  </head>
+
+  <body class="post-template tag-jsonp tag-express tag-nodejs">
+
+    
+
+<nav class="navbar shaded fixed autohide">
+  <div class="navbar--row container">
+    <!-- Icon -->
+    <div class="navbar--icon">
+      <a class="ripple" href="http://www.nmrony.info">
+        <i class="mdi mdi-arrow-left"></i>
+      </a>
+    </div>
+    <!-- Title -->
+    <span class="navbar--title">JSONP with ExpressJS</span>
+  </div>
+</nav>
+
+
+<header class="header shaded bg-darken">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar--row container">
+      <div class="navbar--icon">
+        <a class="ripple" href="http://www.nmrony.info">
+          <i class="mdi mdi-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="header--content onBottom container">
+    <!-- Titles -->
+    <h1 class="header--title">JSONP with ExpressJS</h1>
+    <h5 class="header--subtitle">
+      <i class="mdi mdi-calendar"></i>
+      <time datetime="2016-01-17" itemprop="datePublished">
+        17 Jan 2016
+      </time>
+    </h5>
+  </div>
+  <!-- Background -->
+
+    <img class="bg-image" src="../content/images/2016/01/home-bg.jpg">
+  
+</header>
+
+
+<!-- Fabs -->
+<div class="fabbar large">
+  <div class="fabbar--content container">
+    <div class="action-fab large">
+  <button class="fab large ripple">
+    <i class="mdi mdi-share-variant"></i>
+  </button>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="fab ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=JSONP%20with%20ExpressJS&amp;url=http://www.nmrony.info/jsonp-with-expressjs/">
+      <i class="mdi mdi-twitter"></i>
+    </a>
+    <!-- Google+ -->
+    <a class="fab ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/jsonp-with-expressjs/">
+      <i class="mdi mdi-google-plus"></i>
+    </a>
+    <!-- Facebook -->
+    <a class="fab ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/jsonp-with-expressjs/">
+      <i class="mdi mdi-facebook"></i>
+    </a>
+  </div>
+</div>
+  </div>
+</div>
+
+
+<main class="main" role="main">
+  <article class="main--content container" role="article">
+    
+    <div class="post--content"><p>This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.<!--more-->  </p>
+
+<h2>What is Same Origin Policy?</h2>  
+
+<p>The Same Origin Policy is a security measure imposed by all modern browsers that restricts the ability of JavaScript to make AJAX requests across domains. As a security measure this is desirable because it makes it more difficult for malicious scripts to communicate with domains you don't trust. However, it also makes it harder for developers to write client side apps that use JavaScript to communicate with REST API. For a more detailed explanation of the Same Origin Policy see <a href="http://en.wikipedia.org/wiki/Same-origin_policy">http://en.wikipedia.org/wiki/Same-origin_policy</a>  </p>
+
+<h2>JSONP</h2>  
+
+<p>JSONP, or JavaScript Object Notation with Padding, is a technique for returning data in a way that works around the restrictions imposed by the Same Origin Policy. It relies on the fact that  tags are not subject to the Same Origin Policy. When data is requested using JSONP it is returned as a text representation of a JSON object wrapped or "padded" with a JavaScript function name. <br>
+When a  tag processes a JSONP response, the JSON object is treated as an argument and if the function is already defined on the page it is executed immediately, giving that function access to the JSON object.</p>
+
+<p>Lots of chit chat lets make hands dirty  </p>
+
+<h2>JSONP in JS</h2>  
+
+<pre><code class="language-js">//jsonp.js
+var JSONP = (function(){  
+  var that = {};
+
+  that.send = function(src, options) {
+    var callback_name = options.callbackName || 'callback',
+      on_success = options.onSuccess || function(){},
+      on_timeout = options.onTimeout || function(){},
+      timeout = options.timeout || 10;
+
+    var timeout_trigger = window.setTimeout(function(){
+      window[callback_name] = function(){};
+      on_timeout();
+    }, timeout * 1000);
+
+    window[callback_name] = function(data){
+      window.clearTimeout(timeout_trigger);
+      on_success(data);
+    };
+
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = src;
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  };
+
+  return that;
+})();
+
+//In your HTML script tag or in JS file 
+JSONP.send('/your/endpoint?callback=name', { callbackName: 'name' });  
+</code></pre>
+
+<p>and In your Express App just call  </p>
+
+<pre><code class="language-js">//route.js
+route.post('/your/endpoint',function(req, res){  
+    res.jsonp('your response');
+});
+</code></pre>
+
+<p>You may need <a href="https://www.npmjs.com/package/cors" title="CORS" target="_blank"><strong>CORS</strong></a> module.</p>
+
+<p>Not joking!!! really so simple in ExpressJS</p></div>
+    <div class="divider"></div>
+
+    <div class="post--tags half">
+        <a class="ripple" href="../tag/jsonp/" title="jsonp">jsonp</a>
+        <a class="ripple" href="../tag/express/" title="express">express</a>
+        <a class="ripple" href="../tag/nodejs/" title="nodejs">nodejs</a>
+    </div>
+
+    <div class="post--share half">
+      <div class="action-button">
+  <a class="button solid shaded ripple" href="index.html#!" style="min-width: 200px;">
+    <i class="mdi mdi-share-variant"></i> Share
+  </a>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="button solid shaded ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=JSONP%20with%20ExpressJS&amp;url=http://www.nmrony.info/jsonp-with-expressjs/">
+      <i class="mdi mdi-twitter"></i> Twitter
+    </a>
+    <!-- Google+ -->
+    <a class="button solid shaded ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/jsonp-with-expressjs/">
+      <i class="mdi mdi-google-plus"></i> Google+
+    </a>
+    <!-- Facebook -->
+    <a class="button solid shaded ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/jsonp-with-expressjs/">
+      <i class="mdi mdi-facebook"></i> Facebook
+    </a>
+  </div>
+</div>
+    </div>
+
+  </article>
+</main>
+
+
+<div>
+  <div id="disqus_thread" class="container"></div>
+</div>
+
+
+<aside class="side">
+  <div class="side--content container">
+    <div class="side--left">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">Install PHP 5.6 using Ubuntu PPA</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-17" itemprop="datePublished">
+        17 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>It is very easy installing PHP 5.6 using PPA   sudo add-apt-repository ppa:ondrej/php5-5.6 -y   sudo apt-get update   sudo sudo apt-get install make php5\   php5-mongo \   php-pear \   php5-dev \   php5-mysql \   php5-common \   php5-cli \   php5-curl \   php5-fpm \   php5-mcrypt \   php5-xmlrpc \   php5-gd \   php5-json \   php5-readline \   mcrypt…</p>
+    <a class="button solid shaded ripple right" href="../install-latest-php-5-6-using-ubuntu-ppa/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No newer post</span>
+    </div>
+    <div class="side--right">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">Update VirtualBox Guest Additions in Vagrant Box</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-17" itemprop="datePublished">
+        17 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper Virtualbox Guest Addition Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions. The…</p>
+    <a class="button solid shaded ripple right" href="../update-virtualbox-guest-additions-in-vagrant-box/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No older post</span>
+    </div>
+  </div>
+</aside>
+
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.identifier = 10; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    <footer class="footer">
+      <div class="footer--top">
+      <div class="footer--content container">
+        <div class="half">
+          <p><a href="http://www.nmrony.info">Coding is Poetry</a><br>
+            Thoughts, stories and ideas.</p>
+        </div>
+        <div class="half">
+          <ul class="footer--suscriptions">
+            <li>
+              <a href="https://www.twitter.com/nmrony" target="_blank">
+                <i class="mdi mdi-twitter-box"></i>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#!">
+                <i class="mdi mdi-google-plus-box"></i>
+              </a>
+            </li> -->
+            <li>
+              <a href="https://www.github.com/nmrony" target="_blank">
+                <i class="mdi mdi-github-box"></i>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.nmrony.info/rss/">
+                <i class="mdi mdi-rss-box"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=d3de6a6dee"></script>
+    
+  </body>

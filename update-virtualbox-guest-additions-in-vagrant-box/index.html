@@ -1,0 +1,343 @@
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Update VirtualBox Guest Additions in Vagrant Box</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#26a69a">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.3.41/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" href="../assets/css/screen.css?v=d3de6a6dee">
+    <link rel="stylesheet" href="../assets/css/animations.css?v=d3de6a6dee">
+    <link rel="stylesheet" href="../assets/css/theme.css?v=d3de6a6dee">
+
+    <link rel="canonical" href="http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Update VirtualBox Guest Additions in Vagrant Box">
+    <meta property="og:description" content="Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper Virtualbox Guest Addition Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions. The...">
+    <meta property="og:url" content="http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+    <meta property="article:published_time" content="2016-01-17T11:43:13.000Z">
+    <meta property="article:modified_time" content="2016-01-17T11:48:34.000Z">
+    <meta property="article:tag" content="vagrant">
+    <meta property="article:tag" content="devops">
+    <meta property="article:tag" content="server administration">
+    <meta property="article:tag" content="tips&amp;tricks">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Update VirtualBox Guest Additions in Vagrant Box">
+    <meta name="twitter:description" content="Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper Virtualbox Guest Addition Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions. The...">
+    <meta name="twitter:url" content="http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Coding is Poetry",
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "//www.gravatar.com/avatar/92ca2c531374f3c32ceefef5b81a5109?s=250&d=mm&r=x",
+        "url": "http://www.nmrony.info/author/nur",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Update VirtualBox Guest Additions in Vagrant Box",
+    "url": "http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/",
+    "datePublished": "2016-01-17T11:43:13.000Z",
+    "dateModified": "2016-01-17T11:48:34.000Z",
+    "keywords": "vagrant, devops, server administration, tips&amp;tricks",
+    "description": "Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper Virtualbox Guest Addition Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions. The..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="http://www.nmrony.info/rss/">
+
+  </head>
+
+  <body class="post-template tag-vagrant tag-devops tag-server-administration tag-tips-tricks">
+
+    
+
+<nav class="navbar shaded fixed autohide">
+  <div class="navbar--row container">
+    <!-- Icon -->
+    <div class="navbar--icon">
+      <a class="ripple" href="http://www.nmrony.info">
+        <i class="mdi mdi-arrow-left"></i>
+      </a>
+    </div>
+    <!-- Title -->
+    <span class="navbar--title">Update VirtualBox Guest Additions in Vagrant Box</span>
+  </div>
+</nav>
+
+
+<header class="header shaded bg-darken">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar--row container">
+      <div class="navbar--icon">
+        <a class="ripple" href="http://www.nmrony.info">
+          <i class="mdi mdi-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="header--content onBottom container">
+    <!-- Titles -->
+    <h1 class="header--title">Update VirtualBox Guest Additions in Vagrant Box</h1>
+    <h5 class="header--subtitle">
+      <i class="mdi mdi-calendar"></i>
+      <time datetime="2016-01-17" itemprop="datePublished">
+        17 Jan 2016
+      </time>
+    </h5>
+  </div>
+  <!-- Background -->
+
+    <img class="bg-image" src="../content/images/2016/01/home-bg.jpg">
+  
+</header>
+
+
+<!-- Fabs -->
+<div class="fabbar large">
+  <div class="fabbar--content container">
+    <div class="action-fab large">
+  <button class="fab large ripple">
+    <i class="mdi mdi-share-variant"></i>
+  </button>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="fab ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=Update%20VirtualBox%20Guest%20Additions%20in%20Vagrant%20Box&amp;url=http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+      <i class="mdi mdi-twitter"></i>
+    </a>
+    <!-- Google+ -->
+    <a class="fab ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+      <i class="mdi mdi-google-plus"></i>
+    </a>
+    <!-- Facebook -->
+    <a class="fab ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+      <i class="mdi mdi-facebook"></i>
+    </a>
+  </div>
+</div>
+  </div>
+</div>
+
+
+<main class="main" role="main">
+  <article class="main--content container" role="article">
+    
+    <div class="post--content"><p>Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper Virtualbox Guest Addition Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions.</p>
+
+<h2 id="theproblem">The Problem  </h2>
+
+<p>Today when i run <code>vagrant up --provision</code> command on my shell. Vagrant gives me following errors</p>
+
+<pre><code class="language-sh">Failed to mount folders in Linux guest. This is usually because  
+the "vboxsf" file system is not available. Please verify that  
+the guest additions are properly installed in the guest and  
+can work properly. The command attempted was:
+
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut -d: -f3` vagrant /vagrant  
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`id -g vagrant` vagrant /vagrant
+
+The error output from the last command was:
+
+/sbin/mount.vboxsf: mounting failed with the error: No such device
+</code></pre>
+
+<p>There may be another warning message where you also need to update Virtualbox Guest Additions  </p>
+
+<pre><code class="language-sh">[default] The guest additions on this VM do not match the install version of
+VirtualBox! This may cause things such as forwarded ports, shared  
+folders, and more to not work properly. If any of those things fail on  
+this machine, please update the guest additions and repackage the  
+box.  
+Guest Additions Version: 4.2.8  
+VirtualBox Version: 5.0.12  
+</code></pre>
+
+<h2 id="thesolution">The Solution  </h2>
+
+<p>I run the following command to update my vagrant box guest Addition.</p>
+
+<pre><code class="language-sh">nurrony@devmachine:vagrant-playbox$ vagrant up  
+#Let it finish the initial tasks to boot up your vagrant box
+nurrony@devmachine:vagrant-playbox$ vagrant ssh  
+vagrant@vagrant-playbox:~$ sudo yum -y update  
+vagrant@vagrant-playbox:~$ cd /opt  
+vagrant@vagrant-playbox:~$ sudo wget -c http://download.virtualbox.org/virtualbox/5.0.12/VBoxGuestAdditions_5.0.12.iso -O VBoxGuestAdditions_5.0.12.iso  
+vagrant@vagrant-playbox:~$ sudo mount VBoxGuestAdditions_5.0.12.iso -o loop /mnt  
+vagrant@vagrant-playbox:~$ cd /mnt  
+vagrant@vagrant-playbox:~$ sudo sh VBoxLinuxAdditions.run --nox11  
+vagrant@vagrant-playbox:~$ cd /opt  
+vagrant@vagrant-playbox:~$ sudo rm *.iso  
+vagrant@vagrant-playbox:~$ sudo /etc/init.d/vboxadd setup  
+vagrant@vagrant-playbox:~$ sudo chkconfig --add vboxadd  
+vagrant@vagrant-playbox:~$ sudo chkconfig vboxadd on  
+vagrant@vagrant-playbox:~$ exit
+
+# Now check that the Guest Additions work
+nurrony@devmachine:vagrant-playbox$ vagrant halt  
+</code></pre>
+
+<p>Now run the <code>vagrant up</code> command. The error/warning message should be gone. That's all.. Enjoy!!</p></div>
+    <div class="divider"></div>
+
+    <div class="post--tags half">
+        <a class="ripple" href="../tag/vagrant/" title="vagrant">vagrant</a>
+        <a class="ripple" href="../tag/devops/" title="devops">devops</a>
+        <a class="ripple" href="../tag/server-administration/" title="server administration">server administration</a>
+        <a class="ripple" href="../tag/tips-tricks/" title="tips&amp;tricks">tips&amp;tricks</a>
+    </div>
+
+    <div class="post--share half">
+      <div class="action-button">
+  <a class="button solid shaded ripple" href="index.html#!" style="min-width: 200px;">
+    <i class="mdi mdi-share-variant"></i> Share
+  </a>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="button solid shaded ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=Update%20VirtualBox%20Guest%20Additions%20in%20Vagrant%20Box&amp;url=http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+      <i class="mdi mdi-twitter"></i> Twitter
+    </a>
+    <!-- Google+ -->
+    <a class="button solid shaded ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+      <i class="mdi mdi-google-plus"></i> Google+
+    </a>
+    <!-- Facebook -->
+    <a class="button solid shaded ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/">
+      <i class="mdi mdi-facebook"></i> Facebook
+    </a>
+  </div>
+</div>
+    </div>
+
+  </article>
+</main>
+
+
+<div>
+  <div id="disqus_thread" class="container"></div>
+</div>
+
+
+<aside class="side">
+  <div class="side--content container">
+    <div class="side--left">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">JSONP with ExpressJS</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-17" itemprop="datePublished">
+        17 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done…</p>
+    <a class="button solid shaded ripple right" href="../jsonp-with-expressjs/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No newer post</span>
+    </div>
+    <div class="side--right">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">Vagrant: Deploying and provisioning an Amazon EC2 instance</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-15" itemprop="datePublished">
+        15 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics…</p>
+    <a class="button solid shaded ripple right" href="../vagrant-deploy-and-provisioning-an-amazon-ec2-instance/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No older post</span>
+    </div>
+  </div>
+</aside>
+
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.identifier = 9; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    <footer class="footer">
+      <div class="footer--top">
+      <div class="footer--content container">
+        <div class="half">
+          <p><a href="http://www.nmrony.info">Coding is Poetry</a><br>
+            Thoughts, stories and ideas.</p>
+        </div>
+        <div class="half">
+          <ul class="footer--suscriptions">
+            <li>
+              <a href="https://www.twitter.com/nmrony" target="_blank">
+                <i class="mdi mdi-twitter-box"></i>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#!">
+                <i class="mdi mdi-google-plus-box"></i>
+              </a>
+            </li> -->
+            <li>
+              <a href="https://www.github.com/nmrony" target="_blank">
+                <i class="mdi mdi-github-box"></i>
+              </a>
+            </li>
+            <li>
+              <a href="http://www.nmrony.info/rss/">
+                <i class="mdi mdi-rss-box"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=d3de6a6dee"></script>
+    
+  </body>
