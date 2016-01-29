@@ -16,10 +16,6 @@ $SITE_DIR/node_modules/.bin/sitemap-generator www.nmrony.info > /dev/null 2>&1 &
 sed -i 's#http:##g' sitemap.xml > /dev/null 2>&1 && \
 echo 'Correcting robot.txt' && \
 bash -c 'cat > robots.txt <<RTEXT
-User-agent: Google
-Disallow: /cgi-bin/
-Disallow: /backup/
-Disallow: /ghost/
 User-Agent: *
 Disallow:
 
