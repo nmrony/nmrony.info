@@ -1,44 +1,37 @@
-User-Agent: *
+User-agent: *
 Disallow:
 
-User-Agent: Googlebot
-Allow: /
+User-agent: Googlebot
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-User-Agent: Googlebot-Mobile
-Allow: /
+User-agent: Googlebot-Mobile
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-User-Agent: Googlebot-Image
-Allow: /
+User-agent: Googlebot-Image
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-User-Agent: Adsbot-Google
-Allow: /
+User-agent: Adsbot-Google
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-User-Agent: Slurp
-Allow: /
+User-agent: Slurp
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-User-Agent: msnbot
-Allow: /
+User-agent: msnbot
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-User-Agent: msnbot-media
-Allow: /
+User-agent: msnbot-media
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
