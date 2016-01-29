@@ -5,8 +5,7 @@
   "description": "Static content of Nur Rony's Blog",
   "main": "index.js",
   "scripts": {
-    "sitemap": "sitemap-generator && sed -i 's#http:##g' sitemap.xml",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "./deploy"
   },
   "repository": "nmrony/nmrony.info",
   "keywords": [],
