@@ -5,6 +5,7 @@
   "description": "Static content of Nur Rony's Blog",
   "main": "index.js",
   "scripts": {
+    "sitemap": "sitemap-generator && sed -i 's#http:##g' sitemap.xml",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "nmrony/nmrony.info",
@@ -18,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/nmrony/nmrony.info/issues"
   },
-  "homepage": "https://github.com/nmrony/nmrony.info#readme"
+  "homepage": "https://github.com/nmrony/nmrony.info#readme",
+  "devDependencies": {
+    "sitemap-generator-cli": "^3.1.2"
+  }
 }
