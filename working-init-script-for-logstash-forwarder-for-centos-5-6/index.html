@@ -20,7 +20,7 @@
 
     <link rel="canonical" href="//www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
     <meta name="referrer" content="origin">
-
+    
     <meta property="og:site_name" content="Coding is Poetry">
     <meta property="og:type" content="article">
     <meta property="og:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
@@ -34,12 +34,12 @@
     <meta property="article:tag" content="redhat">
     <meta property="article:tag" content="init script">
     <meta property="article:tag" content="logstash-forwarder">
-
+    
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
     <meta name="twitter:description" content="Some days ago I am working one of a project where we need to install logstash-forwader to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this...">
     <meta name="twitter:url" content="//www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
-
+    
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
@@ -69,7 +69,7 @@
 
   <body class="post-template tag-server-administration tag-web-services tag-centos tag-redhat tag-init-script tag-logstash-forwarder">
 
-
+    
 
 <nav class="navbar shaded fixed autohide">
   <div class="navbar--row container">
@@ -110,7 +110,7 @@
   <!-- Background -->
 
     <img class="bg-image" src="../content/images/2016/01/home-bg.jpg">
-
+  
 </header>
 
 
@@ -144,7 +144,7 @@
 
 <main class="main" role="main">
   <article class="main--content container" role="article">
-
+    
     <div class="post--content"><p>Some days ago I am working one of a project where we need to install <code>logstash-forwader</code> to collect logs from distributed servers. I found that the init script from <a href="https://github.com/jamtur01/logstashbook-code/blob/master/code/4/logstash_forwarder_redhat_init" target="_blank">here</a> is not working well and after googling I found this script working well with <code>CentOS 6</code> </p>
 
 <pre><code class="language-sh">#!/bin/bash
@@ -169,9 +169,9 @@
 
 PATH=/sbin:/usr/sbin:/bin:/usr/bin
 
-prog=logstash-forwarder
-DAEMON=/opt/logstash-forwarder/bin/logstash-forwarder
-pidfile=/var/run/$prog.pid
+prog=logstash-forwarder  
+DAEMON=/opt/logstash-forwarder/bin/logstash-forwarder  
+pidfile=/var/run/$prog.pid  
 lockfile=/var/lock/subsys/$prog
 
 # load defaults
@@ -181,7 +181,7 @@ lockfile=/var/lock/subsys/$prog
 
 DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder -spool-size 100 -log-to-syslog}'
 
-start()
+start()  
 {
     echo -n $'Starting $prog: '
     nohup $DAEMON $DAEMON_ARGS &lt;/dev/null &gt;/dev/null 2&gt;&amp;1 &amp;
@@ -196,7 +196,7 @@ start()
     return $retval
 }
 
-stop()
+stop()  
 {
     echo -n $'Stopping $prog: '
     killproc -p '$pidfile' $prog
@@ -207,28 +207,28 @@ stop()
     return $retval
 }
 
-restart() {
+restart() {  
     stop
     start
 }
 
-reload() {
+reload() {  
     restart
 }
 
-force_reload() {
+force_reload() {  
     restart
 }
 
-rh_status() {
+rh_status() {  
     status -p $pidfile $prog
 }
 
-rh_status_q() {
+rh_status_q() {  
     rh_status &gt;/dev/null 2&gt;&amp;1
 }
 
-case '$1' in
+case '$1' in  
     start)
         rh_status_q &amp;&amp; exit 0
         $1
@@ -257,8 +257,8 @@ case '$1' in
     *)
         echo 'Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}'
         exit 2
-esac
-exit $?
+esac  
+exit $?  
 </code></pre>
 
 <p>Your instance also needed either of the following files  </p>
@@ -269,7 +269,7 @@ exit $?
 
 <p>The content of the file is  </p>
 
-<pre><code>DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100}';
+<pre><code>DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100}';  
 </code></pre>
 
 <p>You found the gist <a href="https://gist.github.com/nmrony/c487b4b7c0235a11a112" title="Logstash Forwarder Init Script GIST" target="_blank">Logstash Forwarder Init Script GIST</a></p></div>
@@ -416,5 +416,5 @@ this.page.identifier = 12; // Replace PAGE_IDENTIFIER with your page's unique id
     </footer>
 
     <script src="../assets/js/main.js?v=f26e426f85"></script>
-
+    
   </body>

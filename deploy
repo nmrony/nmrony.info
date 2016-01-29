@@ -1,0 +1,26 @@
+# Read the configuration.md to configure this script according to your need
+#!/bin/bash
+
+CURR_DIR=$(pwd);
+CONTENT_DIR='.';
+SITE_DIR=$CURR_DIR/$CONTENT_DIR;
+echo 'Generating static page from ghost blog..' && \
+buster generate --domain=http://127.0.0.1:2368 --dir=$SITE_DIR > /dev/null 2>&1 && \
+echo 'Fixing link...'
+find $SITE_DIR -name "*.html" -print0 | xargs -0 sed -i'' -e 's#http://localhost:2368#//www.nmrony.info#g' && \
+cd $SITE_DIR && \
+echo "Pulling latest changes..." && \
+git pull --all -q > /dev/null 2>&1 && \
+echo 'Generating sitemap and correcting sitemap links...' && \
+$SITE_DIR/node_modules/.bin/sitemap-generator www.nmrony.info > /dev/null 2>&1 && \
+sed -i 's#http:##g' sitemap.xml > /dev/null 2>&1 && \
+echo 'Correcting robot.txt' && \
+sed -i 's#http://localhost:2368##g' $SITE_DIR/robots.txt > /dev/null 2>&1 && \
+echo "Adding changes to stage..." && \
+git add --all > /dev/null 2>&1 && \
+echo 'Enter git commit message: ' && read COMMIT_MESSAGE && \
+git commit -am "$COMMIT_MESSAGE" > /dev/null 2>&1 && \
+git push -qfu origin master > /dev/null 2>&1 && \
+echo 'Deploying your site. It may take some time' && \
+git ftp push > /dev/null 2>&1 && \
+cd $CURR_DIR && echo 'Your blog is successfully deployed';
