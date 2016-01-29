@@ -1,0 +1,22 @@
+{
+  "name": "nmrony-info",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static content of Nur Rony's Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "nmrony/nmrony.info",
+  "keywords": [],
+  "author": {
+    "name": "Nur Rony",
+    "email": "pro.nmrony@gmail.com",
+    "url": "http://nmrony.info"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmrony/nmrony.info/issues"
+  },
+  "homepage": "https://github.com/nmrony/nmrony.info#readme"
+}
