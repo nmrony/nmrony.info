@@ -15,7 +15,58 @@ echo 'Generating sitemap and correcting sitemap links...' && \
 $SITE_DIR/node_modules/.bin/sitemap-generator www.nmrony.info > /dev/null 2>&1 && \
 sed -i 's#http:##g' sitemap.xml > /dev/null 2>&1 && \
 echo 'Correcting robot.txt' && \
-sed -i 's#http://localhost:2368##g' $SITE_DIR/robots.txt > /dev/null 2>&1 && \
+bash -c 'cat > robots.txt <<RTEXT
+User-agent: Google
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+User-Agent: *
+Disallow:
+
+User-Agent: Googlebot
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-Agent: Googlebot-Mobile
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-Agent: Googlebot-Image
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-Agent: Adsbot-Google
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-Agent: Slurp
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-Agent: msnbot
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-Agent: msnbot-media
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+Sitemap: /sitemap.xml
+RTEXT' > /dev/null 2>&1 && \
 echo "Adding changes to stage..." && \
 git add --all > /dev/null 2>&1 && \
 echo 'Enter git commit message: ' && read COMMIT_MESSAGE && \
