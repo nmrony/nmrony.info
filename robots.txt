@@ -36,4 +36,4 @@ Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-Sitemap: /sitemap.xml
+Sitemap: http://www.nmrony.info/sitemap.xml

@@ -53,7 +53,7 @@ Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
 
-Sitemap: /sitemap.xml
+Sitemap: http://www.nmrony.info/sitemap.xml
 RTEXT' > /dev/null 2>&1 && \
 echo "Adding changes to stage..." && \
 git add --all > /dev/null 2>&1 && \
