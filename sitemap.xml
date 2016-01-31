@@ -7,19 +7,22 @@
     <loc>http://www.nmrony.info/page/2/</loc>
   </url>
   <url>
+    <loc>http://www.nmrony.info/install-php-7-0-in-ubuntu/</loc>
+  </url>
+  <url>
     <loc>http://www.nmrony.info/publishing-ghost-blog-to-github-pages/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/installing-java-jdk-version-on-ubuntu/</loc>
+    <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/page/3/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/installing-java-jdk-version-on-ubuntu/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/install-latest-php-5-6-using-ubuntu-ppa/</loc>
@@ -31,13 +34,19 @@
     <loc>http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/</loc>
+    <loc>http://www.nmrony.info/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</loc>
+    <loc>http://www.nmrony.info/tag/php/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/ubuntu/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/latest/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/install-php-7-0-in-ubuntu/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/linux/</loc>
@@ -52,28 +61,19 @@
     <loc>http://www.nmrony.info/publishing-ghost-blog-to-github-pages/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/cmd/</loc>
+    <loc>http://www.nmrony.info/tag/front-end/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/terminal/</loc>
+    <loc>http://www.nmrony.info/tag/html5/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu-14-04/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/java/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/jdk/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/installing-java-jdk-version-on-ubuntu/index.html</loc>
+    <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/page/4/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/setup-phpmyadmin-with-nginx-on-ubuntu-14-04/</loc>
@@ -88,7 +88,16 @@
     <loc>http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/php/</loc>
+    <loc>http://www.nmrony.info/tag/ubuntu-14-04/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/java/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/jdk/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/installing-java-jdk-version-on-ubuntu/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/server-administration/</loc>
@@ -101,9 +110,6 @@
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/centos/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/vagrant-common-settings-tips/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/redhat/</loc>
@@ -130,13 +136,49 @@
     <loc>http://www.nmrony.info/update-virtualbox-guest-additions-in-vagrant-box/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/front-end/</loc>
+    <loc>http://www.nmrony.info/tag/cmd/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/html5/</loc>
+    <loc>http://www.nmrony.info/tag/terminal/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/index.html</loc>
+    <loc>http://www.nmrony.info/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/php/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu/page/2/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/latest/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/linux/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ghost-tag/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/github-pages/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/front-end/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/html5/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/vagrant-common-settings-tips/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/hello-world/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/page/4/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/aws/</loc>
@@ -154,46 +196,7 @@
     <loc>http://www.nmrony.info/tag/amazon/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/ubuntu/page/2/</loc>
-  </url>
-  <url>
     <loc>http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/linux/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ghost-tag/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/github-pages/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/cmd/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/terminal/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu-14-04/page/2/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu-14-04/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/java/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/jdk/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/hello-world/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/page/4/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/lemp/</loc>
@@ -238,7 +241,16 @@
     <loc>http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/php/index.html</loc>
+    <loc>http://www.nmrony.info/tag/ubuntu-14-04/page/2/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu-14-04/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/java/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/jdk/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/server-administration/index.html</loc>
@@ -248,12 +260,6 @@
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/centos/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/common-settings/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/vagrant-common-settings-tips/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/redhat/index.html</loc>
@@ -274,10 +280,22 @@
     <loc>http://www.nmrony.info/tag/tips-tricks/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/front-end/index.html</loc>
+    <loc>http://www.nmrony.info/tag/cmd/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/html5/index.html</loc>
+    <loc>http://www.nmrony.info/tag/terminal/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu/page/2/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/common-settings/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/vagrant-common-settings-tips/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/hello-world/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/aws/index.html</loc>
@@ -293,15 +311,6 @@
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/amazon/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu/page/2/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu-14-04/page/2/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/hello-world/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/lemp/index.html</loc>
@@ -332,6 +341,9 @@
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/mysql/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu-14-04/page/2/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/common-settings/index.html</loc>
