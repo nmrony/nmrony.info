@@ -1,0 +1,347 @@
+
+  <head>
+
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Configuring Nginx Virtual Host with PHP 7.0</title>
+    <meta name="description" content="">
+    <meta name="theme-color" content="#26a69a">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/1.3.41/css/materialdesignicons.min.css">
+
+    <link rel="stylesheet" href="../assets/css/screen.css?v=48e2190309">
+    <link rel="stylesheet" href="../assets/css/animations.css?v=48e2190309">
+    <link rel="stylesheet" href="../assets/css/theme.css?v=48e2190309">
+
+    <link rel="canonical" href="http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+    <meta name="referrer" content="origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Configuring Nginx Virtual Host with PHP 7.0">
+    <meta property="og:description" content="I was super excited about PHP 7.0 and started using it as soon it was getting some shape. But I also faced some problem while I was configuring PHP 7.0 with Nginx. I was trying to configure virtual...">
+    <meta property="og:url" content="http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+    <meta property="article:published_time" content="2016-01-31T11:28:35.000Z">
+    <meta property="article:modified_time" content="2016-01-31T11:28:35.000Z">
+    <meta property="article:tag" content="PHP">
+    <meta property="article:tag" content="Nginx">
+    <meta property="article:tag" content="virtual host">
+    <meta property="article:tag" content="tips&amp;tricks">
+    <meta property="article:tag" content="common settings">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Configuring Nginx Virtual Host with PHP 7.0">
+    <meta name="twitter:description" content="I was super excited about PHP 7.0 and started using it as soon it was getting some shape. But I also faced some problem while I was configuring PHP 7.0 with Nginx. I was trying to configure virtual...">
+    <meta name="twitter:url" content="http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+    
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Article",
+    "publisher": "Coding is Poetry",
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "//www.gravatar.com/avatar/92ca2c531374f3c32ceefef5b81a5109?s=250&d=mm&r=x",
+        "url": "http://www.nmrony.info/author/nur",
+        "sameAs": null,
+        "description": null
+    },
+    "headline": "Configuring Nginx Virtual Host with PHP 7.0",
+    "url": "http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/",
+    "datePublished": "2016-01-31T11:28:35.000Z",
+    "dateModified": "2016-01-31T11:28:35.000Z",
+    "keywords": "PHP, Nginx, virtual host, tips&amp;tricks, common settings",
+    "description": "I was super excited about PHP 7.0 and started using it as soon it was getting some shape. But I also faced some problem while I was configuring PHP 7.0 with Nginx. I was trying to configure virtual..."
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.7">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="http://www.nmrony.info/rss/">
+
+  </head>
+
+  <body class="post-template tag-php tag-nginx tag-virtual-host tag-tips-tricks tag-common-settings">
+
+    
+
+<nav class="navbar shaded fixed autohide">
+  <div class="navbar--row container">
+    <!-- Icon -->
+    <div class="navbar--icon">
+      <a class="ripple" href="http://www.nmrony.info">
+        <i class="mdi mdi-arrow-left"></i>
+      </a>
+    </div>
+    <!-- Title -->
+    <span class="navbar--title">Configuring Nginx Virtual Host with PHP 7.0</span>
+  </div>
+</nav>
+
+
+<header class="header shaded bg-darken">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar--row container">
+      <div class="navbar--icon">
+        <a class="ripple" href="http://www.nmrony.info">
+          <i class="mdi mdi-arrow-left"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Content -->
+  <div class="header--content onBottom container">
+    <!-- Titles -->
+    <h1 class="header--title">Configuring Nginx Virtual Host with PHP 7.0</h1>
+    <h5 class="header--subtitle">
+      <i class="mdi mdi-calendar"></i>
+      <time datetime="2016-01-31" itemprop="datePublished">
+        31 Jan 2016
+      </time>
+    </h5>
+  </div>
+  <!-- Background -->
+
+    <img class="bg-image" src="../content/images/2016/01/home-bg.jpg">
+  
+</header>
+
+
+<!-- Fabs -->
+<div class="fabbar large">
+  <div class="fabbar--content container">
+    <div class="action-fab large">
+  <button class="fab large ripple">
+    <i class="mdi mdi-share-variant"></i>
+  </button>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="fab ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=Configuring%20Nginx%20Virtual%20Host%20with%20PHP%207.0&amp;url=http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+      <i class="mdi mdi-twitter"></i>
+    </a>
+    <!-- Google+ -->
+    <a class="fab ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+      <i class="mdi mdi-google-plus"></i>
+    </a>
+    <!-- Facebook -->
+    <a class="fab ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+      <i class="mdi mdi-facebook"></i>
+    </a>
+  </div>
+</div>
+  </div>
+</div>
+
+
+<main class="main" role="main">
+  <article class="main--content container" role="article">
+    
+    <div class="post--content"><p>I was super excited about <code>PHP 7.0</code> and started using it as soon it was getting some shape. But I also faced some problem while I was configuring <code>PHP 7.0</code> with <code>Nginx</code>. I was trying to configure virtual hosts in <code>Nginx</code>. I need to change the following blog things</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>I am assuming that you are running <code>PHP 7.x</code> on an <code>Ubuntu 14.04</code> machine, Also have <code>PHP-FPM</code> in conjunction with <code>Nginx</code>. I also assume that you have a <code>non-root</code> user configured with <code>sudo</code> privileges for administrative tasks.</p>
+
+<h2 id="letsconfigure">Let's Configure</h2>
+
+<p>I was trying to configure virtual hosts in Nginx. I need to change the following things:</p>
+
+<p><strong>File: /etc/nginx/sites-enabled/nmrony.local</strong></p>
+
+<pre><code class="language-sh">server {  
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /media/nmrony/devzone/www;
+    index index.php index.html index.htm;
+
+    server_name nmrony.local;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri /index.php =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+}
+</code></pre>
+
+<p>
+<strong>Please note the <code>PHP FPM</code> socket path</strong></p>
+
+<h2 id="configuringphpfpm">Configuring <code>PHP-FPM</code></h2>
+
+<p><strong>File: /etc/php/7.0/fpm/php.ini</strong></p>
+
+<p>Add or find and replace the following line. Please remove semicolon(;) before it.  </p>
+
+<pre><code class="language-sh">cgi.fix_pathinfo=0;  
+</code></pre>
+
+<p>If you want to run <code>PHP-FPM</code> with different user (As I wanted to change) you need to change the following line in the file below (Nowhere i found this 😞)</p>
+
+<p><strong>File: /etc/php/7.0/fpm/pool.d/www.conf</strong></p>
+
+<p>Find and replace the following lines  </p>
+
+<pre><code class="language-lua">;line number 23 and 24 for me
+user = &lt;your-user&gt;  
+group = &lt;your-group&gt;  
+....
+....
+;line number 47 and 48 for me
+listen.owner = nmrony ;should be your user  
+listen.group = nmrony ;should be your group  
+</code></pre>
+
+<p>Restart <code>php-fpm</code> service. Everything should work fine. If you find any problem in this post please let me know. I am all ears. 😏</p></div>
+    <div class="divider"></div>
+
+    <div class="post--tags half">
+        <a class="ripple" href="../tag/php/" title="PHP">PHP</a>
+        <a class="ripple" href="../tag/nginx/" title="Nginx">Nginx</a>
+        <a class="ripple" href="../tag/virtual-host/" title="virtual host">virtual host</a>
+        <a class="ripple" href="../tag/tips-tricks/" title="tips&amp;tricks">tips&amp;tricks</a>
+        <a class="ripple" href="../tag/common-settings/" title="common settings">common settings</a>
+    </div>
+
+    <div class="post--share half">
+      <div class="action-button">
+  <a class="button solid shaded ripple" href="index.html#!" style="min-width: 200px;">
+    <i class="mdi mdi-share-variant"></i> Share
+  </a>
+
+
+  <div class="actions">
+    <!-- Twitter -->
+    <a class="button solid shaded ripple twitter intent" data-width="550" data-height="235" href="https://twitter.com/intent/tweet?text=Configuring%20Nginx%20Virtual%20Host%20with%20PHP%207.0&amp;url=http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+      <i class="mdi mdi-twitter"></i> Twitter
+    </a>
+    <!-- Google+ -->
+    <a class="button solid shaded ripple google-plus intent" data-width="590" data-height="530" href="https://plus.google.com/share?url=http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+      <i class="mdi mdi-google-plus"></i> Google+
+    </a>
+    <!-- Facebook -->
+    <a class="button solid shaded ripple facebook intent" data-width="580" height="235" href="https://www.facebook.com/sharer/sharer.php?u=http://www.nmrony.info/configuring-nginx-virtual-host-with-php-7-0/">
+      <i class="mdi mdi-facebook"></i> Facebook
+    </a>
+  </div>
+</div>
+    </div>
+
+  </article>
+</main>
+
+
+<div>
+  <div id="disqus_thread" class="container"></div>
+</div>
+
+
+<aside class="side">
+  <div class="side--content container">
+    <div class="side--left">
+      
+      <span class="msg">No newer post</span>
+    </div>
+    <div class="side--right">
+      <div class="card image">
+  <header class="card--header bg-darken">
+    <!-- Title -->
+    <h5 class="card--title" itemprop="headline">Install PHP 7.0 in Ubuntu</h5>
+    <span class="card--subtitle">
+      <i class="fa fa-calendar-o"></i>
+      <time datetime="2016-01-31" itemprop="datePublished">
+        31 Jan 2016
+      </time>
+    </span>
+    <!-- Image -->
+      <div class="bg-image no-image"></div>
+  </header>
+  <div class="card--back">
+    <p>It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using ppa:ondrej/php from Ondřej Surý   Prerequisites I am assuming that you are running PHP 5.x on…</p>
+    <a class="button solid shaded ripple right" href="../install-php-7-0-in-ubuntu/">Go</a>
+  </div>
+</div>
+
+      <span class="msg">No older post</span>
+    </div>
+  </div>
+</aside>
+
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.identifier = 19; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+    <footer class="footer">
+      <div class="footer--top">
+      <div class="footer--content container">
+        <div class="half">
+          <p><a href="http://www.nmrony.info">Coding is Poetry</a><br>
+            Thoughts, stories and ideas.</p>
+        </div>
+        <div class="half">
+          <ul class="footer--suscriptions">
+            <li>
+              <a href="https://www.twitter.com/nmrony" target="_blank">
+                <i class="mdi mdi-twitter-box"></i>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="#!">
+                <i class="mdi mdi-google-plus-box"></i>
+              </a>
+            </li> -->
+            <li>
+              <a href="https://www.github.com/nmrony" target="_blank">
+                <i class="mdi mdi-github-box"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+    </footer>
+
+    <script src="../assets/js/main.js?v=48e2190309"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73097824-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  </body>
