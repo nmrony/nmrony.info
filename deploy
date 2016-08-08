@@ -5,9 +5,9 @@ CURR_DIR=$(pwd);
 CONTENT_DIR='.';
 SITE_DIR=$CURR_DIR/$CONTENT_DIR;
 echo 'Generating static page from ghost blog..' && \
-buster generate --domain=http://127.0.0.1:2368 --dir=$SITE_DIR > /dev/null 2>&1 && \
+buster generate --domain=http://blog.nmrony.docker --dir=$SITE_DIR > /dev/null 2>&1 && \
 echo 'Fixing link...'
-find $SITE_DIR -name "*.html" -print0 | xargs -0 sed -i'' -e 's#http://localhost:2368#http://www.nmrony.info#g' && \
+find $SITE_DIR -name "*.html" -print0 | xargs -0 sed -i'' -e 's#http://blog.nmrony.docker#http://www.nmrony.info#g' && \
 cd $SITE_DIR && \
 echo "Pulling latest changes..." && \
 git pull --all -q > /dev/null 2>&1 && \
