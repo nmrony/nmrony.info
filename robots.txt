@@ -1,3 +1,39 @@
 User-agent: *
-Sitemap: http://blog.nmrony.docker/sitemap.xml
+Disallow:
+
+User-agent: Googlebot
+Disallow: /cgi-bin/
+Disallow: /backup/
 Disallow: /ghost/
+
+User-agent: Googlebot-Mobile
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-agent: Googlebot-Image
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-agent: Adsbot-Google
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-agent: Slurp
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-agent: msnbot
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+User-agent: msnbot-media
+Disallow: /cgi-bin/
+Disallow: /backup/
+Disallow: /ghost/
+
+Sitemap: http://www.nmrony.info/sitemap.xml
