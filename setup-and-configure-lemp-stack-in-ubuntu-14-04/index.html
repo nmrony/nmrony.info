@@ -1,0 +1,497 @@
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Setup and configure LEMP stack in Ubuntu 14.04</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Setup and configure LEMP stack in Ubuntu 14.04">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:url" content="http://www.nmrony.info">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Setup and configure LEMP stack in Ubuntu 14.04">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Coding is Poetry">
+
+    <meta itemprop="name" content="Setup and configure LEMP stack in Ubuntu 14.04">
+    <meta itemprop="description" content="">
+
+    <meta name="twitter:site" content="@nmrony">
+
+<meta name="twitter:creator" content="@nmrony">
+
+<meta property="article:author" content="https://www.facebook.com/nmrony">
+
+<meta name="google-site-verification" content="">
+
+<meta name="theme-color" content="">
+
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="http://fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic%7COpen+Sans:700,400&amp;subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/main.min.css?v=d95081abc3">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      var ga_ua = 'UA-73097824-1';
+
+var disqus_shortname = 'nmrony';
+
+var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="../assets/js/head-scripts.min.js?v=d95081abc3"></script>
+
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin-when-cross-origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Setup and configure LEMP stack in Ubuntu 14.04">
+    <meta property="og:description" content="LEMP is stand for Linux, Nginx (pronounced Engine x), MySQL and PHP and altogether we can make a web server up and running. Prerequisite I am assuming that you have a running Ubuntu 14.04 Server  and Linux part have taken care of as well. The steps in this post">
+    <meta property="og:url" content="http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/">
+    <meta property="article:published_time" content="2015-03-14T12:36:00.000Z">
+    <meta property="article:modified_time" content="2016-08-19T12:52:48.000Z">
+    <meta property="article:tag" content="lemp">
+    <meta property="article:tag" content="mysql">
+    <meta property="article:tag" content="nginx">
+    <meta property="article:tag" content="php">
+    <meta property="article:tag" content="server-admin">
+    <meta property="article:tag" content="ubuntu-14-04">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Setup and configure LEMP stack in Ubuntu 14.04">
+    <meta name="twitter:description" content="LEMP is stand for Linux, Nginx (pronounced Engine x), MySQL and PHP and altogether we can make a web server up and running. Prerequisite I am assuming that you have a running Ubuntu 14.04 Server  and Linux part have taken care of as well. The steps in this post">
+    <meta name="twitter:url" content="http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nur Rony">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="lemp, mysql, nginx, php, server-admin, ubuntu-14-04">
+    <meta name="twitter:site" content="@nmrony">
+    <meta name="twitter:creator" content="@nmrony">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Coding is Poetry",
+        "logo": "http://www.nmrony.info/content/images/2016/08/rony.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "http://www.nmrony.info/content/images/2016/08/2513341.jpg",
+        "url": "http://www.nmrony.info/author/nur/",
+        "sameAs": [
+            "http://nmrony.info",
+            "https://twitter.com/nmrony"
+        ],
+        "description": "Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.\n"
+    },
+    "headline": "Setup and configure LEMP stack in Ubuntu 14.04",
+    "url": "http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/",
+    "datePublished": "2015-03-14T12:36:00.000Z",
+    "dateModified": "2016-08-19T12:52:48.000Z",
+    "keywords": "lemp, mysql, nginx, php, server-admin, ubuntu-14-04",
+    "description": "LEMP is stand for Linux, Nginx (pronounced Engine x), MySQL and PHP and altogether we can make a web server up and running. Prerequisite I am assuming that you have a running Ubuntu 14.04 Server  and Linux part have taken care of as well. The steps in this post"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.9">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="../rss/index.html">
+  </head>
+  <body class="post-template tag-lemp tag-mysql tag-nginx tag-php tag-server-admin tag-ubuntu-14-04">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    <!--.drawer-search(role="search")-->
+    <ul role="navigation" class="drawer-list">
+      
+<li class="drawer-list-item">
+  <a href="../" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../rss/index.rss" target="_blank" rel="noopener">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+<li class="drawer-list-divider">
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+<li class="drawer-list-item">
+  <a href="https://twitter.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://github.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://stackoverflow.com/cv/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-stack-overflow"></i>Stackoverflow
+  </a>
+</li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-lemp tag-mysql tag-nginx tag-php tag-server-admin tag-ubuntu-14-04">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2015-03-14" itemprop="datePublished">
+                  a year ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                    <a itemprop="articleSection" href="../tag/lemp/" data-pjax>lemp</a>, 
+                    <a itemprop="keywords" href="../tag/mysql/" data-pjax>mysql</a>, 
+                    <a itemprop="keywords" href="../tag/nginx/" data-pjax>nginx</a>, 
+                    <a itemprop="keywords" href="../tag/php/" data-pjax>php</a>, 
+                    <a itemprop="keywords" href="../tag/server-admin/" data-pjax>server-admin</a>, 
+                    <a itemprop="keywords" href="../tag/ubuntu-14-04/" data-pjax>ubuntu-14-04</a> 
+                </li>
+              <li class="post-meta-item">
+                <a href="index.html#disqus_thread" data-disqus-identifier="4">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="index.html" itemprop="url" data-pjax title="Setup and configure LEMP stack in Ubuntu 14.04">Setup and configure LEMP stack in Ubuntu 14.04</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <a href="http://nmrony.info" class="post-author-name">
+                  Nur Rony
+                </a>
+                <p class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <p><strong>LEMP</strong> is stand for <strong>L</strong>inux, <strong>N</strong>ginx (pronounced Engine x), <strong>M</strong>ySQL and <strong>P</strong>HP and altogether we can make a web server up and running.</p>
+
+<h4 id="prerequisite">Prerequisite</h4>
+
+<p>I am assuming that you have a running <strong><a href="http://www.ubuntu.com/download/server">Ubuntu 14.04 Server</a></strong>  and Linux part have taken care of as well. The steps in this post require the user to have root privileges. If you do not have any root privilege then you can ask for it to your server administrator.</p>
+
+<h4 id="installnginx">Install Nginx</h4>
+
+<p>I don't like writing too much description and jump to the commands that does the work. Run the following command in your terminal.  </p>
+
+<pre><code>sudo apt-get update;  
+sudo apt-get install -y nginx  
+</code></pre>
+
+<p><br>
+Now you have <strong>Nginx</strong> installed and should have it already running. If it is not running you can start, restart, stop, reload or syntax checking of configuration file of Nginx using the following commands  </p>
+
+<pre><code>sudo service nginx start #start Nginx server  
+sudo service nginx restart #retart Nginx server  
+sudo service nginx reload #reload Nginx server  
+sudo service nginx stop #stop Nginx server  
+</code></pre>
+
+<p>
+You can confirm that nginx has installed an your web server by directing your browser to your IP address.</p>
+
+<h4 id="installmysql">Install MySQL</h4>
+
+<p>MySQL is a powerful database management system used for organizing and retrieving data. To install MySQL, open terminal and type in these commands:  </p>
+
+<pre><code>sudo apt-get update  
+sudo apt-get install mysql-server php5-mysql -y  
+</code></pre>
+
+<p><br>
+During the installation, MySQL will ask you to set a <code>root</code> password. If you miss the chance to set the password while the program is installing, it is very easy to set the password later from within the MySQL shell. <br>
+Once you have installed MySQL, we should activate it with this command:  </p>
+
+<pre><code>sudo mysql_install_db  
+</code></pre>
+
+<p>Finish up by running the MySQL set up script:</p>
+
+<p>sudo /usr/bin/mysql<em>secure</em>installation <br>
+The prompt will ask you for your current root password. Type it in and hit enter. If all goes fine then you will see the following lines.  </p>
+
+<pre><code>Enter current password for root (enter for none):  
+OK, successfully used password, moving on...  
+</code></pre>
+
+<p>
+Then the prompt will ask you if you want to change the root password. Go ahead and choose N and move on to the next steps. It’s easiest just to say Yes to all the options. At the end, MySQL will reload and implement the new changes. Answering those the output will be looks like below  </p>
+
+<pre><code>By default, a MySQL installation has an anonymous user, allowing anyone  
+to log into MySQL without having to have a user account created for  
+them.  This is intended only for testing, and to make the installation  
+go a bit smoother.  You should remove them before moving into a  
+production environment.
+
+Remove anonymous users? [Y/n] y  
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This  
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y  
+... Success!
+
+By default, MySQL comes with a database named 'test' that anyone can  
+access.  This is also intended only for testing, and should be removed  
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y  
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far  
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y  
+ ... Success!
+
+Cleaning up...  
+</code></pre>
+
+<p>We have done with MySQL installation and configuration.</p>
+
+<h5 id="installingphp">Installing PHP</h5>
+
+<p>We need to make one small change in the php configuration.Open up <code>php.ini</code>:  </p>
+
+<pre><code>sudo nano /etc/php5/fpm/php.ini  
+</code></pre>
+
+<p>Find and replace the line <code>cgi.fix_pathinfo=1</code> and replace 1 to 0. If you find this line as commented uncomment it by removing <code>#</code>. Final result will look like below  </p>
+
+<pre><code>cgi.fix_pathinfo=0  
+</code></pre>
+
+<blockquote>
+  <p>If this number is kept as 1, the php interpreter will do its best to process the file that is as near to the requested file as possible. This is a possible security risk. If this number is set to 0, conversely, the interpreter will only process the exact file path—a much safer alternative. Save and Exit. We need to make another small change in the <code>php5-fpm</code> configuration.Open up <code>www.conf</code>:</p>
+</blockquote>
+
+<pre><code>sudo nano /etc/php5/fpm/pool.d/www.conf  
+</code></pre>
+
+<p>Find the line, <code>listen = 127.0.0.1:9000</code> and change the <code>127.0.0.1:9000</code> to <code>/var/run/php5-fpm.sock</code>.</p>
+
+<p><code>listen = /var/run/php5-fpm.sock</code> <br>
+save and exit</p>
+
+<p>Restart <code>php-fpm</code> using following command  </p>
+
+<pre><code>sudo service php5-fpm restart  
+</code></pre>
+
+<h4 id="configurenginxforphp">Configure Nginx for PHP</h4>
+
+<p>Open up the default virtual host file.  </p>
+
+<pre><code>sudo nano /etc/nginx/sites-available/default  
+</code></pre>
+
+<p><br>
+and replace server block with the following piece of lines  </p>
+
+<pre><code>server {  
+        listen   80;
+
+
+        root /usr/share/nginx/www; #replce this line with your document root path
+        index index.php index.html index.htm;
+
+        server_name example.com;
+
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+
+        error_page 404 /404.html;
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+              root /usr/share/nginx/www;
+        }
+
+        # pass the PHP scripts to FastCGI server listening on the php-fpm socket
+        location ~ \.php$ {
+                try_files $uri =404;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+
+        }
+
+}
+</code></pre>
+
+<h4 id="testingyourconfiguration">Testing your configuration</h4>
+
+<p>To test your configuration please create a file called <code>info.php</code> with following code  </p>
+
+<pre><code class="language-php">&lt;?php  
+/**
+ * Filename: info.php
+ * Location: In your document root directory 
+ */
+phpinfo();  
+</code></pre>
+
+<p>
+Then save and exit</p>
+
+<p>Restart Nginx server  </p>
+
+<pre><code>sudo service nginx restart  
+</code></pre>
+
+<p>Go to <code>http://[your-ip-or-domain-name]/info.php.</code> You should see a PHP configuration page if all goes fine.</p>
+
+<p>If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!</p>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img itemprop="image" src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://nmrony.info" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Nur Rony</span>
+                </a>
+                <p itemprop="description" class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+                  <p class="post-author-location">Milkyway, Earth</p>
+                  <p class="post-author-website">
+                    <a href="http://nmrony.info" rel="nofollow">http://nmrony.info</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">March 14, 2015</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="index.html#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="index.html#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="index.html#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a></small></p>
+</footer>
+  </div>
+</section>
+
+<script type="text/javascript">
+  if(GHOSTIUM.haveDisqus) {
+    var disqus_identifier = '4';
+
+    if(typeof DISQUS !== 'object') {
+      (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    }
+  } else {
+    document.querySelector('.post-comments').remove();
+  }
+</script>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+
+    <script src="../assets/js/foot-scripts.min.js?v=d95081abc3"></script>
+
+    <script type="text/javascript">
+
+      if(GHOSTIUM.haveGA) {
+        (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+        function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+        t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+        t.src='//www.google-analytics.com/analytics.js';
+        z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+        ga('create',ga_ua);ga('send','pageview');
+      }
+
+      if(GHOSTIUM.haveDisqus) {
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+  </body>

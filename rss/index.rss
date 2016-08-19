@@ -1,0 +1,585 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 19 Aug 2016 13:48:45 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title><description>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt;&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</link><guid isPermaLink="false">015b5866-6160-4b8b-bac2-8fc176c33d03</guid><category>vagrant</category><category>devops</category><category>howto</category><category>aws</category><category>EC2</category><category>amazon web service</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 19 Mar 2015 13:21:00 GMT</pubDate><content:encoded>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt; as provider to launch our servers and automatically provision it.&lt;/p&gt;
+
+&lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
+
+&lt;p&gt;I am assuming you have the latest version of Vagrant installed in your dev machine and familiar with &lt;code&gt;Vagrantfile&lt;/code&gt; and its commands. If you don’t know about &lt;code&gt;Vagrant&lt;/code&gt;, you can visit the &lt;a href="https://docs.vagrantup.com/v2/"&gt;official docummentation&lt;/a&gt; of Vagrant and learn about it.&lt;/p&gt;
+
+&lt;p&gt;You need to have a AWS account and the following&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AWS access key&lt;/li&gt;
+&lt;li&gt;AWS secret key&lt;/li&gt;
+&lt;li&gt;SSH keypair name&lt;/li&gt;
+&lt;li&gt;SSH private key file (.pem extension)&lt;/li&gt;
+&lt;li&gt;Make sure the your security group enables SSH (port 22) access from anywhere&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The EC2 instance used to deploy here may not fit in your AWS Free Tier Plan and cost your money.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id="settingenvironmentvariable"&gt;Setting Environment Variable&lt;/h4&gt;
+
+&lt;p&gt;I like to set these up as environment variables to keep them out of the &lt;code&gt;Vagrantfile&lt;/code&gt;. On Mac or Linux systems you can add this to your &lt;code&gt;$HOME/.profile&lt;/code&gt; or &lt;code&gt;$HOME/.bashrc&lt;/code&gt; file:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export AWS_KEY='your-access-key'  
+export AWS_SECRET='your-secret-secret'  
+export AWS_KEYNAME='your-keyname'  
+export AWS_KEYPATH='your-keypath'  
+export AWS_DEFAULT_REGION='your-region'  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="installthevagrantawsplugin"&gt;Install the &lt;code&gt;vagrant-aws&lt;/code&gt; plugin&lt;/h4&gt;
+
+&lt;p&gt;To install &lt;code&gt;vagrant-aws&lt;/code&gt; plugin run the following command in terminal  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant plugin install vagrant-aws  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="fetchawsdummybox"&gt;Fetch AWS Dummy Box&lt;/h4&gt;
+
+&lt;p&gt;To fetch the Vagrant AWS dummy box run the following command in terminal  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant box add dummybox-aws https://github.com/mitchellh/vagrant-aw  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="creatingvagrantfile"&gt;Creating Vagrantfile&lt;/h4&gt;
+
+&lt;p&gt;Run the following commands in terminal to create a &lt;code&gt;Vagrantfile&lt;/code&gt;  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir -p /path/to/your/dir &amp;amp;&amp;amp; cd $_  
+vagrant init dummybox-aws  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This will create a &lt;code&gt;Vagrantfile&lt;/code&gt; in current directory using &lt;code&gt;dummybox-aws&lt;/code&gt; that we added in previous step.&lt;/p&gt;
+
+&lt;h4 id="configurevagrantfile"&gt;Configure Vagrantfile&lt;/h4&gt;
+
+&lt;p&gt;Now our &lt;code&gt;Vagrantfile&lt;/code&gt; with the specifics needed for AWS. Refer to the &lt;code&gt;vagrant-aws&lt;/code&gt; documentation to understand all the options.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-ruby"&gt;# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrant on AWS Example
+# Nur Mohammed Rony
+
+# Adjustable settings
+# timezone, like US/Pacific, US/Eastern, UTC, Europe/Warsaw, etc.
+CFG_TZ = "US/Pacific"
+
+# Provisioning script
+provision_script = &amp;lt;&amp;lt;SCRIPT  
+#!/bin/bash
+
+# set timezone
+echo "#{CFG_TZ}" &amp;gt; /etc/timezone  
+dpkg-reconfigure -f noninteractive tzdata
+
+# install a few base packages
+apt-get update  
+apt-get install vim curl git build-essential -y  
+#long provisioning command
+echo Provisioning is complete  
+SCRIPT
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "dummybox-aws"
+  config.vm.synced_folder ".", "/home/ubuntu/devpc", type: "rsync", rsync__exclude: ".git/"
+  config.vm.hostname = "stagingbox"
+  config.vm.provision :shell, :inline =&amp;gt; provision_script
+  config.vm.provider :aws do |aws, override|
+
+    #AWS Settings
+    aws.access_key_id = ENV['AWS_KEY']
+    aws.secret_access_key = ENV['AWS_KEYNAME']
+    aws.region = ENV['AWS_DEFAULT_REGION']
+
+    aws.tags = {
+      'Name' =&amp;gt; 'NurRony StagingBox',
+      'Team' =&amp;gt; 'devops',
+      'Status' =&amp;gt; 'active'
+    }
+
+    #Override Settings
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = ENV['AWS_KEYPATH']
+
+    aws.region_config "us-west-2" do |region|
+      region.ami = 'ami-35143705'
+      region.instance_type = 'c4.large'
+      region.keypair_name = ENV['AWS_KEYNAME']
+      region.security_groups = "devops"
+    end
+  end
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Add or edit more options according to your need.&lt;/p&gt;
+
+&lt;h4 id="startupvagrantbox"&gt;Startup Vagrant box&lt;/h4&gt;
+
+&lt;p&gt;Run the following command to start vagrant box which will create and run an AWS EC2 instance with your provided settings in previous step  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant up —-provider=aws  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="verifyintheamazondashboard"&gt;Verify in the Amazon dashboard&lt;/h4&gt;
+
+&lt;p&gt;Jump over to your amazon dashboard with &lt;a href="https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:"&gt;this link&lt;/a&gt;. If you’re logged in already, that will take you to your EC2 instances. You should see a new one, based on the parameters in your &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id="workingwithnewlycreatedec2instance"&gt;Working with newly created EC2 instance&lt;/h4&gt;
+
+&lt;p&gt;You can connect via SSH, stop, reload or re-provision your newly created EC2 instance with regular Vagrant command like below  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-bash"&gt;#To SSH to instance
+vagrant ssh  
+#To restart the instance or re-provision
+vagrant reload reload [--provision]  
+#To stop 
+vagrant halt  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You need to configure a specific AMI for Vagrant to use. I find the Ubuntu &lt;a href="http://cloud-images.ubuntu.com/locator/ec2/"&gt;Amazon EC2 AMI Finder&lt;/a&gt; very helpful to match the version and region I wanted to use.&lt;/li&gt;
+&lt;li&gt;A common tripping point is the default security group not allowing SSH (port 22) from any IP address. Also make sure to add any other ports depending on your application (e.g., port 80 for HTTP).&lt;/li&gt;
+&lt;li&gt;Once you have the basics working, make sure to read through the &lt;a href="https://github.com/mitchellh/vagrant-aws"&gt;vagrant-aws&lt;/a&gt; project to understand all the options available.&lt;/li&gt;
+&lt;li&gt;Make sure to &lt;code&gt;vagrant destroy&lt;/code&gt; your VMs when done, and check the AWS Console to make sure they were terminated correctly (to avoid unexpected charges).
+Good Luck!!! If you face any problem feel free to poke me.&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title>Setup a private RTMP server with nginx-rtmp-module</title><description>&lt;p&gt;&lt;strong&gt;Real Time Messaging Protocol (RTMP)&lt;/strong&gt; is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called &lt;a href="https://github.com/arut/nginx-rtmp-module"&gt;&lt;strong&gt;nginx-rtmp-module&lt;/strong&gt;&lt;/a&gt;. This post will help you to setup a&lt;/p&gt;</description><link>http://blog.nmrony.docker/setup-a-private-rtmp-server-with-nginx-rtmp-module/</link><guid isPermaLink="false">5f74e5e8-2443-42a9-aa98-d2782c6e8c3a</guid><category>nginx</category><category>rtmp</category><category>live streaming</category><dc:creator>Nur Rony</dc:creator><pubDate>Tue, 17 Mar 2015 13:11:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Real Time Messaging Protocol (RTMP)&lt;/strong&gt; is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called &lt;a href="https://github.com/arut/nginx-rtmp-module"&gt;&lt;strong&gt;nginx-rtmp-module&lt;/strong&gt;&lt;/a&gt;. This post will help you to setup a RTMP server following some simple steps. So no more chit-chat lets jump into it.&lt;/p&gt;
+
+&lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
+
+&lt;p&gt;You must have &lt;strong&gt;root&lt;/strong&gt; privilege to complete this steps. I am on Ubuntu and using apt-get as my package manager but for other distribution of Linux I strongly hope that all command will be valid just replacing with the package manager and appropriate package name.&lt;/p&gt;
+
+&lt;h4 id="installingdependencies"&gt;Installing dependencies&lt;/h4&gt;
+
+&lt;p&gt;Run the following commands to compile &lt;code&gt;Nginx&lt;/code&gt; with &lt;code&gt;nginx-rtmp-module&lt;/code&gt;  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update;  
+sudo apt-get install -y build-essential git libpcre3 \  
+libpcre3-dev openssl libssl-dev zlibc zlib1g zlib1g-dev  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="compilingnginxwithrtmpmodule"&gt;Compiling Nginx with RTMP Module&lt;/h4&gt;
+
+&lt;p&gt;Now we compile Nginx with RTMP module. I use following configure command to compile Nginx. You can add or remove options according to your need  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd $HOME &amp;amp;&amp;amp; cd nginx-*  
+./configure --prefix=/etc/nginx \
+--sbin-path=/usr/sbin/nginx \
+--conf-path=/etc/nginx/nginx.conf \
+--pid-path=/var/run/nginx.pid \
+--lock-path=/var/run/nginx.lock \
+--with-http_ssl_module \
+--with-http_realip_module \
+--with-http_addition_module \
+--with-http_sub_module \
+--with-http_dav_module \
+--with-http_flv_module \
+--with-http_mp4_module \
+--with-http_gunzip_module \
+--with-http_gzip_static_module \
+--with-http_random_index_module \
+--with-http_secure_link_module \
+--with-http_stub_status_module \
+--with-file-aio \
+--with-pcre \
+--with-file-aio \
+--with-http_spdy_module \
+--with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -DTCP_FASTOPEN=23' \
+--with-ld-opt='-Wl,-z,relro -Wl,--as-needed -L /usr/lib' \
+--with-ipv6 \
+--with-debug \
+--without-http_scgi_module \
+--without-http_uwsgi_module \
+--add-module=$HOME/nginx-rtmp-module
+make  
+sudo make install  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+Now you have Nginx installed in your dev machine or server which running &lt;code&gt;Ubuntu 14.04&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h4 id="configurertmpapplication"&gt;Configure RTMP Application&lt;/h4&gt;
+
+&lt;p&gt;Configuring simple live RTMP application is so simple. To configure a RTMP live streaming application you need to edit nginx configuration file  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-bash"&gt;sudo nano /etc/nginx/nginx.conf  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+and under HTTP block paste the following piece of RTMP block to make a RTMP live streaming application called live.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rtmp {  
+    server {
+        listen 1935;
+        application live {
+            live on;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart nginx server by running the following command  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo /usr/sbin/nginx -s stop &amp;amp;&amp;amp; sudo /usr/sbin/nginx  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+That all!! Now you have a private live streaming RTMP server running with Nginx. You can push your live video or audio stream to &lt;code&gt;rtmp://your-ip-or-domainName:1935/live/{your-stream-name}&lt;/code&gt; using &lt;code&gt;FFMpeg&lt;/code&gt; or &lt;code&gt;GStreamer&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are lots of directive to fine tune the &lt;code&gt;RTMP&lt;/code&gt; application. You can find it from the Directive page of &lt;code&gt;nginx-rtmp-module&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you face any problem please leave a comment... I will respond for sure.&lt;/p&gt;</content:encoded></item><item><title>How to: Setup phpMyAdmin with Nginx on Ubuntu 14.04</title><description>&lt;p&gt;Relational database management systems like MySQL are needed for a significant portion of web sites and applications. However, not all users feel comfortable administering their data from the command line. To solve this problem, a project called phpMyAdmin was created in order to offer an alternative in the form of&lt;/p&gt;</description><link>http://blog.nmrony.docker/how-to-setup-phpmyadmin-with-nginx-on-ubuntu-14-04/</link><guid isPermaLink="false">f0615d14-4b07-4dfd-aebd-51c5121dee87</guid><category>phpmyadmin</category><category>nginx</category><category>server-admin</category><category>ubuntu-14-04</category><dc:creator>Nur Rony</dc:creator><pubDate>Mon, 16 Mar 2015 13:03:00 GMT</pubDate><content:encoded>&lt;p&gt;Relational database management systems like MySQL are needed for a significant portion of web sites and applications. However, not all users feel comfortable administering their data from the command line. To solve this problem, a project called phpMyAdmin was created in order to offer an alternative in the form of a web-based management interface.&lt;/p&gt;
+
+&lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
+
+&lt;p&gt;I am assuming that you have a running &lt;a href="http://www.ubuntu.com/download/server"&gt;&lt;strong&gt;Ubuntu 14.04 Server&lt;/strong&gt;&lt;/a&gt; and Linux part have taken care of as well. The steps in this post require the user to have root privileges. If you do not have any root privilege then you can ask for it to your server administrator.&lt;/p&gt;
+
+&lt;p&gt;You must have installed &lt;code&gt;LEMP&lt;/code&gt; (Linux, Nginx, MySQL, and PHP) stack on your Ubuntu 14.04 server. If you don't have LEMP installed, you can have it easily following my previous post &lt;a href="https://nurmrony.wordpress.com/2015/03/14/setup-and-configure-lemp-stack-in-ubuntu-14-04/"&gt;&lt;strong&gt;Setup and configure LEMP stack in Ubuntu 14.04&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id="installingphpmyadmin"&gt;Installing phpMyAdmin&lt;/h4&gt;
+
+&lt;p&gt;It is just a piece of cake. Run the following command in your terminal  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install phpmyadmin  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+That's all!! &lt;br&gt;
+During the installation, phpmyadmin will ask you if you want to configure the database with dbconfig. Go ahead and choose yes.&lt;/p&gt;
+
+&lt;p&gt;Input MySQL’s database root password when prompted and click ok.&lt;/p&gt;
+
+&lt;p&gt;When phpmyadmin prompts you to choose a server (either &lt;code&gt;apache&lt;/code&gt;or &lt;code&gt;lighttpd&lt;/code&gt;) hit tab, and select neither one.  &lt;/p&gt;
+
+&lt;h4 id="configurephpmyadmin"&gt;Configure phpMyAdmin&lt;/h4&gt;
+
+&lt;p&gt;Now you have phpMyAdmin installed on your server but you cant access it as you did not configure it yet. To access phpMyAdmin using Nginx you need to create a symbolic link between phpMyAdmin and your site’s document root directory.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo ln -s /usr/share/phpmyadmin/ /path/to/your/document/root  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+Restart Nginx  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service nginx restart  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You should now be able to access &lt;code&gt;phpMyAdmin&lt;/code&gt; by going to &lt;code&gt;http://yourdomain-or-ip/phpmyadmin&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item><item><title>How to: Setup phpMyAdmin with Apache2 on Ubuntu 14.04</title><description>&lt;p&gt;phpMyAdmin is an free web software to work with MySQL on the web—it provides a convenient visual front end to the MySQL capabilities. I cant think MySQL installed without phpMyAdmin&lt;/p&gt;
+
+&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
+
+&lt;p&gt;I am assuming that you have a running Ubuntu 14.04 Server and Linux part have taken care&lt;/p&gt;</description><link>http://blog.nmrony.docker/how-to-setup-phpmyadmin-with-apache2-on-ubuntu-14-04/</link><guid isPermaLink="false">319767d3-faad-4152-9adb-4e9c9dd12b7f</guid><category>phpmyadmin</category><category>ubuntu</category><category>howto</category><category>apache</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 15 Mar 2015 12:55:00 GMT</pubDate><content:encoded>&lt;p&gt;phpMyAdmin is an free web software to work with MySQL on the web—it provides a convenient visual front end to the MySQL capabilities. I cant think MySQL installed without phpMyAdmin&lt;/p&gt;
+
+&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
+
+&lt;p&gt;I am assuming that you have a running Ubuntu 14.04 Server and Linux part have taken care of as well. The steps in this post require the user to have &lt;strong&gt;root&lt;/strong&gt; privileges. If you do not have any &lt;strong&gt;root&lt;/strong&gt; privilege then you can ask for it to your server administrator.&lt;/p&gt;
+
+&lt;h4 id="installingphpmyadminwithapache2"&gt;Installing phpMyAdmin with Apache2&lt;/h4&gt;
+
+&lt;p&gt;The easiest way to install &lt;code&gt;phpMyAdmin&lt;/code&gt; is through &lt;code&gt;apt-get&lt;/code&gt;  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install -y phpmyadmin apache2-utils  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;During the installation, &lt;code&gt;phpMyAdmin&lt;/code&gt; will walk you through a basic configuration. Once the process starts up, follow these steps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Select Apache2 for the server  &lt;/li&gt;
+&lt;li&gt;Choose YES when asked about whether to Configure the database for phpmyadmin with dbconfig-common  &lt;/li&gt;
+&lt;li&gt;Enter your MySQL password when prompted  &lt;/li&gt;
+&lt;li&gt;Enter the password that you want to use to log into phpmyadmin&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;After the installation has completed, add phpmyadmin to the apache configuration.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/apache2/apache2.conf  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+Add the phpmyadmin config to the file.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Include /etc/phpmyadmin/apache.conf  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart Apache2 server  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service apache2 restart  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+You can then access phpmyadmin by going to &lt;code&gt;http://youripaddress/phpmyadmin&lt;/code&gt;..&lt;/p&gt;
+
+&lt;p&gt;If you face any problem just give me a shout... to blow my eardrums!!! :-)&lt;/p&gt;</content:encoded></item><item><title>Setup and configure LEMP stack in Ubuntu 14.04</title><description>&lt;p&gt;&lt;strong&gt;LEMP&lt;/strong&gt; is stand for &lt;strong&gt;L&lt;/strong&gt;inux, &lt;strong&gt;N&lt;/strong&gt;ginx (pronounced Engine x), &lt;strong&gt;M&lt;/strong&gt;ySQL and &lt;strong&gt;P&lt;/strong&gt;HP and altogether we can make a web server up and running.&lt;/p&gt;
+
+&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
+
+&lt;p&gt;I am assuming that you have a running &lt;strong&gt;&lt;a href="http://www.ubuntu.com/download/server"&gt;Ubuntu 14.04 Server&lt;/a&gt;&lt;/strong&gt;  and Linux part have taken care of as well. The&lt;/p&gt;</description><link>http://blog.nmrony.docker/setup-and-configure-lemp-stack-in-ubuntu-14-04/</link><guid isPermaLink="false">f18cd72c-9c8a-4c24-95cb-fef05bb4b225</guid><category>lemp</category><category>mysql</category><category>nginx</category><category>php</category><category>server-admin</category><category>ubuntu-14-04</category><dc:creator>Nur Rony</dc:creator><pubDate>Sat, 14 Mar 2015 12:36:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;LEMP&lt;/strong&gt; is stand for &lt;strong&gt;L&lt;/strong&gt;inux, &lt;strong&gt;N&lt;/strong&gt;ginx (pronounced Engine x), &lt;strong&gt;M&lt;/strong&gt;ySQL and &lt;strong&gt;P&lt;/strong&gt;HP and altogether we can make a web server up and running.&lt;/p&gt;
+
+&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
+
+&lt;p&gt;I am assuming that you have a running &lt;strong&gt;&lt;a href="http://www.ubuntu.com/download/server"&gt;Ubuntu 14.04 Server&lt;/a&gt;&lt;/strong&gt;  and Linux part have taken care of as well. The steps in this post require the user to have root privileges. If you do not have any root privilege then you can ask for it to your server administrator.&lt;/p&gt;
+
+&lt;h4 id="installnginx"&gt;Install Nginx&lt;/h4&gt;
+
+&lt;p&gt;I don't like writing too much description and jump to the commands that does the work. Run the following command in your terminal.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update;  
+sudo apt-get install -y nginx  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+Now you have &lt;strong&gt;Nginx&lt;/strong&gt; installed and should have it already running. If it is not running you can start, restart, stop, reload or syntax checking of configuration file of Nginx using the following commands  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service nginx start #start Nginx server  
+sudo service nginx restart #retart Nginx server  
+sudo service nginx reload #reload Nginx server  
+sudo service nginx stop #stop Nginx server  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+You can confirm that nginx has installed an your web server by directing your browser to your IP address.&lt;/p&gt;
+
+&lt;h4 id="installmysql"&gt;Install MySQL&lt;/h4&gt;
+
+&lt;p&gt;MySQL is a powerful database management system used for organizing and retrieving data. To install MySQL, open terminal and type in these commands:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update  
+sudo apt-get install mysql-server php5-mysql -y  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+During the installation, MySQL will ask you to set a &lt;code&gt;root&lt;/code&gt; password. If you miss the chance to set the password while the program is installing, it is very easy to set the password later from within the MySQL shell. &lt;br&gt;
+Once you have installed MySQL, we should activate it with this command:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mysql_install_db  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Finish up by running the MySQL set up script:&lt;/p&gt;
+
+&lt;p&gt;sudo /usr/bin/mysql&lt;em&gt;secure&lt;/em&gt;installation &lt;br&gt;
+The prompt will ask you for your current root password. Type it in and hit enter. If all goes fine then you will see the following lines.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Enter current password for root (enter for none):  
+OK, successfully used password, moving on...  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+Then the prompt will ask you if you want to change the root password. Go ahead and choose N and move on to the next steps. It’s easiest just to say Yes to all the options. At the end, MySQL will reload and implement the new changes. Answering those the output will be looks like below  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;By default, a MySQL installation has an anonymous user, allowing anyone  
+to log into MySQL without having to have a user account created for  
+them.  This is intended only for testing, and to make the installation  
+go a bit smoother.  You should remove them before moving into a  
+production environment.
+
+Remove anonymous users? [Y/n] y  
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This  
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y  
+... Success!
+
+By default, MySQL comes with a database named 'test' that anyone can  
+access.  This is also intended only for testing, and should be removed  
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y  
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far  
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y  
+ ... Success!
+
+Cleaning up...  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We have done with MySQL installation and configuration.&lt;/p&gt;
+
+&lt;h5 id="installingphp"&gt;Installing PHP&lt;/h5&gt;
+
+&lt;p&gt;We need to make one small change in the php configuration.Open up &lt;code&gt;php.ini&lt;/code&gt;:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/php5/fpm/php.ini  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Find and replace the line &lt;code&gt;cgi.fix_pathinfo=1&lt;/code&gt; and replace 1 to 0. If you find this line as commented uncomment it by removing &lt;code&gt;#&lt;/code&gt;. Final result will look like below  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cgi.fix_pathinfo=0  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If this number is kept as 1, the php interpreter will do its best to process the file that is as near to the requested file as possible. This is a possible security risk. If this number is set to 0, conversely, the interpreter will only process the exact file path—a much safer alternative. Save and Exit. We need to make another small change in the &lt;code&gt;php5-fpm&lt;/code&gt; configuration.Open up &lt;code&gt;www.conf&lt;/code&gt;:&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/php5/fpm/pool.d/www.conf  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Find the line, &lt;code&gt;listen = 127.0.0.1:9000&lt;/code&gt; and change the &lt;code&gt;127.0.0.1:9000&lt;/code&gt; to &lt;code&gt;/var/run/php5-fpm.sock&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;listen = /var/run/php5-fpm.sock&lt;/code&gt; &lt;br&gt;
+save and exit&lt;/p&gt;
+
+&lt;p&gt;Restart &lt;code&gt;php-fpm&lt;/code&gt; using following command  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service php5-fpm restart  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="configurenginxforphp"&gt;Configure Nginx for PHP&lt;/h4&gt;
+
+&lt;p&gt;Open up the default virtual host file.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/nginx/sites-available/default  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+and replace server block with the following piece of lines  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {  
+        listen   80;
+
+
+        root /usr/share/nginx/www; #replce this line with your document root path
+        index index.php index.html index.htm;
+
+        server_name example.com;
+
+        location / {
+                try_files $uri $uri/ /index.html;
+        }
+
+        error_page 404 /404.html;
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+              root /usr/share/nginx/www;
+        }
+
+        # pass the PHP scripts to FastCGI server listening on the php-fpm socket
+        location ~ \.php$ {
+                try_files $uri =404;
+                fastcgi_pass unix:/var/run/php5-fpm.sock;
+                fastcgi_index index.php;
+                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                include fastcgi_params;
+
+        }
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="testingyourconfiguration"&gt;Testing your configuration&lt;/h4&gt;
+
+&lt;p&gt;To test your configuration please create a file called &lt;code&gt;info.php&lt;/code&gt; with following code  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code class="language-php"&gt;&amp;lt;?php  
+/**
+ * Filename: info.php
+ * Location: In your document root directory 
+ */
+phpinfo();  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+Then save and exit&lt;/p&gt;
+
+&lt;p&gt;Restart Nginx server  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service nginx restart  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Go to &lt;code&gt;http://[your-ip-or-domain-name]/info.php.&lt;/code&gt; You should see a PHP configuration page if all goes fine.&lt;/p&gt;
+
+&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item><item><title>Vagrant: Common Settings Tips</title><description>&lt;p&gt;I heard about Vagrant in 2013. I am playing with Vagrant about a year. It is really an awesome tool. It totally changed the way of my development. From the beginning I faced some problem and solved it by googling. Today I would like to summarize the common problem and&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-common-settings-tips/</link><guid isPermaLink="false">9119adf3-afd9-4f49-85da-20cd80a2aee8</guid><category>vagrant</category><category>devops</category><category>tips</category><category>tricks</category><dc:creator>Nur Rony</dc:creator><pubDate>Fri, 13 Mar 2015 11:58:00 GMT</pubDate><content:encoded>&lt;p&gt;I heard about Vagrant in 2013. I am playing with Vagrant about a year. It is really an awesome tool. It totally changed the way of my development. From the beginning I faced some problem and solved it by googling. Today I would like to summarize the common problem and how I got rid of them.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Change Vagrant Box Name&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.define 'nurrony-devbox' do |devbox|  
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Change Provider Box Name:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.provider 'virtualbox' do |vb|  
+  vb.name = 'devbox'
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Change Hostname of Vagrant box:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.hostname = 'YourBoxHostname'  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+Or  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.define 'nurrony-devbox' do |devbox|  
+  devbox.vm.hostname = 'devbox'
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+The above configuration also change the name of Vagrant box from default to &lt;code&gt;nurrony-devbox&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Private Networking:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.network 'private_network', type: 'dhcp'  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+Or with specific IP  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.network 'private_network', ip: '192.168.10.236'  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;Public Networking&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Vagrant.configure('2') do |config|  
+  #DHCP
+  config.vm.network 'public_network'
+  #STATIC
+  config.vm.network 'public_network', ip: '192.168.10.236';
+  #Defining Default Network interface
+  config.vm.network 'public_network', bridge: 'wlan0'
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Disabling Auto config:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.network 'private_network', ip: '192.168.50.4', auto_config: false  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;Resolve Vagrant Box Slow Internet Issue:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;config.vm.provider 'virtualbox' do |vb|  
+  vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+  vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
+end  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;Packaging a box:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant package --base SPECIFIC_NAME_FOR_VM --output /yourfolder/OUTPUT_BOX_NAME.box  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+&lt;strong&gt;Sending Command to Vagrant&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;vagrant ssh -c 'sudo service httpd restart'  
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>Hello World</title><description>Though it is my first blog ever but I am not new in blogging. I did not ever think writing blogs. So it will not be a blog but a dump of memory of mine.</description><link>http://blog.nmrony.docker/hello-world/</link><guid isPermaLink="false">bb836ad8-a121-4764-a17c-cf6007783d02</guid><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 11 Mar 2015 11:51:00 GMT</pubDate><media:content url="http://blog.nmrony.docker/content/images/2016/08/cartoon-book-vector-illustration-1.jpg" medium="image"/><content:encoded>&lt;img src="http://blog.nmrony.docker/content/images/2016/08/cartoon-book-vector-illustration-1.jpg" alt="Hello World"&gt;&lt;p&gt;Though it is my first blog ever but I am not new in blogging. I did not ever think writing blogs. Now-a-days my memory is betraying me and today I lost a good amount of time solving a silly thing that I have solved multiple times before. So it will not be a blog but a dump of memory of mine. You may found many silly programming solution here that make no sense but may be helpful for others. If my chunk of memory and experiences help a single person, I will be really happy. Thanks a lot for reading such a dull and boring post.&lt;/p&gt;</content:encoded></item></channel></rss>

@@ -1,0 +1,464 @@
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Vagrant: Deploy and provisioning an Amazon EC2 instance">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:url" content="http://www.nmrony.info">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Vagrant: Deploy and provisioning an Amazon EC2 instance">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Coding is Poetry">
+
+    <meta itemprop="name" content="Vagrant: Deploy and provisioning an Amazon EC2 instance">
+    <meta itemprop="description" content="">
+
+    <meta name="twitter:site" content="@nmrony">
+
+<meta name="twitter:creator" content="@nmrony">
+
+<meta property="article:author" content="https://www.facebook.com/nmrony">
+
+<meta name="google-site-verification" content="">
+
+<meta name="theme-color" content="">
+
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="http://fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic%7COpen+Sans:700,400&amp;subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/main.min.css?v=d95081abc3">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      var ga_ua = 'UA-73097824-1';
+
+var disqus_shortname = 'nmrony';
+
+var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="../assets/js/head-scripts.min.js?v=d95081abc3"></script>
+
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin-when-cross-origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Vagrant: Deploy and provisioning an Amazon EC2 instance">
+    <meta property="og:description" content="Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use VirtualBox, VMWare, AWS, DigitalOcean">
+    <meta property="og:url" content="http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/">
+    <meta property="article:published_time" content="2015-03-19T13:21:00.000Z">
+    <meta property="article:modified_time" content="2016-08-19T13:36:19.000Z">
+    <meta property="article:tag" content="vagrant">
+    <meta property="article:tag" content="devops">
+    <meta property="article:tag" content="howto">
+    <meta property="article:tag" content="aws">
+    <meta property="article:tag" content="EC2">
+    <meta property="article:tag" content="amazon web service">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Vagrant: Deploy and provisioning an Amazon EC2 instance">
+    <meta name="twitter:description" content="Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use VirtualBox, VMWare, AWS, DigitalOcean">
+    <meta name="twitter:url" content="http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nur Rony">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="vagrant, devops, howto, aws, EC2, amazon web service">
+    <meta name="twitter:site" content="@nmrony">
+    <meta name="twitter:creator" content="@nmrony">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Coding is Poetry",
+        "logo": "http://www.nmrony.info/content/images/2016/08/rony.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "http://www.nmrony.info/content/images/2016/08/2513341.jpg",
+        "url": "http://www.nmrony.info/author/nur/",
+        "sameAs": [
+            "http://nmrony.info",
+            "https://twitter.com/nmrony"
+        ],
+        "description": "Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.\n"
+    },
+    "headline": "Vagrant: Deploy and provisioning an Amazon EC2 instance",
+    "url": "http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/",
+    "datePublished": "2015-03-19T13:21:00.000Z",
+    "dateModified": "2016-08-19T13:36:19.000Z",
+    "keywords": "vagrant, devops, howto, aws, EC2, amazon web service",
+    "description": "Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use VirtualBox, VMWare, AWS, DigitalOcean"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.9">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="../rss/index.html">
+  </head>
+  <body class="post-template tag-vagrant tag-devops tag-howto tag-aws tag-ec2 tag-amazon-web-service">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    <!--.drawer-search(role="search")-->
+    <ul role="navigation" class="drawer-list">
+      
+<li class="drawer-list-item">
+  <a href="../" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../rss/index.rss" target="_blank" rel="noopener">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+<li class="drawer-list-divider">
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+<li class="drawer-list-item">
+  <a href="https://twitter.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://github.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://stackoverflow.com/cv/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-stack-overflow"></i>Stackoverflow
+  </a>
+</li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-vagrant tag-devops tag-howto tag-aws tag-ec2 tag-amazon-web-service">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2015-03-19" itemprop="datePublished">
+                  a year ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                    <a itemprop="articleSection" href="../tag/vagrant/" data-pjax>vagrant</a>, 
+                    <a itemprop="keywords" href="../tag/devops/" data-pjax>devops</a>, 
+                    <a itemprop="keywords" href="../tag/howto/" data-pjax>howto</a>, 
+                    <a itemprop="keywords" href="../tag/aws/" data-pjax>aws</a>, 
+                    <a itemprop="keywords" href="../tag/ec2/" data-pjax>EC2</a>, 
+                    <a itemprop="keywords" href="../tag/amazon-web-service/" data-pjax>amazon web service</a> 
+                </li>
+              <li class="post-meta-item">
+                <a href="index.html#disqus_thread" data-disqus-identifier="8">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="index.html" itemprop="url" data-pjax title="Vagrant: Deploy and provisioning an Amazon EC2 instance">Vagrant: Deploy and provisioning an Amazon EC2 instance</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <a href="http://nmrony.info" class="post-author-name">
+                  Nur Rony
+                </a>
+                <p class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <p>Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use <strong>VirtualBox</strong>, <strong>VMWare</strong>, <strong>AWS</strong>, <strong>DigitalOcean</strong> as provider to launch our servers and automatically provision it.</p>
+
+<h4 id="prerequisites">Prerequisites</h4>
+
+<p>I am assuming you have the latest version of Vagrant installed in your dev machine and familiar with <code>Vagrantfile</code> and its commands. If you don’t know about <code>Vagrant</code>, you can visit the <a href="https://docs.vagrantup.com/v2/">official docummentation</a> of Vagrant and learn about it.</p>
+
+<p>You need to have a AWS account and the following</p>
+
+<ul>
+<li>AWS access key</li>
+<li>AWS secret key</li>
+<li>SSH keypair name</li>
+<li>SSH private key file (.pem extension)</li>
+<li>Make sure the your security group enables SSH (port 22) access from anywhere</li>
+</ul>
+
+<blockquote>
+  <p>The EC2 instance used to deploy here may not fit in your AWS Free Tier Plan and cost your money.</p>
+</blockquote>
+
+<h4 id="settingenvironmentvariable">Setting Environment Variable</h4>
+
+<p>I like to set these up as environment variables to keep them out of the <code>Vagrantfile</code>. On Mac or Linux systems you can add this to your <code>$HOME/.profile</code> or <code>$HOME/.bashrc</code> file:  </p>
+
+<pre><code>export AWS_KEY='your-access-key'  
+export AWS_SECRET='your-secret-secret'  
+export AWS_KEYNAME='your-keyname'  
+export AWS_KEYPATH='your-keypath'  
+export AWS_DEFAULT_REGION='your-region'  
+</code></pre>
+
+<h4 id="installthevagrantawsplugin">Install the <code>vagrant-aws</code> plugin</h4>
+
+<p>To install <code>vagrant-aws</code> plugin run the following command in terminal  </p>
+
+<pre><code>vagrant plugin install vagrant-aws  
+</code></pre>
+
+<h4 id="fetchawsdummybox">Fetch AWS Dummy Box</h4>
+
+<p>To fetch the Vagrant AWS dummy box run the following command in terminal  </p>
+
+<pre><code>vagrant box add dummybox-aws https://github.com/mitchellh/vagrant-aw  
+</code></pre>
+
+<h4 id="creatingvagrantfile">Creating Vagrantfile</h4>
+
+<p>Run the following commands in terminal to create a <code>Vagrantfile</code>  </p>
+
+<pre><code>mkdir -p /path/to/your/dir &amp;&amp; cd $_  
+vagrant init dummybox-aws  
+</code></pre>
+
+<p>This will create a <code>Vagrantfile</code> in current directory using <code>dummybox-aws</code> that we added in previous step.</p>
+
+<h4 id="configurevagrantfile">Configure Vagrantfile</h4>
+
+<p>Now our <code>Vagrantfile</code> with the specifics needed for AWS. Refer to the <code>vagrant-aws</code> documentation to understand all the options.  </p>
+
+<pre><code class="language-ruby"># -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrant on AWS Example
+# Nur Mohammed Rony
+
+# Adjustable settings
+# timezone, like US/Pacific, US/Eastern, UTC, Europe/Warsaw, etc.
+CFG_TZ = "US/Pacific"
+
+# Provisioning script
+provision_script = &lt;&lt;SCRIPT  
+#!/bin/bash
+
+# set timezone
+echo "#{CFG_TZ}" &gt; /etc/timezone  
+dpkg-reconfigure -f noninteractive tzdata
+
+# install a few base packages
+apt-get update  
+apt-get install vim curl git build-essential -y  
+#long provisioning command
+echo Provisioning is complete  
+SCRIPT
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "dummybox-aws"
+  config.vm.synced_folder ".", "/home/ubuntu/devpc", type: "rsync", rsync__exclude: ".git/"
+  config.vm.hostname = "stagingbox"
+  config.vm.provision :shell, :inline =&gt; provision_script
+  config.vm.provider :aws do |aws, override|
+
+    #AWS Settings
+    aws.access_key_id = ENV['AWS_KEY']
+    aws.secret_access_key = ENV['AWS_KEYNAME']
+    aws.region = ENV['AWS_DEFAULT_REGION']
+
+    aws.tags = {
+      'Name' =&gt; 'NurRony StagingBox',
+      'Team' =&gt; 'devops',
+      'Status' =&gt; 'active'
+    }
+
+    #Override Settings
+    override.ssh.username = "ubuntu"
+    override.ssh.private_key_path = ENV['AWS_KEYPATH']
+
+    aws.region_config "us-west-2" do |region|
+      region.ami = 'ami-35143705'
+      region.instance_type = 'c4.large'
+      region.keypair_name = ENV['AWS_KEYNAME']
+      region.security_groups = "devops"
+    end
+  end
+end  
+</code></pre>
+
+<p>Add or edit more options according to your need.</p>
+
+<h4 id="startupvagrantbox">Startup Vagrant box</h4>
+
+<p>Run the following command to start vagrant box which will create and run an AWS EC2 instance with your provided settings in previous step  </p>
+
+<pre><code>vagrant up —-provider=aws  
+</code></pre>
+
+<h4 id="verifyintheamazondashboard">Verify in the Amazon dashboard</h4>
+
+<p>Jump over to your amazon dashboard with <a href="https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:">this link</a>. If you’re logged in already, that will take you to your EC2 instances. You should see a new one, based on the parameters in your <code>Vagrantfile</code>.</p>
+
+<h4 id="workingwithnewlycreatedec2instance">Working with newly created EC2 instance</h4>
+
+<p>You can connect via SSH, stop, reload or re-provision your newly created EC2 instance with regular Vagrant command like below  </p>
+
+<pre><code class="language-bash">#To SSH to instance
+vagrant ssh  
+#To restart the instance or re-provision
+vagrant reload reload [--provision]  
+#To stop 
+vagrant halt  
+</code></pre>
+
+<p><strong>Note</strong></p>
+
+<ul>
+<li>You need to configure a specific AMI for Vagrant to use. I find the Ubuntu <a href="http://cloud-images.ubuntu.com/locator/ec2/">Amazon EC2 AMI Finder</a> very helpful to match the version and region I wanted to use.</li>
+<li>A common tripping point is the default security group not allowing SSH (port 22) from any IP address. Also make sure to add any other ports depending on your application (e.g., port 80 for HTTP).</li>
+<li>Once you have the basics working, make sure to read through the <a href="https://github.com/mitchellh/vagrant-aws">vagrant-aws</a> project to understand all the options available.</li>
+<li>Make sure to <code>vagrant destroy</code> your VMs when done, and check the AWS Console to make sure they were terminated correctly (to avoid unexpected charges).
+Good Luck!!! If you face any problem feel free to poke me.</li>
+</ul>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img itemprop="image" src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://nmrony.info" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Nur Rony</span>
+                </a>
+                <p itemprop="description" class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+                  <p class="post-author-location">Milkyway, Earth</p>
+                  <p class="post-author-website">
+                    <a href="http://nmrony.info" rel="nofollow">http://nmrony.info</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">March 19, 2015</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="index.html#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="index.html#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="index.html#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a></small></p>
+</footer>
+  </div>
+</section>
+
+<script type="text/javascript">
+  if(GHOSTIUM.haveDisqus) {
+    var disqus_identifier = '8';
+
+    if(typeof DISQUS !== 'object') {
+      (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    }
+  } else {
+    document.querySelector('.post-comments').remove();
+  }
+</script>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+
+    <script src="../assets/js/foot-scripts.min.js?v=d95081abc3"></script>
+
+    <script type="text/javascript">
+
+      if(GHOSTIUM.haveGA) {
+        (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+        function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+        t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+        t.src='//www.google-analytics.com/analytics.js';
+        z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+        ga('create',ga_ua);ga('send','pageview');
+      }
+
+      if(GHOSTIUM.haveDisqus) {
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+  </body>
