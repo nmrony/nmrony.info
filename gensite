@@ -1,0 +1,9 @@
+#!/bin/bash
+
+CURR_DIR=$(pwd);
+CONTENT_DIR='.';
+SITE_DIR=${DEV_ZONE}/projects/my-blog;
+echo 'Generating static page from ghost blog..' && \
+buster generate --domain=http://blog.nmrony.docker --dir=${DEV_ZONE}/projects/my-blog
+echo 'Fixing link...'
+find $SITE_DIR -name "*.html" -print0 | xargs -0 sed -i'' -e 's#http://blog.nmrony.docker#http://www.nmrony.info#g'

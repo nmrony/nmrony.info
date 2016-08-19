@@ -3,7 +3,7 @@
 
 CURR_DIR=$(pwd);
 CONTENT_DIR='.';
-SITE_DIR=$CURR_DIR/$CONTENT_DIR;
+SITE_DIR=${CURR_DIR};
 echo 'Generating static page from ghost blog..' && \
 buster generate --domain=http://blog.nmrony.docker --dir=$SITE_DIR > /dev/null 2>&1 && \
 echo 'Fixing link...'
