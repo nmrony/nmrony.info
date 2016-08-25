@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>Setup a private RTMP server with nginx-rtmp-module</title>
+    <title>JSONP with ExpressJS</title>
 
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,16 +15,16 @@
     <meta name="description" content="">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Setup a private RTMP server with nginx-rtmp-module">
+    <meta name="twitter:title" content="JSONP with ExpressJS">
     <meta name="twitter:description" content="">
 
     <meta property="og:url" content="http://www.nmrony.info">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Setup a private RTMP server with nginx-rtmp-module">
+    <meta property="og:title" content="JSONP with ExpressJS">
     <meta property="og:description" content="">
     <meta property="og:site_name" content="Coding is Poetry">
 
-    <meta itemprop="name" content="Setup a private RTMP server with nginx-rtmp-module">
+    <meta itemprop="name" content="JSONP with ExpressJS">
     <meta itemprop="description" content="">
 
     <meta name="twitter:site" content="@nmrony">
@@ -78,23 +78,24 @@ var enable_pjax = true;
     
     <meta property="og:site_name" content="Coding is Poetry">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="Setup a private RTMP server with nginx-rtmp-module">
-    <meta property="og:description" content="Real Time Messaging Protocol (RTMP) is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called nginx-rtmp-module. This post will help you to setup a">
-    <meta property="og:url" content="http://www.nmrony.info/setup-a-private-rtmp-server-with-nginx-rtmp-module/">
-    <meta property="article:published_time" content="2015-03-17T13:11:00.000Z">
-    <meta property="article:modified_time" content="2016-08-19T13:19:33.000Z">
-    <meta property="article:tag" content="nginx">
-    <meta property="article:tag" content="rtmp">
-    <meta property="article:tag" content="live streaming">
+    <meta property="og:title" content="JSONP with ExpressJS">
+    <meta property="og:description" content="This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome">
+    <meta property="og:url" content="http://www.nmrony.info/jsonp-with-expressjs/">
+    <meta property="article:published_time" content="2015-03-25T18:19:00.000Z">
+    <meta property="article:modified_time" content="2016-08-25T18:27:50.000Z">
+    <meta property="article:tag" content="express">
+    <meta property="article:tag" content="json">
+    <meta property="article:tag" content="nodejs">
+    <meta property="article:tag" content="javascript">
     
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Setup a private RTMP server with nginx-rtmp-module">
-    <meta name="twitter:description" content="Real Time Messaging Protocol (RTMP) is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called nginx-rtmp-module. This post will help you to setup a">
-    <meta name="twitter:url" content="http://www.nmrony.info/setup-a-private-rtmp-server-with-nginx-rtmp-module/">
+    <meta name="twitter:title" content="JSONP with ExpressJS">
+    <meta name="twitter:description" content="This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome">
+    <meta name="twitter:url" content="http://www.nmrony.info/jsonp-with-expressjs/">
     <meta name="twitter:label1" content="Written by">
     <meta name="twitter:data1" content="Nur Rony">
     <meta name="twitter:label2" content="Filed under">
-    <meta name="twitter:data2" content="nginx, rtmp, live streaming">
+    <meta name="twitter:data2" content="express, json, nodejs, javascript">
     <meta name="twitter:site" content="@nmrony">
     <meta name="twitter:creator" content="@nmrony">
     
@@ -118,19 +119,19 @@ var enable_pjax = true;
         ],
         "description": "Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.\n"
     },
-    "headline": "Setup a private RTMP server with nginx-rtmp-module",
-    "url": "http://www.nmrony.info/setup-a-private-rtmp-server-with-nginx-rtmp-module/",
-    "datePublished": "2015-03-17T13:11:00.000Z",
-    "dateModified": "2016-08-19T13:19:33.000Z",
-    "keywords": "nginx, rtmp, live streaming",
-    "description": "Real Time Messaging Protocol (RTMP) is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called nginx-rtmp-module. This post will help you to setup a"
+    "headline": "JSONP with ExpressJS",
+    "url": "http://www.nmrony.info/jsonp-with-expressjs/",
+    "datePublished": "2015-03-25T18:19:00.000Z",
+    "dateModified": "2016-08-25T18:27:50.000Z",
+    "keywords": "express, json, nodejs, javascript",
+    "description": "This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome"
 }
     </script>
 
     <meta name="generator" content="Ghost 0.9">
     <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="../rss/index.html">
   </head>
-  <body class="post-template tag-nginx tag-rtmp tag-live-streaming">
+  <body class="post-template tag-express tag-json tag-nodejs tag-javascript">
 
     <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
 <nav tabindex="-1" class="drawer">
@@ -179,25 +180,26 @@ var enable_pjax = true;
             
 <section class="wrapper wrapper-post">
   <div class="wrapper-container">
-    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-nginx tag-rtmp tag-live-streaming">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-express tag-json tag-nodejs tag-javascript">
         <section class="post-container">
           <header class="post-header">
             <ul class="post-meta-list">
               <li class="post-meta-item">
-                <time datetime="2015-03-17" itemprop="datePublished">
+                <time datetime="2015-03-25" itemprop="datePublished">
                   a year ago
                 </time>
               </li>
                 <li class="post-meta-item">
-                    <a itemprop="articleSection" href="../tag/nginx/" data-pjax>nginx</a>, 
-                    <a itemprop="keywords" href="../tag/rtmp/" data-pjax>rtmp</a>, 
-                    <a itemprop="keywords" href="../tag/live-streaming/" data-pjax>live streaming</a> 
+                    <a itemprop="articleSection" href="../tag/express/" data-pjax>express</a>, 
+                    <a itemprop="keywords" href="../tag/json/" data-pjax>json</a>, 
+                    <a itemprop="keywords" href="../tag/nodejs/" data-pjax>nodejs</a>, 
+                    <a itemprop="keywords" href="../tag/javascript/" data-pjax>javascript</a> 
                 </li>
               <li class="post-meta-item">
-                <a href="index.html#disqus_thread" data-disqus-identifier="7">Comments</a>
+                <a href="index.html#disqus_thread" data-disqus-identifier="9">Comments</a>
               </li>
             </ul>
-            <h1 itemprop="name headline" class="post-title"><a href="index.html" itemprop="url" data-pjax title="Setup a private RTMP server with nginx-rtmp-module">Setup a private RTMP server with nginx-rtmp-module</a></h1>
+            <h1 itemprop="name headline" class="post-title"><a href="index.html" itemprop="url" data-pjax title="JSONP with ExpressJS">JSONP with ExpressJS</a></h1>
             <!--h2 itemprop="about" class="post-subtitle"></h2-->
           </header>
           <aside class="post-side">
@@ -215,92 +217,68 @@ var enable_pjax = true;
             </div>
           </aside>
           <div itemprop="articleBody" class="post-body">
-            <p><strong>Real Time Messaging Protocol (RTMP)</strong> is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called <a href="https://github.com/arut/nginx-rtmp-module"><strong>nginx-rtmp-module</strong></a>. This post will help you to setup a RTMP server following some simple steps. So no more chit-chat lets jump into it.</p>
+            <p>This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.</p>
 
-<h4 id="prerequisites">Prerequisites</h4>
+<h4 id="whatissameoriginpolicy">What is Same Origin Policy?</h4>
 
-<p>You must have <strong>root</strong> privilege to complete this steps. I am on Ubuntu and using apt-get as my package manager but for other distribution of Linux I strongly hope that all command will be valid just replacing with the package manager and appropriate package name.</p>
+<p>The Same Origin Policy is a security measure imposed by all modern browsers that restricts the ability of JavaScript to make AJAX requests across domains. As a security measure this is desirable because it makes it more difficult for malicious scripts to communicate with domains you don’t trust. However, it also makes it harder for developers to write client side apps that use JavaScript to communicate with REST API. For a more detailed explanation of the Same Origin Policy see <br>
+<a href="http://en.wikipedia.org/wiki/Same-origin_policy">http://en.wikipedia.org/wiki/Same-origin_policy</a></p>
 
-<h4 id="installingdependencies">Installing dependencies</h4>
+<h4 id="jsonp">JSONP</h4>
 
-<p>Run the following commands to compile <code>Nginx</code> with <code>nginx-rtmp-module</code>  </p>
+<p>JSONP, or JavaScript Object Notation with Padding, is a technique for returning data in a way that works around the restrictions imposed by the Same Origin Policy. It relies on the fact that tags are not subject to the Same Origin Policy. When data is requested using JSONP it is returned as a text representation of a JSON object wrapped or “padded” with a JavaScript function name. <br>
+When a tag processes a JSONP response, the JSON object is treated as an argument and if the function is already defined on the page it is executed immediately, giving that function access to the JSON object.</p>
 
-<pre><code>sudo apt-get update;  
-sudo apt-get install -y build-essential git libpcre3 \  
-libpcre3-dev openssl libssl-dev zlibc zlib1g zlib1g-dev  
+<p>Lots of chit chat lets make hands dirty</p>
+
+<h4 id="jsonpinjs">JSONP in JS</h4>
+
+<pre><code>//jsonp.js
+var JSONP = (function(){  
+  var that = {};
+
+  that.send = function(src, options) {
+    var callback_name = options.callbackName || 'callback',
+      on_success = options.onSuccess || function(){},
+      on_timeout = options.onTimeout || function(){},
+      timeout = options.timeout || 10;
+
+    var timeout_trigger = window.setTimeout(function(){
+      window[callback_name] = function(){};
+      on_timeout();
+    }, timeout * 1000);
+
+    window[callback_name] = function(data){
+      window.clearTimeout(timeout_trigger);
+      on_success(data);
+    };
+
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = src;
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  };
+
+  return that;
+})();
+
+//In your HTML script tag or in JS file 
+JSONP.send('/your/endpoint?callback=name', { callbackName: 'name' });  
 </code></pre>
 
-<h4 id="compilingnginxwithrtmpmodule">Compiling Nginx with RTMP Module</h4>
+<p>and In your Express App just call  </p>
 
-<p>Now we compile Nginx with RTMP module. I use following configure command to compile Nginx. You can add or remove options according to your need  </p>
-
-<pre><code>cd $HOME &amp;&amp; cd nginx-*  
-./configure --prefix=/etc/nginx \
---sbin-path=/usr/sbin/nginx \
---conf-path=/etc/nginx/nginx.conf \
---pid-path=/var/run/nginx.pid \
---lock-path=/var/run/nginx.lock \
---with-http_ssl_module \
---with-http_realip_module \
---with-http_addition_module \
---with-http_sub_module \
---with-http_dav_module \
---with-http_flv_module \
---with-http_mp4_module \
---with-http_gunzip_module \
---with-http_gzip_static_module \
---with-http_random_index_module \
---with-http_secure_link_module \
---with-http_stub_status_module \
---with-file-aio \
---with-pcre \
---with-file-aio \
---with-http_spdy_module \
---with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -DTCP_FASTOPEN=23' \
---with-ld-opt='-Wl,-z,relro -Wl,--as-needed -L /usr/lib' \
---with-ipv6 \
---with-debug \
---without-http_scgi_module \
---without-http_uwsgi_module \
---add-module=$HOME/nginx-rtmp-module
-make  
-sudo make install  
+<pre><code>//route.js
+route.post('/your/endpoint',function(req, res){  
+    res.jsonp('your response object')
+});
 </code></pre>
 
-<p><br>
-Now you have Nginx installed in your dev machine or server which running <code>Ubuntu 14.04</code>.</p>
+<p>You may need <a href="https://www.npmjs.com/package/cors"><strong>CORS</strong></a> module</p>
 
-<h4 id="configurertmpapplication">Configure RTMP Application</h4>
-
-<p>Configuring simple live RTMP application is so simple. To configure a RTMP live streaming application you need to edit nginx configuration file  </p>
-
-<pre><code class="language-bash">sudo nano /etc/nginx/nginx.conf  
-</code></pre>
-
-<p>
-and under HTTP block paste the following piece of RTMP block to make a RTMP live streaming application called live.  </p>
-
-<pre><code>rtmp {  
-    server {
-        listen 1935;
-        application live {
-            live on;
-        }
-    }
-}
-</code></pre>
-
-<p>Restart nginx server by running the following command  </p>
-
-<pre><code>sudo /usr/sbin/nginx -s stop &amp;&amp; sudo /usr/sbin/nginx  
-</code></pre>
-
-<p><br>
-That all!! Now you have a private live streaming RTMP server running with Nginx. You can push your live video or audio stream to <code>rtmp://your-ip-or-domainName:1935/live/{your-stream-name}</code> using <code>FFMpeg</code> or <code>GStreamer</code>.</p>
-
-<p>There are lots of directive to fine tune the <code>RTMP</code> application. You can find it from the Directive page of <code>nginx-rtmp-module</code>.</p>
-
-<p>If you face any problem please leave a comment... I will respond for sure.</p>
+<p>Not joking!!! really so simple in ExpressJS</p>
           </div>
           <footer class="post-footer">
             <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
@@ -320,7 +298,7 @@ That all!! Now you have a private live streaming RTMP server running with Nginx.
                   </p>
                 <p class="post-info">
                   <b class="post-info-title">Published on</b>
-                  <time class="post-date">March 17, 2015</time>
+                  <time class="post-date">March 25, 2015</time>
                 </p>
               </div>
             </div>
@@ -346,7 +324,7 @@ That all!! Now you have a private live streaming RTMP server running with Nginx.
 
 <script type="text/javascript">
   if(GHOSTIUM.haveDisqus) {
-    var disqus_identifier = '7';
+    var disqus_identifier = '9';
 
     if(typeof DISQUS !== 'object') {
       (function () {

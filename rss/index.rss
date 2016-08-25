@@ -1,4 +1,65 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 19 Aug 2016 13:48:45 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title><description>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt;&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</link><guid isPermaLink="false">015b5866-6160-4b8b-bac2-8fc176c33d03</guid><category>vagrant</category><category>devops</category><category>howto</category><category>aws</category><category>EC2</category><category>amazon web service</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 19 Mar 2015 13:21:00 GMT</pubDate><content:encoded>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt; as provider to launch our servers and automatically provision it.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 25 Aug 2016 18:29:01 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
+
+&lt;h4 id="whatissameoriginpolicy"&gt;What is Same Origin Policy?&lt;/h4&gt;
+
+&lt;p&gt;The Same Origin Policy is a security measure imposed by all modern browsers that restricts the ability of JavaScript to make AJAX requests across domains. As a security measure this is desirable because it makes it more difficult for malicious scripts to communicate with domains you don’t trust. However, it also makes it harder for developers to write client side apps that use JavaScript to communicate with REST API. For a more detailed explanation of the Same Origin Policy see &lt;br&gt;
+&lt;a href="http://en.wikipedia.org/wiki/Same-origin_policy"&gt;http://en.wikipedia.org/wiki/Same-origin_policy&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id="jsonp"&gt;JSONP&lt;/h4&gt;
+
+&lt;p&gt;JSONP, or JavaScript Object Notation with Padding, is a technique for returning data in a way that works around the restrictions imposed by the Same Origin Policy. It relies on the fact that tags are not subject to the Same Origin Policy. When data is requested using JSONP it is returned as a text representation of a JSON object wrapped or “padded” with a JavaScript function name. &lt;br&gt;
+When a tag processes a JSONP response, the JSON object is treated as an argument and if the function is already defined on the page it is executed immediately, giving that function access to the JSON object.&lt;/p&gt;
+
+&lt;p&gt;Lots of chit chat lets make hands dirty&lt;/p&gt;
+
+&lt;h4 id="jsonpinjs"&gt;JSONP in JS&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;//jsonp.js
+var JSONP = (function(){  
+  var that = {};
+
+  that.send = function(src, options) {
+    var callback_name = options.callbackName || 'callback',
+      on_success = options.onSuccess || function(){},
+      on_timeout = options.onTimeout || function(){},
+      timeout = options.timeout || 10;
+
+    var timeout_trigger = window.setTimeout(function(){
+      window[callback_name] = function(){};
+      on_timeout();
+    }, timeout * 1000);
+
+    window[callback_name] = function(data){
+      window.clearTimeout(timeout_trigger);
+      on_success(data);
+    };
+
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.async = true;
+    script.src = src;
+
+    document.getElementsByTagName('head')[0].appendChild(script);
+  };
+
+  return that;
+})();
+
+//In your HTML script tag or in JS file 
+JSONP.send('/your/endpoint?callback=name', { callbackName: 'name' });  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and In your Express App just call  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//route.js
+route.post('/your/endpoint',function(req, res){  
+    res.jsonp('your response object')
+});
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may need &lt;a href="https://www.npmjs.com/package/cors"&gt;&lt;strong&gt;CORS&lt;/strong&gt;&lt;/a&gt; module&lt;/p&gt;
+
+&lt;p&gt;Not joking!!! really so simple in ExpressJS&lt;/p&gt;</content:encoded></item><item><title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title><description>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt;&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</link><guid isPermaLink="false">015b5866-6160-4b8b-bac2-8fc176c33d03</guid><category>vagrant</category><category>devops</category><category>howto</category><category>aws</category><category>EC2</category><category>amazon web service</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 19 Mar 2015 13:21:00 GMT</pubDate><content:encoded>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt; as provider to launch our servers and automatically provision it.&lt;/p&gt;
 
 &lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
 
