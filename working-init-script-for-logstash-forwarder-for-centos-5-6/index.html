@@ -1,0 +1,433 @@
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Working Init script for Logstash Forwarder for CentOS 5/6</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:url" content="http://www.nmrony.info">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Coding is Poetry">
+
+    <meta itemprop="name" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta itemprop="description" content="">
+
+    <meta name="twitter:site" content="@nmrony">
+
+<meta name="twitter:creator" content="@nmrony">
+
+<meta property="article:author" content="https://www.facebook.com/nmrony">
+
+<meta name="google-site-verification" content="">
+
+<meta name="theme-color" content="">
+
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="http://fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic%7COpen+Sans:700,400&amp;subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/main.min.css?v=3838909e19">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      var ga_ua = 'UA-73097824-1';
+
+var disqus_shortname = 'nmrony';
+
+var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="../assets/js/head-scripts.min.js?v=3838909e19"></script>
+
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin-when-cross-origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta property="og:description" content="Some days ago I am working one of a project where we need to install logstash-forwarder to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this script working well with CentOS 6 #!/bin/bash # chkconfig: 345">
+    <meta property="og:url" content="http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+    <meta property="article:published_time" content="2015-03-22T07:03:00.000Z">
+    <meta property="article:modified_time" content="2016-09-06T07:08:10.000Z">
+    <meta property="article:tag" content="centos">
+    <meta property="article:tag" content="logstash">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Working Init script for Logstash Forwarder for CentOS 5/6">
+    <meta name="twitter:description" content="Some days ago I am working one of a project where we need to install logstash-forwarder to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this script working well with CentOS 6 #!/bin/bash # chkconfig: 345">
+    <meta name="twitter:url" content="http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nur Rony">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="centos, logstash">
+    <meta name="twitter:site" content="@nmrony">
+    <meta name="twitter:creator" content="@nmrony">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Coding is Poetry",
+        "logo": "http://www.nmrony.info/content/images/2016/08/rony.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "http://www.nmrony.info/content/images/2016/08/2513341.jpg",
+        "url": "http://www.nmrony.info/author/nur/",
+        "sameAs": [
+            "http://nmrony.info",
+            "https://twitter.com/nmrony"
+        ],
+        "description": "Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.\n"
+    },
+    "headline": "Working Init script for Logstash Forwarder for CentOS 5/6",
+    "url": "http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/",
+    "datePublished": "2015-03-22T07:03:00.000Z",
+    "dateModified": "2016-09-06T07:08:10.000Z",
+    "keywords": "centos, logstash",
+    "description": "Some days ago I am working one of a project where we need to install logstash-forwarder to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this script working well with CentOS 6 #!/bin/bash # chkconfig: 345"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.9">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="../rss/index.html">
+  </head>
+  <body class="post-template tag-centos tag-logstash">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    <!--.drawer-search(role="search")-->
+    <ul role="navigation" class="drawer-list">
+      
+<li class="drawer-list-item">
+  <a href="../" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../rss/index.rss" target="_blank" rel="noopener">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+<li class="drawer-list-divider">
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+<li class="drawer-list-item">
+  <a href="https://twitter.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://github.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://stackoverflow.com/cv/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-stack-overflow"></i>Stackoverflow
+  </a>
+</li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-centos tag-logstash">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2015-03-22" itemprop="datePublished">
+                  a year ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                    <a itemprop="articleSection" href="../tag/centos/" data-pjax>centos</a>, 
+                    <a itemprop="keywords" href="../tag/logstash/" data-pjax>logstash</a> 
+                </li>
+              <li class="post-meta-item">
+                <a href="index.html#disqus_thread" data-disqus-identifier="11">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="index.html" itemprop="url" data-pjax title="Working Init script for Logstash Forwarder for CentOS 5/6">Working Init script for Logstash Forwarder for CentOS 5/6</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <a href="http://nmrony.info" class="post-author-name">
+                  Nur Rony
+                </a>
+                <p class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <p>Some days ago I am working one of a project where we need to install <code>logstash-forwarder</code> to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this script working well with CentOS 6</p>
+
+<pre><code>#!/bin/bash
+# chkconfig: 345 80 20
+# description: Logstash Forwarder
+# processname: logstash-forwarder
+# config: /etc/logstash-forwarder
+# pidfile: /var/run/logstash-forwarder.pid
+
+### BEGIN INIT INFO
+# Provides: logstash-forwarder
+# Required-Start: $local_fs $network $remote_fs
+# Required-Stop: $local_fs $network $remote_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: start and stop logstash-forwarder
+# Description: Logstash Forwarder
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+prog=logstash-forwarder  
+DAEMON=/opt/logstash-forwarder/bin/logstash-forwarder  
+pidfile=/var/run/$prog.pid  
+lockfile=/var/lock/subsys/$prog
+
+# load defaults
+
+[ -e /etc/default/$prog ] &amp;amp;&amp;amp; . /etc/default/$prog
+[ -e /etc/sysconfig/$prog ] &amp;amp;&amp;amp; . /etc/sysconfig/$prog
+
+DAEMON_ARGS=&amp;quot;${DAEMON_ARGS:--config /etc/logstash-forwarder -spool-size 100 -log-to-syslog}&amp;quot;
+
+start()  
+{
+    echo -n $&amp;quot;Starting $prog: &amp;quot;
+    nohup $DAEMON $DAEMON_ARGS &amp;lt;/dev/null &amp;gt;/dev/null 2&amp;gt;&amp;amp;1 &amp;amp;
+    retval=$?
+    pid=$!
+    echo $pid &amp;gt; $pidfile
+    if [ rh_status_q ]; then
+        touch $lockfile
+        success
+        echo
+    fi
+    return $retval
+}
+
+stop()  
+{
+    echo -n $&amp;quot;Stopping $prog: &amp;quot;
+    killproc -p &amp;quot;$pidfile&amp;quot; $prog
+    retval=$?
+    [ -f &amp;quot;$pidfile&amp;quot; ] &amp;amp;&amp;amp; rm -f $pidfile
+    echo
+    [ $retval -eq 0 ] &amp;amp;&amp;amp; rm -f $lockfile
+    return $retval
+}
+
+restart() {  
+    stop
+    start
+}
+
+reload() {  
+    restart
+}
+
+force_reload() {  
+    restart
+}
+
+rh_status() {  
+    status -p $pidfile $prog
+}
+
+rh_status_q() {  
+    rh_status &amp;gt;/dev/null 2&amp;gt;&amp;amp;1
+}
+
+case &amp;quot;$1&amp;quot; in  
+    start)
+        rh_status_q &amp;amp;&amp;amp; exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    status)
+        rh_status
+        ;;
+    *)
+        echo &amp;quot;Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}&amp;quot;
+        exit 2
+esac  
+exit $?  
+</code></pre>
+
+<p>Your instance also needed either of the following files  </p>
+
+<pre><code>/etc/defaults/logstash-forwarder
+/etc/sysconfig/logstash-forwarder
+</code></pre>
+
+<p>The content of the file is  </p>
+
+<pre><code>DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100}'  
+</code></pre>
+
+<p>you found the gist <a href="https://gist.github.com/nmrony/c487b4b7c0235a11a112"><strong>here</strong></a></p>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img itemprop="image" src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://nmrony.info" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Nur Rony</span>
+                </a>
+                <p itemprop="description" class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+                  <p class="post-author-location">Milkyway, Earth</p>
+                  <p class="post-author-website">
+                    <a href="http://nmrony.info" rel="nofollow">http://nmrony.info</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">March 22, 2015</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="index.html#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="index.html#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="index.html#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a></small></p>
+</footer>
+  </div>
+</section>
+
+<script type="text/javascript">
+  if(GHOSTIUM.haveDisqus) {
+    var disqus_identifier = '11';
+
+    if(typeof DISQUS !== 'object') {
+      (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    }
+  } else {
+    document.querySelector('.post-comments').remove();
+  }
+</script>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+
+    <script src="../assets/js/foot-scripts.min.js?v=3838909e19"></script>
+
+    <script type="text/javascript">
+
+      if(GHOSTIUM.haveGA) {
+        (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+        function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+        t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+        t.src='//www.google-analytics.com/analytics.js';
+        z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+        ga('create',ga_ua);ga('send','pageview');
+      }
+
+      if(GHOSTIUM.haveDisqus) {
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+  </body>

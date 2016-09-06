@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Tue, 06 Sep 2016 07:02:26 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Tue, 06 Sep 2016 07:11:33 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
 
 &lt;h4 id="whatissameoriginpolicy"&gt;What is Same Origin Policy?&lt;/h4&gt;
 
@@ -59,7 +59,137 @@ route.post('/your/endpoint',function(req, res){
 
 &lt;p&gt;You may need &lt;a href="https://www.npmjs.com/package/cors"&gt;&lt;strong&gt;CORS&lt;/strong&gt;&lt;/a&gt; module&lt;/p&gt;
 
-&lt;p&gt;Not joking!!! really so simple in ExpressJS&lt;/p&gt;</content:encoded></item><item><title>Install latest PHP 5.6 using Ubuntu PPA</title><description>&lt;p&gt;It is very easy installing latest PHP 5.6 using PPA&lt;/p&gt;
+&lt;p&gt;Not joking!!! really so simple in ExpressJS&lt;/p&gt;</content:encoded></item><item><title>Working Init script for Logstash Forwarder for CentOS 5/6</title><description>&lt;p&gt;Some days ago I am working one of a project where we need to install &lt;code&gt;logstash-forwarder&lt;/code&gt; to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this script working well with CentOS 6&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# chkconfig: 345&lt;/code&gt;&lt;/pre&gt;</description><link>http://blog.nmrony.docker/working-init-script-for-logstash-forwarder-for-centos-5-6/</link><guid isPermaLink="false">c64b136c-e585-40d0-8bc7-0bbe0d6325d5</guid><category>centos</category><category>logstash</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 22 Mar 2015 07:03:00 GMT</pubDate><content:encoded>&lt;p&gt;Some days ago I am working one of a project where we need to install &lt;code&gt;logstash-forwarder&lt;/code&gt; to collect logs from distributed servers. I found that the init script from here is not working well and after googling I found this script working well with CentOS 6&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+# chkconfig: 345 80 20
+# description: Logstash Forwarder
+# processname: logstash-forwarder
+# config: /etc/logstash-forwarder
+# pidfile: /var/run/logstash-forwarder.pid
+
+### BEGIN INIT INFO
+# Provides: logstash-forwarder
+# Required-Start: $local_fs $network $remote_fs
+# Required-Stop: $local_fs $network $remote_fs
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: start and stop logstash-forwarder
+# Description: Logstash Forwarder
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+prog=logstash-forwarder  
+DAEMON=/opt/logstash-forwarder/bin/logstash-forwarder  
+pidfile=/var/run/$prog.pid  
+lockfile=/var/lock/subsys/$prog
+
+# load defaults
+
+[ -e /etc/default/$prog ] &amp;amp;amp;&amp;amp;amp; . /etc/default/$prog
+[ -e /etc/sysconfig/$prog ] &amp;amp;amp;&amp;amp;amp; . /etc/sysconfig/$prog
+
+DAEMON_ARGS=&amp;amp;quot;${DAEMON_ARGS:--config /etc/logstash-forwarder -spool-size 100 -log-to-syslog}&amp;amp;quot;
+
+start()  
+{
+    echo -n $&amp;amp;quot;Starting $prog: &amp;amp;quot;
+    nohup $DAEMON $DAEMON_ARGS &amp;amp;lt;/dev/null &amp;amp;gt;/dev/null 2&amp;amp;gt;&amp;amp;amp;1 &amp;amp;amp;
+    retval=$?
+    pid=$!
+    echo $pid &amp;amp;gt; $pidfile
+    if [ rh_status_q ]; then
+        touch $lockfile
+        success
+        echo
+    fi
+    return $retval
+}
+
+stop()  
+{
+    echo -n $&amp;amp;quot;Stopping $prog: &amp;amp;quot;
+    killproc -p &amp;amp;quot;$pidfile&amp;amp;quot; $prog
+    retval=$?
+    [ -f &amp;amp;quot;$pidfile&amp;amp;quot; ] &amp;amp;amp;&amp;amp;amp; rm -f $pidfile
+    echo
+    [ $retval -eq 0 ] &amp;amp;amp;&amp;amp;amp; rm -f $lockfile
+    return $retval
+}
+
+restart() {  
+    stop
+    start
+}
+
+reload() {  
+    restart
+}
+
+force_reload() {  
+    restart
+}
+
+rh_status() {  
+    status -p $pidfile $prog
+}
+
+rh_status_q() {  
+    rh_status &amp;amp;gt;/dev/null 2&amp;amp;gt;&amp;amp;amp;1
+}
+
+case &amp;amp;quot;$1&amp;amp;quot; in  
+    start)
+        rh_status_q &amp;amp;amp;&amp;amp;amp; exit 0
+        $1
+        ;;
+    stop)
+        rh_status_q || exit 0
+        $1
+        ;;
+    restart)
+        $1
+        ;;
+    reload)
+        rh_status_q || exit 7
+        $1
+        ;;
+    force-reload)
+        force_reload
+        ;;
+    condrestart|try-restart)
+        rh_status_q || exit 0
+        restart
+        ;;
+    status)
+        rh_status
+        ;;
+    *)
+        echo &amp;amp;quot;Usage: $0 {start|stop|status|restart|condrestart|try-restart|reload|force-reload}&amp;amp;quot;
+        exit 2
+esac  
+exit $?  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Your instance also needed either of the following files  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/etc/defaults/logstash-forwarder
+/etc/sysconfig/logstash-forwarder
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The content of the file is  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100}'  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;you found the gist &lt;a href="https://gist.github.com/nmrony/c487b4b7c0235a11a112"&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>Install latest PHP 5.6 using Ubuntu PPA</title><description>&lt;p&gt;It is very easy installing latest PHP 5.6 using PPA&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php5-5.6 -y  
 sudo apt-get update  
