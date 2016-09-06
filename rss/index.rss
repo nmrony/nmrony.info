@@ -1,4 +1,23 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Tue, 06 Sep 2016 07:11:33 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Tue, 06 Sep 2016 07:18:19 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>pbcopy / pbpaste in Ubuntu (command line clipboard)</title><description>&lt;p&gt;OS X has a neat command-line tool called pbcopy which takes the standard input and places it in the clipboard to paste into other applications.&lt;/p&gt;
+
+&lt;p&gt;In Ubuntu(or any Linux distro with Xwindows), a similar tool is xclip. I like to make this alias:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias pbcopy='xclip -selection clipboard'  
+alias&lt;/code&gt;&lt;/pre&gt;</description><link>http://blog.nmrony.docker/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/</link><guid isPermaLink="false">40549ffd-35f0-4f0d-b695-55e078a47f64</guid><category>tips</category><category>linux</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 02 Apr 2015 07:12:00 GMT</pubDate><content:encoded>&lt;p&gt;OS X has a neat command-line tool called pbcopy which takes the standard input and places it in the clipboard to paste into other applications.&lt;/p&gt;
+
+&lt;p&gt;In Ubuntu(or any Linux distro with Xwindows), a similar tool is xclip. I like to make this alias:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias pbcopy='xclip -selection clipboard'  
+alias pbpaste='xclip -selection clipboard -o'  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you do not have &lt;strong&gt;xclip&lt;/strong&gt; pre installed you can install it running following command in terminal before making the alias  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# For Ubuntu or Debian users
+sudo apt-get install xclip -y  
+# For Fedora/CentOS users
+sudo yum install xclip -y  
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
 
 &lt;h4 id="whatissameoriginpolicy"&gt;What is Same Origin Policy?&lt;/h4&gt;
 
