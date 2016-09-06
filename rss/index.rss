@@ -1,4 +1,4 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 25 Aug 2016 18:29:01 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Tue, 06 Sep 2016 07:02:26 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>JSONP with ExpressJS</title><description>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome&lt;/p&gt;</description><link>http://blog.nmrony.docker/jsonp-with-expressjs/</link><guid isPermaLink="false">8830f560-ab31-4712-879a-5caa0cbe51bf</guid><category>express</category><category>json</category><category>nodejs</category><category>javascript</category><dc:creator>Nur Rony</dc:creator><pubDate>Wed, 25 Mar 2015 18:19:00 GMT</pubDate><content:encoded>&lt;p&gt;This post explains how developers can circumvent the Same Origin Policy implemented by all modern web-browsers by requesting data in the JSONP format. Generally modern browsers do not allow POST, PUT or PATCH request if the request is not done by same origin. By using JSONP we can easily overcome this. But lets learn some basics.&lt;/p&gt;
 
 &lt;h4 id="whatissameoriginpolicy"&gt;What is Same Origin Policy?&lt;/h4&gt;
 
@@ -59,7 +59,60 @@ route.post('/your/endpoint',function(req, res){
 
 &lt;p&gt;You may need &lt;a href="https://www.npmjs.com/package/cors"&gt;&lt;strong&gt;CORS&lt;/strong&gt;&lt;/a&gt; module&lt;/p&gt;
 
-&lt;p&gt;Not joking!!! really so simple in ExpressJS&lt;/p&gt;</content:encoded></item><item><title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title><description>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt;&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</link><guid isPermaLink="false">015b5866-6160-4b8b-bac2-8fc176c33d03</guid><category>vagrant</category><category>devops</category><category>howto</category><category>aws</category><category>EC2</category><category>amazon web service</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 19 Mar 2015 13:21:00 GMT</pubDate><content:encoded>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt; as provider to launch our servers and automatically provision it.&lt;/p&gt;
+&lt;p&gt;Not joking!!! really so simple in ExpressJS&lt;/p&gt;</content:encoded></item><item><title>Install latest PHP 5.6 using Ubuntu PPA</title><description>&lt;p&gt;It is very easy installing latest PHP 5.6 using PPA&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php5-5.6 -y  
+sudo apt-get update  
+sudo sudo apt-get install make php5\  
+php5-mongo \  
+php-pear \  
+php5-dev \  
+php5-mysql \  
+php5-common \  
+php5-cli \  
+php5-curl \  
+php5-fpm \  
+php5-mcrypt \  
+php5-xmlrpc \  
+php5-gd \  
+php5-json \  
+php5-readline \  
+mcrypt \  
+curl \  
+dh-make \  
+libmcrypt-dev \  
+mysql-server-5.6 \  
+mysql-client-5.6 \  
+php5-sqlite \  
+php5-oauth&lt;/code&gt;&lt;/pre&gt;</description><link>http://blog.nmrony.docker/install-latest-php-5-6-using-ubuntu-ppa/</link><guid isPermaLink="false">9e1b6d8e-4ed0-4fc1-a935-f2787e4bcb05</guid><category>ubuntu-14-04</category><category>php</category><category>howto</category><dc:creator>Nur Rony</dc:creator><pubDate>Sat, 21 Mar 2015 06:58:00 GMT</pubDate><content:encoded>&lt;p&gt;It is very easy installing latest PHP 5.6 using PPA&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php5-5.6 -y  
+sudo apt-get update  
+sudo sudo apt-get install make php5\  
+php5-mongo \  
+php-pear \  
+php5-dev \  
+php5-mysql \  
+php5-common \  
+php5-cli \  
+php5-curl \  
+php5-fpm \  
+php5-mcrypt \  
+php5-xmlrpc \  
+php5-gd \  
+php5-json \  
+php5-readline \  
+mcrypt \  
+curl \  
+dh-make \  
+libmcrypt-dev \  
+mysql-server-5.6 \  
+mysql-client-5.6 \  
+php5-sqlite \  
+php5-oauth  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You can remove or add extensions that is not needed by you. You may need to install &lt;code&gt;software-properties-common&lt;/code&gt; previously &lt;code&gt;python-software-properties&lt;/code&gt;&lt;/p&gt;</content:encoded></item><item><title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title><description>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt;&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</link><guid isPermaLink="false">015b5866-6160-4b8b-bac2-8fc176c33d03</guid><category>vagrant</category><category>devops</category><category>howto</category><category>aws</category><category>EC2</category><category>amazon web service</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 19 Mar 2015 13:21:00 GMT</pubDate><content:encoded>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt; as provider to launch our servers and automatically provision it.&lt;/p&gt;
 
 &lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
 
