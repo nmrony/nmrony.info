@@ -1,4 +1,36 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Wed, 07 Sep 2016 16:42:29 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Easiest Way to make a div horizontally and vertically centered</title><description>&lt;p&gt;Sometimes for us silly problem make us wet with sweat. Centering div from both horizontally and vertically may be one of them. I found a sweet and easy way to make a div centered. I think, it is the most easiest way. Here it is ..&lt;/p&gt;</description><link>http://blog.nmrony.docker/easiest-way-to-make-a-div-horizontally-and-vertically-centered/</link><guid isPermaLink="false">66d80ef5-25fd-4640-ab56-1c1273ddaa36</guid><category>howto</category><category>css3</category><dc:creator>Nur Rony</dc:creator><pubDate>Sat, 04 Apr 2015 16:38:00 GMT</pubDate><content:encoded>&lt;p&gt;Sometimes for us silly problem make us wet with sweat. Centering div from both horizontally and vertically may be one of them. I found a sweet and easy way to make a div centered. I think, it is the most easiest way. Here it is ..&lt;/p&gt;</content:encoded></item><item><title>pbcopy / pbpaste in Ubuntu (command line clipboard)</title><description>&lt;p&gt;OS X has a neat command-line tool called pbcopy which takes the standard input and places it in the clipboard to paste into other applications.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Wed, 07 Sep 2016 16:49:37 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Easiest Way to make a div horizontally and vertically centered</title><description>&lt;p&gt;Sometimes for us silly problem make us wet with sweat. Centering div from both horizontally and vertically may be one of them. I found a sweet and easy way to make a div centered. I think, it is the most easiest way. Here it is ..  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;  
+&amp;lt;&lt;/code&gt;&lt;/pre&gt;</description><link>http://blog.nmrony.docker/easiest-way-to-make-a-div-horizontally-and-vertically-centered/</link><guid isPermaLink="false">66d80ef5-25fd-4640-ab56-1c1273ddaa36</guid><category>howto</category><category>css3</category><dc:creator>Nur Rony</dc:creator><pubDate>Sat, 04 Apr 2015 16:38:00 GMT</pubDate><content:encoded>&lt;p&gt;Sometimes for us silly problem make us wet with sweat. Centering div from both horizontally and vertically may be one of them. I found a sweet and easy way to make a div centered. I think, it is the most easiest way. Here it is ..  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;!DOCTYPE html&amp;gt;  
+&amp;lt;html&amp;gt;  
+  &amp;lt;head&amp;gt;
+    &amp;lt;meta charset="utf-8"&amp;gt;
+    &amp;lt;title&amp;gt;Centering DIV&amp;lt;/title&amp;gt;
+  &amp;lt;/head&amp;gt;
+  &amp;lt;body&amp;gt;
+    &amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The CSS part us really cool  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;div {  
+  background: green;
+  bottom: 0;
+  height: 100px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100px;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I will explain later why this works. But need to take a nap for now. &lt;/p&gt;</content:encoded></item><item><title>pbcopy / pbpaste in Ubuntu (command line clipboard)</title><description>&lt;p&gt;OS X has a neat command-line tool called pbcopy which takes the standard input and places it in the clipboard to paste into other applications.&lt;/p&gt;
 
 &lt;p&gt;In Ubuntu(or any Linux distro with Xwindows), a similar tool is xclip. I like to make this alias:  &lt;/p&gt;
 
