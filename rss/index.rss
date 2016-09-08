@@ -1,4 +1,28 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 08 Sep 2016 14:13:59 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>CSS: Using Element Query Posted on</title><description>&lt;p&gt;Responsive design is known to all. To achieve responsiveness we generally use media queries. But I feel media queries are some kind of CSS Hack. It is really annoying when I need to work with it. Sometime it makes my CSS totally messy that I don’t want to see&lt;/p&gt;</description><link>http://blog.nmrony.docker/css-using-element-query-posted-on/</link><guid isPermaLink="false">a458306f-e71a-4072-a820-07512430a19e</guid><category>css3</category><category>responsive design</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 19 Apr 2015 14:10:00 GMT</pubDate><content:encoded>&lt;p&gt;Responsive design is known to all. To achieve responsiveness we generally use media queries. But I feel media queries are some kind of CSS Hack. It is really annoying when I need to work with it. Sometime it makes my CSS totally messy that I don’t want to see it again. If anyone who is in my situation I have a good news for those. It is Element Query.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 08 Sep 2016 14:21:05 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Installing latest Docker on Ubuntu</title><description>&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt; is an awesome and powerful tool for developing and deploying your apps. According to Docker official website, Docker is&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you ask me to tell you what docker is I will say, It&lt;/p&gt;</description><link>http://blog.nmrony.docker/installing-latest-docker-on-ubuntu/</link><guid isPermaLink="false">b541fa14-e218-4329-8b91-81869fb5366a</guid><dc:creator>Nur Rony</dc:creator><pubDate>Fri, 01 May 2015 14:15:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt; is an awesome and powerful tool for developing and deploying your apps. According to Docker official website, Docker is&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you ask me to tell you what docker is I will say, It provides a linux container based virtual environment to work in your local dev machine and versioning your virtual environment as git. Like github, docker has dockerhub where you can push your virtual environment(containers) packaged in an image. Isn’t it AWESOME..!! &amp;#x1f609;&lt;/p&gt;
+
+&lt;p&gt;In this post I just describe how to install docker in Ubuntu. I believe we should keep up to date and only use the latest version of docker. To install docker run the following command in your terminal.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;wget -qO- https://get.docker.com/ | sh  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Thats it, docker script will do all for you. You must have root access or have to be a &lt;code&gt;sudo&lt;/code&gt; user to install docker. If you don’t want to use docker client with &lt;code&gt;sudo&lt;/code&gt; you need to run the following command for it.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo usermod -aG docker &amp;lt;your-username&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I promise, I will return with more tutorials on Docker soon. Till then take care, sayonara!!&lt;/p&gt;</content:encoded></item><item><title>CSS: Using Element Query Posted on</title><description>&lt;p&gt;Responsive design is known to all. To achieve responsiveness we generally use media queries. But I feel media queries are some kind of CSS Hack. It is really annoying when I need to work with it. Sometime it makes my CSS totally messy that I don’t want to see&lt;/p&gt;</description><link>http://blog.nmrony.docker/css-using-element-query-posted-on/</link><guid isPermaLink="false">a458306f-e71a-4072-a820-07512430a19e</guid><category>css3</category><category>responsive design</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 19 Apr 2015 14:10:00 GMT</pubDate><content:encoded>&lt;p&gt;Responsive design is known to all. To achieve responsiveness we generally use media queries. But I feel media queries are some kind of CSS Hack. It is really annoying when I need to work with it. Sometime it makes my CSS totally messy that I don’t want to see it again. If anyone who is in my situation I have a good news for those. It is Element Query.&lt;/p&gt;
 
 &lt;p&gt;In Element Query we define our responsive elements in more expressive way like below&lt;/p&gt;
 
@@ -941,83 +965,4 @@ Then save and exit&lt;/p&gt;
 
 &lt;p&gt;Go to &lt;code&gt;http://[your-ip-or-domain-name]/info.php.&lt;/code&gt; You should see a PHP configuration page if all goes fine.&lt;/p&gt;
 
-&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item><item><title>Vagrant: Common Settings Tips</title><description>&lt;p&gt;I heard about Vagrant in 2013. I am playing with Vagrant about a year. It is really an awesome tool. It totally changed the way of my development. From the beginning I faced some problem and solved it by googling. Today I would like to summarize the common problem and&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-common-settings-tips/</link><guid isPermaLink="false">9119adf3-afd9-4f49-85da-20cd80a2aee8</guid><category>vagrant</category><category>devops</category><category>tips</category><category>tricks</category><dc:creator>Nur Rony</dc:creator><pubDate>Fri, 13 Mar 2015 11:58:00 GMT</pubDate><content:encoded>&lt;p&gt;I heard about Vagrant in 2013. I am playing with Vagrant about a year. It is really an awesome tool. It totally changed the way of my development. From the beginning I faced some problem and solved it by googling. Today I would like to summarize the common problem and how I got rid of them.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Change Vagrant Box Name&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.define 'nurrony-devbox' do |devbox|  
-end  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Change Provider Box Name:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.provider 'virtualbox' do |vb|  
-  vb.name = 'devbox'
-end  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Change Hostname of Vagrant box:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.hostname = 'YourBoxHostname'  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-Or  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.define 'nurrony-devbox' do |devbox|  
-  devbox.vm.hostname = 'devbox'
-end  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-The above configuration also change the name of Vagrant box from default to &lt;code&gt;nurrony-devbox&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Private Networking:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.network 'private_network', type: 'dhcp'  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-Or with specific IP  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.network 'private_network', ip: '192.168.10.236'  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-&lt;strong&gt;Public Networking&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Vagrant.configure('2') do |config|  
-  #DHCP
-  config.vm.network 'public_network'
-  #STATIC
-  config.vm.network 'public_network', ip: '192.168.10.236';
-  #Defining Default Network interface
-  config.vm.network 'public_network', bridge: 'wlan0'
-end  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Disabling Auto config:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.network 'private_network', ip: '192.168.50.4', auto_config: false  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-&lt;strong&gt;Resolve Vagrant Box Slow Internet Issue:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;config.vm.provider 'virtualbox' do |vb|  
-  vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
-  vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
-end  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-&lt;strong&gt;Packaging a box:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;vagrant package --base SPECIFIC_NAME_FOR_VM --output /yourfolder/OUTPUT_BOX_NAME.box  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-&lt;strong&gt;Sending Command to Vagrant&lt;/strong&gt;&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;vagrant ssh -c 'sudo service httpd restart'  
-&lt;/code&gt;&lt;/pre&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item></channel></rss>
