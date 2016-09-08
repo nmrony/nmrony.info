@@ -1,4 +1,47 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 08 Sep 2016 13:52:14 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>ES5 Main Features</title><description>&lt;p&gt;ECMAScript5 features now supported by all browser vendors. Almost every time I forget that many handy functions are introduced in ES5 and I don’t need to write utility functions for it. So I feel to dump all features in a post so that I can find which features are&lt;/p&gt;</description><link>http://blog.nmrony.docker/es5-main-features/</link><guid isPermaLink="false">cba55694-5224-464a-a62b-a35c15dadf53</guid><category>javascript</category><category>es5</category><category>code</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 05 Apr 2015 13:46:00 GMT</pubDate><content:encoded>&lt;p&gt;ECMAScript5 features now supported by all browser vendors. Almost every time I forget that many handy functions are introduced in ES5 and I don’t need to write utility functions for it. So I feel to dump all features in a post so that I can find which features are natively provided by ES5.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 08 Sep 2016 14:07:09 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>NodeJS: Write file if parent folder dosen’t exists</title><description>&lt;p&gt;Very simple and really awesome solution that I found on stackoverflow&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;In ES2015&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import mkdirp from 'mkdirp'  
+import fs from 'fs'  
+import { dirname } from 'path'  
+function writeFile (path, contents, cb) {  
+  mkdirp(dirname(path), (err) =&amp;gt; {
+    if (err) return cb(err)
+    fs.writeFile(path, contents, cb)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;In ES5&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var mkdirp = require(&lt;/code&gt;&lt;/pre&gt;</description><link>http://blog.nmrony.docker/nodejs-write-file-if-parent-folder-dosent-exists/</link><guid isPermaLink="false">80b3c336-993e-443f-b886-3e5fccfd6025</guid><category>nodejs</category><category>code</category><dc:creator>Nur Rony</dc:creator><pubDate>Mon, 06 Apr 2015 14:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Very simple and really awesome solution that I found on stackoverflow&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;In ES2015&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import mkdirp from 'mkdirp'  
+import fs from 'fs'  
+import { dirname } from 'path'  
+function writeFile (path, contents, cb) {  
+  mkdirp(dirname(path), (err) =&amp;gt; {
+    if (err) return cb(err)
+    fs.writeFile(path, contents, cb)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;In ES5&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var mkdirp = require("mkdirp")  
+var fs = require("fs")  
+var getDirName = require("path").dirname  
+function writeFile (path, contents, cb) {  
+  mkdirp(getDirName(path), function (err) {
+    if (err) return cb(err)
+    fs.writeFile(path, contents, cb)
+  })
+}
+&lt;/code&gt;&lt;/pre&gt;</content:encoded></item><item><title>ES5 Main Features</title><description>&lt;p&gt;ECMAScript5 features now supported by all browser vendors. Almost every time I forget that many handy functions are introduced in ES5 and I don’t need to write utility functions for it. So I feel to dump all features in a post so that I can find which features are&lt;/p&gt;</description><link>http://blog.nmrony.docker/es5-main-features/</link><guid isPermaLink="false">cba55694-5224-464a-a62b-a35c15dadf53</guid><category>javascript</category><category>es5</category><category>code</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 05 Apr 2015 13:46:00 GMT</pubDate><content:encoded>&lt;p&gt;ECMAScript5 features now supported by all browser vendors. Almost every time I forget that many handy functions are introduced in ES5 and I don’t need to write utility functions for it. So I feel to dump all features in a post so that I can find which features are natively provided by ES5.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;Object &lt;br&gt;
