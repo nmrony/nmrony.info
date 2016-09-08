@@ -1,0 +1,322 @@
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>NodeJS: Replacing text in a file</title>
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NodeJS: Replacing text in a file">
+    <meta name="twitter:description" content="">
+
+    <meta property="og:url" content="http://www.nmrony.info">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="NodeJS: Replacing text in a file">
+    <meta property="og:description" content="">
+    <meta property="og:site_name" content="Coding is Poetry">
+
+    <meta itemprop="name" content="NodeJS: Replacing text in a file">
+    <meta itemprop="description" content="">
+
+    <meta name="twitter:site" content="@nmrony">
+
+<meta name="twitter:creator" content="@nmrony">
+
+<meta property="article:author" content="https://www.facebook.com/nmrony">
+
+<meta name="google-site-verification" content="">
+
+<meta name="theme-color" content="">
+
+    <link href="../favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="../apple-touch-icon-precomposed.png" rel="apple-touch-icon">
+
+    <link href="http://fonts.googleapis.com/" rel="dns-prefetch">
+    <link href="http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic%7COpen+Sans:700,400&amp;subset=latin,latin-ext" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/main.min.css?v=8074495de9">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript">
+      var ga_ua = 'UA-73097824-1';
+
+var disqus_shortname = 'nmrony';
+
+var enable_pjax = true;
+
+      // Pace Options
+      // ==============
+      window.paceOptions = {
+        catchupTime: 100,
+        minTime: 100,
+        elements: false,
+        restartOnRequestAfter: 500,
+        startOnPageLoad: false
+      }
+
+      // Ghostium Globals
+      // ==============
+      window.GHOSTIUM = {};
+      GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+    </script>
+
+    <script src="../assets/js/head-scripts.min.js?v=8074495de9"></script>
+
+    <link rel="canonical" href="index.html">
+    <meta name="referrer" content="origin-when-cross-origin">
+    
+    <meta property="og:site_name" content="Coding is Poetry">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="NodeJS: Replacing text in a file">
+    <meta property="og:description" content="Here is the simple chunk of code to replace a particular section in a file asynchronously. fs.readFile(filePath, 'utf8', function(err, data) {       if (err) {       return console.log(err);     }     var result = data.replace(your-regex-or-text,replacement-text);     fs.writeFile(filePath, result, 'utf8', function(err) {         if (err) {            return console.log(err);         };     }); });">
+    <meta property="og:url" content="http://www.nmrony.info/nodejs-replacing-text-in-a-file/">
+    <meta property="article:published_time" content="2015-04-12T14:08:00.000Z">
+    <meta property="article:modified_time" content="2016-09-08T14:09:41.000Z">
+    <meta property="article:tag" content="nodejs">
+    <meta property="article:tag" content="code">
+    <meta property="article:tag" content="tips">
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="NodeJS: Replacing text in a file">
+    <meta name="twitter:description" content="Here is the simple chunk of code to replace a particular section in a file asynchronously. fs.readFile(filePath, 'utf8', function(err, data) {       if (err) {       return console.log(err);     }     var result = data.replace(your-regex-or-text,replacement-text);     fs.writeFile(filePath, result, 'utf8', function(err) {         if (err) {            return console.log(err);         };     }); });">
+    <meta name="twitter:url" content="http://www.nmrony.info/nodejs-replacing-text-in-a-file/">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Nur Rony">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="nodejs, code, tips">
+    <meta name="twitter:site" content="@nmrony">
+    <meta name="twitter:creator" content="@nmrony">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Coding is Poetry",
+        "logo": "http://www.nmrony.info/content/images/2016/08/rony.jpg"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Nur Rony",
+        "image": "http://www.nmrony.info/content/images/2016/08/2513341.jpg",
+        "url": "http://www.nmrony.info/author/nur/",
+        "sameAs": [
+            "http://nmrony.info",
+            "https://twitter.com/nmrony"
+        ],
+        "description": "Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.\n"
+    },
+    "headline": "NodeJS: Replacing text in a file",
+    "url": "http://www.nmrony.info/nodejs-replacing-text-in-a-file/",
+    "datePublished": "2015-04-12T14:08:00.000Z",
+    "dateModified": "2016-09-08T14:09:41.000Z",
+    "keywords": "nodejs, code, tips",
+    "description": "Here is the simple chunk of code to replace a particular section in a file asynchronously. fs.readFile(filePath, &#x27;utf8&#x27;, function(err, data) {       if (err) {       return console.log(err);     }     var result &#x3D; data.replace(your-regex-or-text,replacement-text);     fs.writeFile(filePath, result, &#x27;utf8&#x27;, function(err) {         if (err) {            return console.log(err);         };     }); });"
+}
+    </script>
+
+    <meta name="generator" content="Ghost 0.9">
+    <link rel="alternate" type="application/rss+xml" title="Coding is Poetry" href="../rss/index.html">
+  </head>
+  <body class="post-template tag-nodejs tag-code tag-tips">
+
+    <button data-action="open-drawer" id="drawer-button" class="drawer-button"><i class="fa fa-bars"></i></button>
+<nav tabindex="-1" class="drawer">
+  <div class="drawer-container">
+    <!--.drawer-search(role="search")-->
+    <ul role="navigation" class="drawer-list">
+      
+<li class="drawer-list-item">
+  <a href="../" data-pjax>
+    <i class="fa fa-home"></i>Home
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="../rss/index.rss" target="_blank" rel="noopener">
+    <i class="fa fa-rss"></i>Subscribe to Feed
+  </a>
+</li>
+<li class="drawer-list-divider">
+<li class="drawer-list-item drawer-list-title">
+  Follow me
+</li>
+<li class="drawer-list-item">
+  <a href="https://twitter.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-twitter"></i>Twitter
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://github.com/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-github"></i>Github
+  </a>
+</li>
+<li class="drawer-list-item">
+  <a href="https://stackoverflow.com/cv/nmrony" target="_blank" rel="noopener">
+    <i class="fa fa-stack-overflow"></i>Stackoverflow
+  </a>
+</li>
+    </ul>
+  </div>
+</nav>
+
+    <div class="drawer-overlay"></div>
+    <main id="container" role="main" class="container">
+      <div class="surface">
+        <div class="surface-container">
+          <div data-pjax-container class="content">
+            
+<section class="wrapper wrapper-post">
+  <div class="wrapper-container">
+    <article itemscope itemtype="http://schema.org/BlogPosting" role="article" class="post post tag-nodejs tag-code tag-tips">
+        <section class="post-container">
+          <header class="post-header">
+            <ul class="post-meta-list">
+              <li class="post-meta-item">
+                <time datetime="2015-04-12" itemprop="datePublished">
+                  a year ago
+                </time>
+              </li>
+                <li class="post-meta-item">
+                    <a itemprop="articleSection" href="../tag/nodejs/" data-pjax>nodejs</a>, 
+                    <a itemprop="keywords" href="../tag/code/" data-pjax>code</a>, 
+                    <a itemprop="keywords" href="../tag/tips/" data-pjax>tips</a> 
+                </li>
+              <li class="post-meta-item">
+                <a href="index.html#disqus_thread" data-disqus-identifier="16">Comments</a>
+              </li>
+            </ul>
+            <h1 itemprop="name headline" class="post-title"><a href="index.html" itemprop="url" data-pjax title="NodeJS: Replacing text in a file">NodeJS: Replacing text in a file</a></h1>
+            <!--h2 itemprop="about" class="post-subtitle"></h2-->
+          </header>
+          <aside class="post-side">
+            <div class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <a href="http://nmrony.info" class="post-author-name">
+                  Nur Rony
+                </a>
+                <p class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+              </div>
+            </div>
+          </aside>
+          <div itemprop="articleBody" class="post-body">
+            <p>Here is the simple chunk of code to replace a particular section in a file asynchronously.</p>
+
+<pre><code>fs.readFile(filePath, 'utf8', function(err, data) {  
+    if (err) {
+      return console.log(err);
+    }
+
+    var result = data.replace(your-regex-or-text,replacement-text);
+    fs.writeFile(filePath, result, 'utf8', function(err) {
+        if (err) {
+           return console.log(err);
+        };
+    });
+});
+</code></pre>
+          </div>
+          <footer class="post-footer">
+            <div itemprop="author" itemscope itemtype="http://schema.org/Person" class="post-author">
+                <a href="http://nmrony.info" class="post-author-avatar">
+                  <img itemprop="image" src="../content/images/2016/08/2513341.jpg" alt="Nur Rony">
+                </a>
+              <div class="post-author-info">
+                <h4 class="post-footer-heading">Written By</h4>
+                <a href="http://nmrony.info" itemprop="url" class="post-author-name">
+                  <span itemprop="name">Nur Rony</span>
+                </a>
+                <p itemprop="description" class="post-author-bio">Polyglot Programmer. Blindly love JS. An automation freak who love to cook code in React, Redux, RxJS and serve them using Docker. Married to the most beautiful girl.
+</p>
+                  <p class="post-author-location">Milkyway, Earth</p>
+                  <p class="post-author-website">
+                    <a href="http://nmrony.info" rel="nofollow">http://nmrony.info</a>
+                  </p>
+                <p class="post-info">
+                  <b class="post-info-title">Published on</b>
+                  <time class="post-date">April 12, 2015</time>
+                </p>
+              </div>
+            </div>
+            <div class="post-social">
+              <h4 class="post-footer-heading">Spread the word</h4>
+              <a href="index.html#" data-action="share-twitter"><i class="fa fa-fw fa-lg fa-twitter"></i></a>
+              <a href="index.html#" data-action="share-facebook"><i class="fa fa-fw fa-lg fa-facebook"></i></a>
+              <a href="index.html#" data-action="share-gplus"><i class="fa fa-fw fa-lg fa-google-plus"></i></a>
+            </div>
+          </footer>
+        </section>
+      <section itemprop="comment" class="post-comments">
+        <div id="disqus_thread"></div>
+      </section>
+    </article>
+
+    <footer role="contentinfo" class="footer">
+  <p><small>© 2016. All Rights Reserved.</small></p>
+  <p><small>Proudly published with <a href="http://ghost.org" target="_blank">Ghost</a></small></p>
+</footer>
+  </div>
+</section>
+
+<script type="text/javascript">
+  if(GHOSTIUM.haveDisqus) {
+    var disqus_identifier = '16';
+
+    if(typeof DISQUS !== 'object') {
+      (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
+    }
+  } else {
+    document.querySelector('.post-comments').remove();
+  }
+</script>
+
+          </div>
+        </div>
+      </div>
+    </main>
+
+    
+
+    <script src="../assets/js/foot-scripts.min.js?v=8074495de9"></script>
+
+    <script type="text/javascript">
+
+      if(GHOSTIUM.haveGA) {
+        (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
+        function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
+        t=h.createElement(o);z=h.getElementsByTagName(o)[0];
+        t.src='//www.google-analytics.com/analytics.js';
+        z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
+        ga('create',ga_ua);ga('send','pageview');
+      }
+
+      if(GHOSTIUM.haveDisqus) {
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+      }
+    </script>
+  </body>
