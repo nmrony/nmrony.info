@@ -1,4 +1,41 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Thu, 08 Sep 2016 14:21:05 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Installing latest Docker on Ubuntu</title><description>&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt; is an awesome and powerful tool for developing and deploying your apps. According to Docker official website, Docker is&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 14:51:56 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Publishing Ghost Blog to Github Pages</title><description>&lt;p&gt;I like simplicity. I also believe that simple things are really beautiful. I recently migrate my blog from Wordpress to Git pages. It gives me ultimate freedom to customize my blog. I am a &lt;a href="https://nodejs.org"&gt;&lt;strong&gt;NodeJS&lt;/strong&gt;&lt;/a&gt; guy and a great fan of Markdown. I choose Ghost for publishing my blog to&lt;/p&gt;</description><link>http://blog.nmrony.docker/publishing-ghost-blog-to-github-pages/</link><guid isPermaLink="false">3b26ad41-c887-4f90-a9da-46f26b12c086</guid><category>ghost</category><category>github-pages</category><category>linux</category><category>git</category><category>ubuntu</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 31 Jan 2016 14:40:00 GMT</pubDate><content:encoded>&lt;p&gt;I like simplicity. I also believe that simple things are really beautiful. I recently migrate my blog from Wordpress to Git pages. It gives me ultimate freedom to customize my blog. I am a &lt;a href="https://nodejs.org"&gt;&lt;strong&gt;NodeJS&lt;/strong&gt;&lt;/a&gt; guy and a great fan of Markdown. I choose Ghost for publishing my blog to Git Page. But Git only host the static page. So I use Buster to generate static content from &lt;a href="https://ghost.org"&gt;&lt;strong&gt;Ghost&lt;/strong&gt;&lt;/a&gt; blog.&lt;/p&gt;
+
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
+
+&lt;p&gt;I am assuming that you have these following things installed in your machine:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;You are on &lt;strong&gt;Ubuntu&lt;/strong&gt; or &lt;strong&gt;*nix&lt;/strong&gt; machine  &lt;/li&gt;
+&lt;li&gt;You have git installed on your machine  &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;NodeJS &gt;4.2.4&lt;/strong&gt; and &lt;strong&gt;NPM&lt;/strong&gt; (comes with NodeJS).  &lt;/li&gt;
+&lt;li&gt;You already familiar with Ghost and know how to setup, configure and run custom installation.  &lt;/li&gt;
+&lt;li&gt;Have &lt;a href="https://github.com/axitkhurana/buster"&gt;&lt;strong&gt;Buster&lt;/strong&gt;&lt;/a&gt; installed on your machine.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id="setupgitpage"&gt;Setup Git page&lt;/h4&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Create a repository &lt;your-username&gt;.github.io  &lt;/your-username&gt;&lt;/li&gt;
+&lt;li&gt;Go to your Ghost root directory on your local machine.  &lt;/li&gt;
+&lt;li&gt;Run the following command in your terminal to clone your &lt;your-github-username&gt;.github.io in static directory in your Ghost root directory on local machine.  &lt;/your-github-username&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:&amp;lt;your-github-github-username&amp;gt;/&amp;lt;your-github-username&amp;gt;.github.io static  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="downloaddeployscript"&gt;Download Deploy script&lt;/h4&gt;
+
+&lt;p&gt;To make the deployment process easily with Buster I have already created a deployment script for it. &lt;br&gt;
+To download the script run the following command on terminal from your Ghost root directory.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;curl -fsOSL https://gist.githubusercontent.com/nmrony/77147308e38776031412/raw/ghost2git &amp;amp;&amp;amp; chmod +x ghost2git  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Open the &lt;code&gt;git2ghost&lt;/code&gt; script in your favorite editor. Find and replace &lt;code&gt;&amp;lt;your-github-username&amp;gt;&lt;/code&gt; with yours.&lt;/p&gt;
+
+&lt;p&gt;For more please see the README of the &lt;a href="https://gist.github.com/nmrony/77147308e38776031412#file-configuration-md"&gt;&lt;strong&gt;Gist&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now after publishing a post in your local Ghost blog you can deploy it just running &lt;code&gt;./ghost2git&lt;/code&gt; from your local ghost root directory.&lt;/p&gt;</content:encoded></item><item><title>Installing latest Docker on Ubuntu</title><description>&lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt; is an awesome and powerful tool for developing and deploying your apps. According to Docker official website, Docker is&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications&lt;/p&gt;
@@ -778,191 +815,4 @@ Add the phpmyadmin config to the file.  &lt;/p&gt;
 &lt;p&gt;&lt;br&gt;
 You can then access phpmyadmin by going to &lt;code&gt;http://youripaddress/phpmyadmin&lt;/code&gt;..&lt;/p&gt;
 
-&lt;p&gt;If you face any problem just give me a shout... to blow my eardrums!!! :-)&lt;/p&gt;</content:encoded></item><item><title>Setup and configure LEMP stack in Ubuntu 14.04</title><description>&lt;p&gt;&lt;strong&gt;LEMP&lt;/strong&gt; is stand for &lt;strong&gt;L&lt;/strong&gt;inux, &lt;strong&gt;N&lt;/strong&gt;ginx (pronounced Engine x), &lt;strong&gt;M&lt;/strong&gt;ySQL and &lt;strong&gt;P&lt;/strong&gt;HP and altogether we can make a web server up and running.&lt;/p&gt;
-
-&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
-
-&lt;p&gt;I am assuming that you have a running &lt;strong&gt;&lt;a href="http://www.ubuntu.com/download/server"&gt;Ubuntu 14.04 Server&lt;/a&gt;&lt;/strong&gt;  and Linux part have taken care of as well. The&lt;/p&gt;</description><link>http://blog.nmrony.docker/setup-and-configure-lemp-stack-in-ubuntu-14-04/</link><guid isPermaLink="false">f18cd72c-9c8a-4c24-95cb-fef05bb4b225</guid><category>lemp</category><category>mysql</category><category>nginx</category><category>php</category><category>server-admin</category><category>ubuntu-14-04</category><dc:creator>Nur Rony</dc:creator><pubDate>Sat, 14 Mar 2015 12:36:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;LEMP&lt;/strong&gt; is stand for &lt;strong&gt;L&lt;/strong&gt;inux, &lt;strong&gt;N&lt;/strong&gt;ginx (pronounced Engine x), &lt;strong&gt;M&lt;/strong&gt;ySQL and &lt;strong&gt;P&lt;/strong&gt;HP and altogether we can make a web server up and running.&lt;/p&gt;
-
-&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
-
-&lt;p&gt;I am assuming that you have a running &lt;strong&gt;&lt;a href="http://www.ubuntu.com/download/server"&gt;Ubuntu 14.04 Server&lt;/a&gt;&lt;/strong&gt;  and Linux part have taken care of as well. The steps in this post require the user to have root privileges. If you do not have any root privilege then you can ask for it to your server administrator.&lt;/p&gt;
-
-&lt;h4 id="installnginx"&gt;Install Nginx&lt;/h4&gt;
-
-&lt;p&gt;I don't like writing too much description and jump to the commands that does the work. Run the following command in your terminal.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get update;  
-sudo apt-get install -y nginx  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-Now you have &lt;strong&gt;Nginx&lt;/strong&gt; installed and should have it already running. If it is not running you can start, restart, stop, reload or syntax checking of configuration file of Nginx using the following commands  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo service nginx start #start Nginx server  
-sudo service nginx restart #retart Nginx server  
-sudo service nginx reload #reload Nginx server  
-sudo service nginx stop #stop Nginx server  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;
-You can confirm that nginx has installed an your web server by directing your browser to your IP address.&lt;/p&gt;
-
-&lt;h4 id="installmysql"&gt;Install MySQL&lt;/h4&gt;
-
-&lt;p&gt;MySQL is a powerful database management system used for organizing and retrieving data. To install MySQL, open terminal and type in these commands:  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get update  
-sudo apt-get install mysql-server php5-mysql -y  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-During the installation, MySQL will ask you to set a &lt;code&gt;root&lt;/code&gt; password. If you miss the chance to set the password while the program is installing, it is very easy to set the password later from within the MySQL shell. &lt;br&gt;
-Once you have installed MySQL, we should activate it with this command:  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo mysql_install_db  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Finish up by running the MySQL set up script:&lt;/p&gt;
-
-&lt;p&gt;sudo /usr/bin/mysql&lt;em&gt;secure&lt;/em&gt;installation &lt;br&gt;
-The prompt will ask you for your current root password. Type it in and hit enter. If all goes fine then you will see the following lines.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Enter current password for root (enter for none):  
-OK, successfully used password, moving on...  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;
-Then the prompt will ask you if you want to change the root password. Go ahead and choose N and move on to the next steps. It’s easiest just to say Yes to all the options. At the end, MySQL will reload and implement the new changes. Answering those the output will be looks like below  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;By default, a MySQL installation has an anonymous user, allowing anyone  
-to log into MySQL without having to have a user account created for  
-them.  This is intended only for testing, and to make the installation  
-go a bit smoother.  You should remove them before moving into a  
-production environment.
-
-Remove anonymous users? [Y/n] y  
- ... Success!
-
-Normally, root should only be allowed to connect from 'localhost'.  This  
-ensures that someone cannot guess at the root password from the network.
-
-Disallow root login remotely? [Y/n] y  
-... Success!
-
-By default, MySQL comes with a database named 'test' that anyone can  
-access.  This is also intended only for testing, and should be removed  
-before moving into a production environment.
-
-Remove test database and access to it? [Y/n] y  
- - Dropping test database...
- ... Success!
- - Removing privileges on test database...
- ... Success!
-
-Reloading the privilege tables will ensure that all changes made so far  
-will take effect immediately.
-
-Reload privilege tables now? [Y/n] y  
- ... Success!
-
-Cleaning up...  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;We have done with MySQL installation and configuration.&lt;/p&gt;
-
-&lt;h5 id="installingphp"&gt;Installing PHP&lt;/h5&gt;
-
-&lt;p&gt;We need to make one small change in the php configuration.Open up &lt;code&gt;php.ini&lt;/code&gt;:  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo nano /etc/php5/fpm/php.ini  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Find and replace the line &lt;code&gt;cgi.fix_pathinfo=1&lt;/code&gt; and replace 1 to 0. If you find this line as commented uncomment it by removing &lt;code&gt;#&lt;/code&gt;. Final result will look like below  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cgi.fix_pathinfo=0  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;If this number is kept as 1, the php interpreter will do its best to process the file that is as near to the requested file as possible. This is a possible security risk. If this number is set to 0, conversely, the interpreter will only process the exact file path—a much safer alternative. Save and Exit. We need to make another small change in the &lt;code&gt;php5-fpm&lt;/code&gt; configuration.Open up &lt;code&gt;www.conf&lt;/code&gt;:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo nano /etc/php5/fpm/pool.d/www.conf  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Find the line, &lt;code&gt;listen = 127.0.0.1:9000&lt;/code&gt; and change the &lt;code&gt;127.0.0.1:9000&lt;/code&gt; to &lt;code&gt;/var/run/php5-fpm.sock&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;listen = /var/run/php5-fpm.sock&lt;/code&gt; &lt;br&gt;
-save and exit&lt;/p&gt;
-
-&lt;p&gt;Restart &lt;code&gt;php-fpm&lt;/code&gt; using following command  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo service php5-fpm restart  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="configurenginxforphp"&gt;Configure Nginx for PHP&lt;/h4&gt;
-
-&lt;p&gt;Open up the default virtual host file.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo nano /etc/nginx/sites-available/default  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-and replace server block with the following piece of lines  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;server {  
-        listen   80;
-
-
-        root /usr/share/nginx/www; #replce this line with your document root path
-        index index.php index.html index.htm;
-
-        server_name example.com;
-
-        location / {
-                try_files $uri $uri/ /index.html;
-        }
-
-        error_page 404 /404.html;
-
-        error_page 500 502 503 504 /50x.html;
-        location = /50x.html {
-              root /usr/share/nginx/www;
-        }
-
-        # pass the PHP scripts to FastCGI server listening on the php-fpm socket
-        location ~ \.php$ {
-                try_files $uri =404;
-                fastcgi_pass unix:/var/run/php5-fpm.sock;
-                fastcgi_index index.php;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                include fastcgi_params;
-
-        }
-
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="testingyourconfiguration"&gt;Testing your configuration&lt;/h4&gt;
-
-&lt;p&gt;To test your configuration please create a file called &lt;code&gt;info.php&lt;/code&gt; with following code  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-php"&gt;&amp;lt;?php  
-/**
- * Filename: info.php
- * Location: In your document root directory 
- */
-phpinfo();  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;
-Then save and exit&lt;/p&gt;
-
-&lt;p&gt;Restart Nginx server  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo service nginx restart  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Go to &lt;code&gt;http://[your-ip-or-domain-name]/info.php.&lt;/code&gt; You should see a PHP configuration page if all goes fine.&lt;/p&gt;
-
-&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;If you face any problem just give me a shout... to blow my eardrums!!! :-)&lt;/p&gt;</content:encoded></item></channel></rss>
