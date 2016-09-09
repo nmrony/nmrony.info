@@ -7,12 +7,12 @@ SITE_DIR=${CURR_DIR};
 echo 'Generating static page from ghost blog..' && \
 buster generate --domain=http://blog.nmrony.docker --dir=$SITE_DIR > /dev/null 2>&1 && \
 echo 'Fixing link...'
-find $SITE_DIR -name "*.html" -print0 | xargs -0 sed -i'' -e 's#http://blog.nmrony.docker#http://www.nmrony.info#g' && \
+find $SITE_DIR -name "*.html" -print0 | xargs -0 sed -i'' -e 's#http://blog.nmrony.docker#http://nmrony.info#g' && \
 cd $SITE_DIR && \
 echo "Pulling latest changes..." && \
 git pull --all -q > /dev/null 2>&1 && \
 echo 'Generating sitemap...' && \
-$SITE_DIR/node_modules/.bin/sitemap-generator www.nmrony.info > /dev/null 2>&1 && \
+$SITE_DIR/node_modules/.bin/sitemap-generator nmrony.info > /dev/null 2>&1 && \
 echo 'Correcting robot.txt' && \
 bash -c 'cat > robots.txt <<RTEXT
 User-agent: *
@@ -21,30 +21,37 @@ Disallow:
 User-agent: Googlebot
 Disallow: /cgi-bin/
 Disallow: /backup/
+Disallow: /new-backup/
 Disallow: /ghost/
+
 
 User-agent: Googlebot-Mobile
 Disallow: /cgi-bin/
 Disallow: /backup/
+Disallow: /new-backup/
 Disallow: /ghost/
 
 User-agent: Googlebot-Image
 Disallow: /cgi-bin/
 Disallow: /backup/
+Disallow: /new-backup/
 Disallow: /ghost/
 
 User-agent: Adsbot-Google
 Disallow: /cgi-bin/
 Disallow: /backup/
+Disallow: /new-backup/
 Disallow: /ghost/
 
 User-agent: Slurp
 Disallow: /cgi-bin/
+Disallow: /new-backup/
 Disallow: /backup/
 Disallow: /ghost/
 
 User-agent: msnbot
 Disallow: /cgi-bin/
+Disallow: /new-backup/
 Disallow: /backup/
 Disallow: /ghost/
 
@@ -52,8 +59,9 @@ User-agent: msnbot-media
 Disallow: /cgi-bin/
 Disallow: /backup/
 Disallow: /ghost/
+Disallow: /new-backup/
 
-Sitemap: http://www.nmrony.info/sitemap.xml
+Sitemap: http://nmrony.info/sitemap.xml
 RTEXT' > /dev/null 2>&1 && \
 echo "Adding changes to stage..." && \
 git add --all > /dev/null 2>&1 && \
