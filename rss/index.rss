@@ -1,12 +1,70 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 15:01:03 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Install PHP 7.0 in Ubuntu</title><description>&lt;p&gt;It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using &lt;strong&gt;&lt;code&gt;ppa:ondrej/php&lt;/code&gt;&lt;/strong&gt; from &lt;strong&gt;Ondřej Surý&lt;/strong&gt;&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 15:23:03 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Update VirtualBox Guest Additions in Vagrant Box</title><description>&lt;p&gt;Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper &lt;code&gt;Virtualbox Guest Addition&lt;/code&gt; Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions.&lt;/p&gt;
+
+&lt;h4 id="theproblem"&gt;The Problem&lt;/h4&gt;
+
+&lt;p&gt;Today when i run &lt;code&gt;vagrant up --provision&lt;/code&gt; command on&lt;/p&gt;</description><link>http://blog.nmrony.docker/update-virtualbox-guest-additions-in-vagrant-box/</link><guid isPermaLink="false">18dfed77-656d-4a22-a88b-4b93df385235</guid><category>vagrant</category><category>virtualbox</category><category>tips</category><dc:creator>Nur Rony</dc:creator><pubDate>Mon, 01 Feb 2016 15:18:00 GMT</pubDate><content:encoded>&lt;p&gt;Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper &lt;code&gt;Virtualbox Guest Addition&lt;/code&gt; Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions.&lt;/p&gt;
+
+&lt;h4 id="theproblem"&gt;The Problem&lt;/h4&gt;
+
+&lt;p&gt;Today when i run &lt;code&gt;vagrant up --provision&lt;/code&gt; command on my shell. Vagrant gives me following errors&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Failed to mount folders in Linux guest. This is usually because  
+the "vboxsf" file system is not available. Please verify that  
+the guest additions are properly installed in the guest and  
+can work properly. The command attempted was:
+
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`getent group vagrant | cut -d: -f3` vagrant /vagrant  
+mount -t vboxsf -o uid=`id -u vagrant`,gid=`id -g vagrant` vagrant /vagrant
+
+The error output from the last command was:
+
+/sbin/mount.vboxsf: mounting failed with the error: No such device
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There may be another warning message where you also need to update Virtualbox Guest Additions  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[default] The guest additions on this VM do not match the install version of
+VirtualBox! This may cause things such as forwarded ports, shared  
+folders, and more to not work properly. If any of those things fail on  
+this machine, please update the guest additions and repackage the  
+box.  
+Guest Additions Version: 4.2.8  
+VirtualBox Version: 5.0.12  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="thesolution"&gt;The Solution&lt;/h4&gt;
+
+&lt;p&gt;I run the following command to update my vagrant box guest Addition.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nurrony@devmachine:vagrant-playbox$ vagrant up  
+#Let it finish the initial tasks to boot up your vagrant box
+nurrony@devmachine:vagrant-playbox$ vagrant ssh  
+vagrant@vagrant-playbox:~$ sudo yum -y update  
+vagrant@vagrant-playbox:~$ cd /opt  
+vagrant@vagrant-playbox:~$ sudo wget -c http://download.virtualbox.org/virtualbox/5.0.12/VBoxGuestAdditions_5.0.12.iso -O VBoxGuestAdditions_5.0.12.iso  
+vagrant@vagrant-playbox:~$ sudo mount VBoxGuestAdditions_5.0.12.iso -o loop /mnt  
+vagrant@vagrant-playbox:~$ cd /mnt  
+vagrant@vagrant-playbox:~$ sudo sh VBoxLinuxAdditions.run --nox11  
+vagrant@vagrant-playbox:~$ cd /opt  
+vagrant@vagrant-playbox:~$ sudo rm *.iso  
+vagrant@vagrant-playbox:~$ sudo /etc/init.d/vboxadd setup  
+vagrant@vagrant-playbox:~$ sudo chkconfig --add vboxadd  
+vagrant@vagrant-playbox:~$ sudo chkconfig vboxadd on  
+vagrant@vagrant-playbox:~$ exit
+
+# Now check that the Guest Additions work
+nurrony@devmachine:vagrant-playbox$ vagrant halt  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now run the &lt;strong&gt;&lt;code&gt;vagrant up&lt;/code&gt;&lt;/strong&gt; command. The error/warning message should be gone. That's all.. Enjoy!!&lt;/p&gt;</content:encoded></item><item><title>Install PHP 7.0 in Ubuntu</title><description>&lt;p&gt;It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using &lt;strong&gt;&lt;code&gt;ppa:ondrej/php&lt;/code&gt;&lt;/strong&gt; from &lt;strong&gt;Ondřej Surý&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
 
-&lt;p&gt;I am assuming that you are running PHP 5.x on an Ubuntu 14.04 machine, using either &lt;code&gt;mod_php&lt;/code&gt; in&lt;/p&gt;</description><link>http://blog.nmrony.docker/install-php-7-0-in-ubuntu/</link><guid isPermaLink="false">28bcdfe7-e5e1-415c-adec-503bd59dd346</guid><category>php</category><category>ubuntu</category><category>latest</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 31 Jan 2016 14:54:00 GMT</pubDate><content:encoded>&lt;p&gt;It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using &lt;strong&gt;&lt;code&gt;ppa:ondrej/php&lt;/code&gt;&lt;/strong&gt; from &lt;strong&gt;Ondřej Surý&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;I am assuming that you are running &lt;code&gt;PHP 5.x&lt;/code&gt; on an Ubuntu 14.04 machine, using either &lt;code&gt;mod_php&lt;/code&gt; in&lt;/p&gt;</description><link>http://blog.nmrony.docker/install-php-7-0-in-ubuntu/</link><guid isPermaLink="false">28bcdfe7-e5e1-415c-adec-503bd59dd346</guid><category>php</category><category>ubuntu</category><category>latest</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 31 Jan 2016 14:54:00 GMT</pubDate><content:encoded>&lt;p&gt;It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using &lt;strong&gt;&lt;code&gt;ppa:ondrej/php&lt;/code&gt;&lt;/strong&gt; from &lt;strong&gt;Ondřej Surý&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
 
-&lt;p&gt;I am assuming that you are running PHP 5.x on an Ubuntu 14.04 machine, using either &lt;code&gt;mod_php&lt;/code&gt; in conjunction with &lt;code&gt;Apache&lt;/code&gt;, or &lt;code&gt;PHP-FPM&lt;/code&gt; in conjunction with &lt;code&gt;Nginx&lt;/code&gt;. I also assume that you have a non-root user configured with &lt;code&gt;sudo&lt;/code&gt; privileges for administrative tasks.&lt;/p&gt;
+&lt;p&gt;I am assuming that you are running &lt;code&gt;PHP 5.x&lt;/code&gt; on an Ubuntu 14.04 machine, using either &lt;code&gt;mod_php&lt;/code&gt; in conjunction with &lt;code&gt;Apache&lt;/code&gt;, or &lt;code&gt;PHP-FPM&lt;/code&gt; in conjunction with &lt;code&gt;Nginx&lt;/code&gt;. I also assume that you have a non-root user configured with &lt;code&gt;sudo&lt;/code&gt; privileges for administrative tasks.&lt;/p&gt;
 
 &lt;h3 id="setupscript"&gt;Setup Script&lt;/h3&gt;
 
@@ -777,42 +835,4 @@ That all!! Now you have a private live streaming RTMP server running with Nginx.
 
 &lt;p&gt;There are lots of directive to fine tune the &lt;code&gt;RTMP&lt;/code&gt; application. You can find it from the Directive page of &lt;code&gt;nginx-rtmp-module&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;If you face any problem please leave a comment... I will respond for sure.&lt;/p&gt;</content:encoded></item><item><title>How to: Setup phpMyAdmin with Nginx on Ubuntu 14.04</title><description>&lt;p&gt;Relational database management systems like MySQL are needed for a significant portion of web sites and applications. However, not all users feel comfortable administering their data from the command line. To solve this problem, a project called phpMyAdmin was created in order to offer an alternative in the form of&lt;/p&gt;</description><link>http://blog.nmrony.docker/how-to-setup-phpmyadmin-with-nginx-on-ubuntu-14-04/</link><guid isPermaLink="false">f0615d14-4b07-4dfd-aebd-51c5121dee87</guid><category>phpmyadmin</category><category>nginx</category><category>server-admin</category><category>ubuntu-14-04</category><dc:creator>Nur Rony</dc:creator><pubDate>Mon, 16 Mar 2015 13:03:00 GMT</pubDate><content:encoded>&lt;p&gt;Relational database management systems like MySQL are needed for a significant portion of web sites and applications. However, not all users feel comfortable administering their data from the command line. To solve this problem, a project called phpMyAdmin was created in order to offer an alternative in the form of a web-based management interface.&lt;/p&gt;
-
-&lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
-
-&lt;p&gt;I am assuming that you have a running &lt;a href="http://www.ubuntu.com/download/server"&gt;&lt;strong&gt;Ubuntu 14.04 Server&lt;/strong&gt;&lt;/a&gt; and Linux part have taken care of as well. The steps in this post require the user to have root privileges. If you do not have any root privilege then you can ask for it to your server administrator.&lt;/p&gt;
-
-&lt;p&gt;You must have installed &lt;code&gt;LEMP&lt;/code&gt; (Linux, Nginx, MySQL, and PHP) stack on your Ubuntu 14.04 server. If you don't have LEMP installed, you can have it easily following my previous post &lt;a href="https://nurmrony.wordpress.com/2015/03/14/setup-and-configure-lemp-stack-in-ubuntu-14-04/"&gt;&lt;strong&gt;Setup and configure LEMP stack in Ubuntu 14.04&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id="installingphpmyadmin"&gt;Installing phpMyAdmin&lt;/h4&gt;
-
-&lt;p&gt;It is just a piece of cake. Run the following command in your terminal  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install phpmyadmin  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-That's all!! &lt;br&gt;
-During the installation, phpmyadmin will ask you if you want to configure the database with dbconfig. Go ahead and choose yes.&lt;/p&gt;
-
-&lt;p&gt;Input MySQL’s database root password when prompted and click ok.&lt;/p&gt;
-
-&lt;p&gt;When phpmyadmin prompts you to choose a server (either &lt;code&gt;apache&lt;/code&gt;or &lt;code&gt;lighttpd&lt;/code&gt;) hit tab, and select neither one.  &lt;/p&gt;
-
-&lt;h4 id="configurephpmyadmin"&gt;Configure phpMyAdmin&lt;/h4&gt;
-
-&lt;p&gt;Now you have phpMyAdmin installed on your server but you cant access it as you did not configure it yet. To access phpMyAdmin using Nginx you need to create a symbolic link between phpMyAdmin and your site’s document root directory.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo ln -s /usr/share/phpmyadmin/ /path/to/your/document/root  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;
-Restart Nginx  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo service nginx restart  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You should now be able to access &lt;code&gt;phpMyAdmin&lt;/code&gt; by going to &lt;code&gt;http://yourdomain-or-ip/phpmyadmin&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;If you face any problem please leave a comment... I will respond for sure.&lt;/p&gt;</content:encoded></item></channel></rss>
