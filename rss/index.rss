@@ -1,4 +1,78 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 15:23:03 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Update VirtualBox Guest Additions in Vagrant Box</title><description>&lt;p&gt;Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper &lt;code&gt;Virtualbox Guest Addition&lt;/code&gt; Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 19:14:46 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Configuring Nginx Virtual Host with PHP 7.0</title><description>&lt;p&gt;I was super excited about &lt;strong&gt;PHP 7.0&lt;/strong&gt; and started using it as soon it was getting some shape. But I also faced some problem while I was configuring &lt;strong&gt;PHP 7.0&lt;/strong&gt; with &lt;strong&gt;Nginx&lt;/strong&gt;. I was trying to configure virtual hosts in &lt;strong&gt;Nginx&lt;/strong&gt;. I need to change the following blog&lt;/p&gt;</description><link>http://blog.nmrony.docker/configuring-nginx-virtual-host-with-php-7-0/</link><guid isPermaLink="false">fb0b85cd-af92-42d5-975a-324a90919e66</guid><category>nginx</category><category>howto</category><category>php</category><category>latest</category><category>web server</category><dc:creator>Nur Rony</dc:creator><pubDate>Tue, 02 Feb 2016 19:05:00 GMT</pubDate><content:encoded>&lt;p&gt;I was super excited about &lt;strong&gt;PHP 7.0&lt;/strong&gt; and started using it as soon it was getting some shape. But I also faced some problem while I was configuring &lt;strong&gt;PHP 7.0&lt;/strong&gt; with &lt;strong&gt;Nginx&lt;/strong&gt;. I was trying to configure virtual hosts in &lt;strong&gt;Nginx&lt;/strong&gt;. I need to change the following blog things&lt;/p&gt;
+
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
+
+&lt;p&gt;I am assuming that you are running &lt;strong&gt;PHP 7.x&lt;/strong&gt; on an &lt;strong&gt;Ubuntu 14.04&lt;/strong&gt; machine, Also have PHP-FPM in conjunction with &lt;strong&gt;Nginx&lt;/strong&gt;. I also assume that you have a non-root user configured with &lt;strong&gt;sudo&lt;/strong&gt; privileges for administrative tasks.&lt;/p&gt;
+
+&lt;h3 id="letsconfigure"&gt;Let's Configure&lt;/h3&gt;
+
+&lt;p&gt;I was trying to configure virtual hosts in Nginx. I need to change the following things:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;File: /etc/nginx/sites-enabled/nmrony.local&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {  
+    listen 80 default_server;
+    listen [::]:80 default_server ipv6only=on;
+
+    root /media/nmrony/devzone/www;
+    index index.php index.html index.htm;
+
+    server_name nmrony.local;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    error_page 404 /404.html;
+    error_page 500 502 503 504 /50x.html;
+    location = /50x.html {
+        root /usr/share/nginx/html;
+    }
+
+    location ~ \.php$ {
+        try_files $uri /index.php =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include /etc/nginx/fastcgi_params;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Please note the PHP FPM socket path&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id="configuringphpfpm"&gt;Configuring PHP-FPM&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;File: /etc/php/7.0/fpm/php.ini&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Add or find and replace the following line. Please remove semicolon(;) before it.  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cgi.fix_pathinfo=0;  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+If you want to run &lt;strong&gt;PHP-FPM&lt;/strong&gt; with different user (As I wanted to change) you need to change the following line in the file below (Nowhere i found this)&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;File: /etc/php/7.0/fpm/pool.d/www.conf&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Find and replace the following lines  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;;line number 23 and 24 for me
+user = &amp;lt;your-user&amp;gt;  
+group = &amp;lt;your-group&amp;gt;  
+....
+....
+;line number 47 and 48 for me
+listen.owner = nmrony ;should be your user  
+listen.group = nmrony ;should be your group  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart &lt;strong&gt;php-fpm&lt;/strong&gt; service. &lt;/p&gt;
+
+&lt;p&gt;Everything should work fine. If you find any problem in this post please let me know. I am all ears.&lt;/p&gt;</content:encoded></item><item><title>Update VirtualBox Guest Additions in Vagrant Box</title><description>&lt;p&gt;Sometimes We need to upgrade the guest edition for our Vagrant box working properly with virtualbox provider. Without proper &lt;code&gt;Virtualbox Guest Addition&lt;/code&gt; Vagrant sometimes does not provide shared file functionality and does problem with group and/or user permissions.&lt;/p&gt;
 
 &lt;h4 id="theproblem"&gt;The Problem&lt;/h4&gt;
 
@@ -750,89 +824,4 @@ vagrant halt
 &lt;li&gt;Once you have the basics working, make sure to read through the &lt;a href="https://github.com/mitchellh/vagrant-aws"&gt;vagrant-aws&lt;/a&gt; project to understand all the options available.&lt;/li&gt;
 &lt;li&gt;Make sure to &lt;code&gt;vagrant destroy&lt;/code&gt; your VMs when done, and check the AWS Console to make sure they were terminated correctly (to avoid unexpected charges).
 Good Luck!!! If you face any problem feel free to poke me.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item><item><title>Setup a private RTMP server with nginx-rtmp-module</title><description>&lt;p&gt;&lt;strong&gt;Real Time Messaging Protocol (RTMP)&lt;/strong&gt; is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called &lt;a href="https://github.com/arut/nginx-rtmp-module"&gt;&lt;strong&gt;nginx-rtmp-module&lt;/strong&gt;&lt;/a&gt;. This post will help you to setup a&lt;/p&gt;</description><link>http://blog.nmrony.docker/setup-a-private-rtmp-server-with-nginx-rtmp-module/</link><guid isPermaLink="false">5f74e5e8-2443-42a9-aa98-d2782c6e8c3a</guid><category>nginx</category><category>rtmp</category><category>live streaming</category><dc:creator>Nur Rony</dc:creator><pubDate>Tue, 17 Mar 2015 13:11:00 GMT</pubDate><content:encoded>&lt;p&gt;&lt;strong&gt;Real Time Messaging Protocol (RTMP)&lt;/strong&gt; is one of the most popular way for streaming video, audio or data between a Flash player and a server. You can easily have a private RTMP server using Nginx and a module of it called &lt;a href="https://github.com/arut/nginx-rtmp-module"&gt;&lt;strong&gt;nginx-rtmp-module&lt;/strong&gt;&lt;/a&gt;. This post will help you to setup a RTMP server following some simple steps. So no more chit-chat lets jump into it.&lt;/p&gt;
-
-&lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
-
-&lt;p&gt;You must have &lt;strong&gt;root&lt;/strong&gt; privilege to complete this steps. I am on Ubuntu and using apt-get as my package manager but for other distribution of Linux I strongly hope that all command will be valid just replacing with the package manager and appropriate package name.&lt;/p&gt;
-
-&lt;h4 id="installingdependencies"&gt;Installing dependencies&lt;/h4&gt;
-
-&lt;p&gt;Run the following commands to compile &lt;code&gt;Nginx&lt;/code&gt; with &lt;code&gt;nginx-rtmp-module&lt;/code&gt;  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get update;  
-sudo apt-get install -y build-essential git libpcre3 \  
-libpcre3-dev openssl libssl-dev zlibc zlib1g zlib1g-dev  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="compilingnginxwithrtmpmodule"&gt;Compiling Nginx with RTMP Module&lt;/h4&gt;
-
-&lt;p&gt;Now we compile Nginx with RTMP module. I use following configure command to compile Nginx. You can add or remove options according to your need  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cd $HOME &amp;amp;&amp;amp; cd nginx-*  
-./configure --prefix=/etc/nginx \
---sbin-path=/usr/sbin/nginx \
---conf-path=/etc/nginx/nginx.conf \
---pid-path=/var/run/nginx.pid \
---lock-path=/var/run/nginx.lock \
---with-http_ssl_module \
---with-http_realip_module \
---with-http_addition_module \
---with-http_sub_module \
---with-http_dav_module \
---with-http_flv_module \
---with-http_mp4_module \
---with-http_gunzip_module \
---with-http_gzip_static_module \
---with-http_random_index_module \
---with-http_secure_link_module \
---with-http_stub_status_module \
---with-file-aio \
---with-pcre \
---with-file-aio \
---with-http_spdy_module \
---with-cc-opt='-g -O2 -fstack-protector --param=ssp-buffer-size=4 -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -DTCP_FASTOPEN=23' \
---with-ld-opt='-Wl,-z,relro -Wl,--as-needed -L /usr/lib' \
---with-ipv6 \
---with-debug \
---without-http_scgi_module \
---without-http_uwsgi_module \
---add-module=$HOME/nginx-rtmp-module
-make  
-sudo make install  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-Now you have Nginx installed in your dev machine or server which running &lt;code&gt;Ubuntu 14.04&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id="configurertmpapplication"&gt;Configure RTMP Application&lt;/h4&gt;
-
-&lt;p&gt;Configuring simple live RTMP application is so simple. To configure a RTMP live streaming application you need to edit nginx configuration file  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-bash"&gt;sudo nano /etc/nginx/nginx.conf  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;
-and under HTTP block paste the following piece of RTMP block to make a RTMP live streaming application called live.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;rtmp {  
-    server {
-        listen 1935;
-        application live {
-            live on;
-        }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Restart nginx server by running the following command  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo /usr/sbin/nginx -s stop &amp;amp;&amp;amp; sudo /usr/sbin/nginx  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-That all!! Now you have a private live streaming RTMP server running with Nginx. You can push your live video or audio stream to &lt;code&gt;rtmp://your-ip-or-domainName:1935/live/{your-stream-name}&lt;/code&gt; using &lt;code&gt;FFMpeg&lt;/code&gt; or &lt;code&gt;GStreamer&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;There are lots of directive to fine tune the &lt;code&gt;RTMP&lt;/code&gt; application. You can find it from the Directive page of &lt;code&gt;nginx-rtmp-module&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;If you face any problem please leave a comment... I will respond for sure.&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;/ul&gt;</content:encoded></item></channel></rss>
