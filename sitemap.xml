@@ -10,19 +10,40 @@
     <loc>http://www.nmrony.info/page/2/index.html</loc>
   </url>
   <url>
+    <loc>http://www.nmrony.info/tag/ghost-tag/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/publishing-ghost-blog-to-github-pages/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/github-pages/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/linux/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/git/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/publishing-ghost-blog-to-github-pages/index.html</loc>
+  </url>
+  <url>
     <loc>http://www.nmrony.info/installing-latest-docker-on-ubuntu/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/installing-latest-docker-on-ubuntu/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/responsive-design/</loc>
-  </url>
-  <url>
     <loc>http://www.nmrony.info/tag/code/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/tips/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/page/2/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/page/3/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/javascript/</loc>
@@ -37,22 +58,13 @@
     <loc>http://www.nmrony.info/es5-main-features/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/page/2/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/page/3/index.html</loc>
+    <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/howto/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/</loc>
-  </url>
-  <url>
     <loc>http://www.nmrony.info/easiest-way-to-make-a-div-horizontally-and-vertically-centered/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/linux/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/</loc>
@@ -64,40 +76,40 @@
     <loc>http://www.nmrony.info/pbcopy-pbpaste-in-ubuntu-command-line-clipboard/index.html</loc>
   </url>
   <url>
+    <loc>http://www.nmrony.info/tag/ubuntu/</loc>
+  </url>
+  <url>
     <loc>http://www.nmrony.info/tag/centos/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/</loc>
+    <loc>http://www.nmrony.info/tag/responsive-design/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ghost-tag/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/logstash/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/install-latest-php-5-6-using-ubuntu-ppa/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu-14-04/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/install-latest-php-5-6-using-ubuntu-ppa/index.html</loc>
-  </url>
-  <url>
     <loc>http://www.nmrony.info/page/3/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/responsive-design/index.html</loc>
+    <loc>http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/github-pages/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/linux/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/code/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/php/</loc>
+    <loc>http://www.nmrony.info/tag/git/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/vagrant-common-settings-tips/</loc>
+    <loc>http://www.nmrony.info/tag/tips/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/devops/</loc>
@@ -106,31 +118,40 @@
     <loc>http://www.nmrony.info/tag/vagrant/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/tricks/</loc>
+    <loc>http://www.nmrony.info/vagrant-common-settings-tips/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/javascript/index.html</loc>
+    <loc>http://www.nmrony.info/tag/tricks/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/vagrant-common-settings-tips/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/es5/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/tips/index.html</loc>
-  </url>
-  <url>
     <loc>http://www.nmrony.info/page/4/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/install-latest-php-5-6-using-ubuntu-ppa/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/php/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu-14-04/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/aws/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</loc>
+    <loc>http://www.nmrony.info/working-init-script-for-logstash-forwarder-for-centos-5-6/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/install-latest-php-5-6-using-ubuntu-ppa/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/ec2/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/amazon-web-service/</loc>
@@ -145,6 +166,9 @@
     <loc>http://www.nmrony.info/tag/rtmp/</loc>
   </url>
   <url>
+    <loc>http://www.nmrony.info/tag/nginx/</loc>
+  </url>
+  <url>
     <loc>http://www.nmrony.info/tag/live-streaming/</loc>
   </url>
   <url>
@@ -154,16 +178,10 @@
     <loc>http://www.nmrony.info/how-to-setup-phpmyadmin-with-nginx-on-ubuntu-14-04/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/nginx/</loc>
+    <loc>http://www.nmrony.info/tag/server-admin/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/phpmyadmin/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/ubuntu/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/apache/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/how-to-setup-phpmyadmin-with-nginx-on-ubuntu-14-04/index.html</loc>
@@ -172,34 +190,28 @@
     <loc>http://www.nmrony.info/how-to-setup-phpmyadmin-with-apache2-on-ubuntu-14-04/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/server-admin/</loc>
+    <loc>http://www.nmrony.info/tag/apache/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/how-to-setup-phpmyadmin-with-apache2-on-ubuntu-14-04/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/lemp/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/mysql/</loc>
-  </url>
-  <url>
     <loc>http://www.nmrony.info/page/4/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/index.html</loc>
+    <loc>http://www.nmrony.info/tag/es5/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/express/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/howto/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/linux/index.html</loc>
+    <loc>http://www.nmrony.info/tag/ubuntu/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/express/index.html</loc>
+    <loc>http://www.nmrony.info/tag/javascript/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/centos/index.html</loc>
@@ -208,16 +220,16 @@
     <loc>http://www.nmrony.info/tag/logstash/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/ubuntu-14-04/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/php/index.html</loc>
+    <loc>http://www.nmrony.info/tag/responsive-design/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/devops/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/vagrant/index.html</loc>
+    <loc>http://www.nmrony.info/tag/lemp/</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/mysql/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/tricks/index.html</loc>
@@ -226,10 +238,22 @@
     <loc>http://www.nmrony.info/hello-world/</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/aws/index.html</loc>
+    <loc>http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/vagrant/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/hello-world/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/php/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/aws/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/ubuntu-14-04/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/ec2/index.html</loc>
@@ -244,7 +268,10 @@
     <loc>http://www.nmrony.info/tag/live-streaming/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/ubuntu/index.html</loc>
+    <loc>http://www.nmrony.info/tag/nginx/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/server-admin/index.html</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/apache/index.html</loc>
@@ -253,15 +280,12 @@
     <loc>http://www.nmrony.info/tag/phpmyadmin/index.html</loc>
   </url>
   <url>
-    <loc>http://www.nmrony.info/tag/nginx/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/lemp/index.html</loc>
-  </url>
-  <url>
-    <loc>http://www.nmrony.info/tag/server-admin/index.html</loc>
+    <loc>http://www.nmrony.info/setup-and-configure-lemp-stack-in-ubuntu-14-04/</loc>
   </url>
   <url>
     <loc>http://www.nmrony.info/tag/mysql/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.nmrony.info/tag/lemp/index.html</loc>
   </url>
 </urlset>

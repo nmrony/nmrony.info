@@ -1,4 +1,49 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 14:51:56 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Publishing Ghost Blog to Github Pages</title><description>&lt;p&gt;I like simplicity. I also believe that simple things are really beautiful. I recently migrate my blog from Wordpress to Git pages. It gives me ultimate freedom to customize my blog. I am a &lt;a href="https://nodejs.org"&gt;&lt;strong&gt;NodeJS&lt;/strong&gt;&lt;/a&gt; guy and a great fan of Markdown. I choose Ghost for publishing my blog to&lt;/p&gt;</description><link>http://blog.nmrony.docker/publishing-ghost-blog-to-github-pages/</link><guid isPermaLink="false">3b26ad41-c887-4f90-a9da-46f26b12c086</guid><category>ghost</category><category>github-pages</category><category>linux</category><category>git</category><category>ubuntu</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 31 Jan 2016 14:40:00 GMT</pubDate><content:encoded>&lt;p&gt;I like simplicity. I also believe that simple things are really beautiful. I recently migrate my blog from Wordpress to Git pages. It gives me ultimate freedom to customize my blog. I am a &lt;a href="https://nodejs.org"&gt;&lt;strong&gt;NodeJS&lt;/strong&gt;&lt;/a&gt; guy and a great fan of Markdown. I choose Ghost for publishing my blog to Git Page. But Git only host the static page. So I use Buster to generate static content from &lt;a href="https://ghost.org"&gt;&lt;strong&gt;Ghost&lt;/strong&gt;&lt;/a&gt; blog.&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 15:01:03 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Install PHP 7.0 in Ubuntu</title><description>&lt;p&gt;It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using &lt;strong&gt;&lt;code&gt;ppa:ondrej/php&lt;/code&gt;&lt;/strong&gt; from &lt;strong&gt;Ondřej Surý&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
+
+&lt;p&gt;I am assuming that you are running PHP 5.x on an Ubuntu 14.04 machine, using either &lt;code&gt;mod_php&lt;/code&gt; in&lt;/p&gt;</description><link>http://blog.nmrony.docker/install-php-7-0-in-ubuntu/</link><guid isPermaLink="false">28bcdfe7-e5e1-415c-adec-503bd59dd346</guid><category>php</category><category>ubuntu</category><category>latest</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 31 Jan 2016 14:54:00 GMT</pubDate><content:encoded>&lt;p&gt;It is easy to install latest PHP 7.0. Run the following commands in your terminal. I am using Ubuntu and using &lt;strong&gt;&lt;code&gt;ppa:ondrej/php&lt;/code&gt;&lt;/strong&gt; from &lt;strong&gt;Ondřej Surý&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
+
+&lt;p&gt;I am assuming that you are running PHP 5.x on an Ubuntu 14.04 machine, using either &lt;code&gt;mod_php&lt;/code&gt; in conjunction with &lt;code&gt;Apache&lt;/code&gt;, or &lt;code&gt;PHP-FPM&lt;/code&gt; in conjunction with &lt;code&gt;Nginx&lt;/code&gt;. I also assume that you have a non-root user configured with &lt;code&gt;sudo&lt;/code&gt; privileges for administrative tasks.&lt;/p&gt;
+
+&lt;h3 id="setupscript"&gt;Setup Script&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;# remove php5 modules
+sudo apt-get autoremove --purge php5-* &amp;amp;&amp;amp; \  
+sudo apt-get install -y language-pack-en-base &amp;amp;&amp;amp; \  
+sudo LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php -y &amp;amp;&amp;amp; sudo apt-get update &amp;amp;&amp;amp; \  
+sudo apt-get install -y php7.0 \  
+php7.0-cgi \  
+php7.0-cli \  
+php7.0-curl \  
+php7.0-imap \  
+php7.0-ldap \  
+php7.0-pgsql \  
+php7.0-mcrypt \  
+php7.0-sqlite3 \  
+php7.0-mysql \  
+php7.0-json \  
+php7.0-fpm \  
+php7.0-xmlrpc \  
+php7.0-gd \  
+php7.0-common \  
+php7.0-odbc \  
+php7.0-opcache \  
+php7.0-readline \  
+php7.0-intl \  
+php7.0-phpdbg \  
+php7.0-tidy \  
+php7.0-mbstring \  
+php7.0-xml \  
+mcrypt \  
+libmcrypt-dev  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install &lt;a href="https://gist.github.com/nmrony/3f4f29f2792704b4912f/"&gt;&lt;strong&gt;PHP 7 Gist&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I use &lt;code&gt;PHP-7&lt;/code&gt; with &lt;code&gt;Nginx&lt;/code&gt;. I will write a post on how to install and configure &lt;code&gt;php 7&lt;/code&gt; with &lt;code&gt;Ningx&lt;/code&gt; soon.&lt;/p&gt;</content:encoded></item><item><title>Publishing Ghost Blog to Github Pages</title><description>&lt;p&gt;I like simplicity. I also believe that simple things are really beautiful. I recently migrate my blog from Wordpress to Git pages. It gives me ultimate freedom to customize my blog. I am a &lt;a href="https://nodejs.org"&gt;&lt;strong&gt;NodeJS&lt;/strong&gt;&lt;/a&gt; guy and a great fan of Markdown. I choose Ghost for publishing my blog to&lt;/p&gt;</description><link>http://blog.nmrony.docker/publishing-ghost-blog-to-github-pages/</link><guid isPermaLink="false">3b26ad41-c887-4f90-a9da-46f26b12c086</guid><category>ghost</category><category>github-pages</category><category>linux</category><category>git</category><category>ubuntu</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 31 Jan 2016 14:40:00 GMT</pubDate><content:encoded>&lt;p&gt;I like simplicity. I also believe that simple things are really beautiful. I recently migrate my blog from Wordpress to Git pages. It gives me ultimate freedom to customize my blog. I am a &lt;a href="https://nodejs.org"&gt;&lt;strong&gt;NodeJS&lt;/strong&gt;&lt;/a&gt; guy and a great fan of Markdown. I choose Ghost for publishing my blog to Git Page. But Git only host the static page. So I use Buster to generate static content from &lt;a href="https://ghost.org"&gt;&lt;strong&gt;Ghost&lt;/strong&gt;&lt;/a&gt; blog.&lt;/p&gt;
 
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
 
@@ -770,49 +815,4 @@ Restart Nginx  &lt;/p&gt;
 
 &lt;p&gt;You should now be able to access &lt;code&gt;phpMyAdmin&lt;/code&gt; by going to &lt;code&gt;http://yourdomain-or-ip/phpmyadmin&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item><item><title>How to: Setup phpMyAdmin with Apache2 on Ubuntu 14.04</title><description>&lt;p&gt;phpMyAdmin is an free web software to work with MySQL on the web—it provides a convenient visual front end to the MySQL capabilities. I cant think MySQL installed without phpMyAdmin&lt;/p&gt;
-
-&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
-
-&lt;p&gt;I am assuming that you have a running Ubuntu 14.04 Server and Linux part have taken care&lt;/p&gt;</description><link>http://blog.nmrony.docker/how-to-setup-phpmyadmin-with-apache2-on-ubuntu-14-04/</link><guid isPermaLink="false">319767d3-faad-4152-9adb-4e9c9dd12b7f</guid><category>phpmyadmin</category><category>ubuntu</category><category>howto</category><category>apache</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 15 Mar 2015 12:55:00 GMT</pubDate><content:encoded>&lt;p&gt;phpMyAdmin is an free web software to work with MySQL on the web—it provides a convenient visual front end to the MySQL capabilities. I cant think MySQL installed without phpMyAdmin&lt;/p&gt;
-
-&lt;h4 id="prerequisite"&gt;Prerequisite&lt;/h4&gt;
-
-&lt;p&gt;I am assuming that you have a running Ubuntu 14.04 Server and Linux part have taken care of as well. The steps in this post require the user to have &lt;strong&gt;root&lt;/strong&gt; privileges. If you do not have any &lt;strong&gt;root&lt;/strong&gt; privilege then you can ask for it to your server administrator.&lt;/p&gt;
-
-&lt;h4 id="installingphpmyadminwithapache2"&gt;Installing phpMyAdmin with Apache2&lt;/h4&gt;
-
-&lt;p&gt;The easiest way to install &lt;code&gt;phpMyAdmin&lt;/code&gt; is through &lt;code&gt;apt-get&lt;/code&gt;  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo apt-get install -y phpmyadmin apache2-utils  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;During the installation, &lt;code&gt;phpMyAdmin&lt;/code&gt; will walk you through a basic configuration. Once the process starts up, follow these steps:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;Select Apache2 for the server  &lt;/li&gt;
-&lt;li&gt;Choose YES when asked about whether to Configure the database for phpmyadmin with dbconfig-common  &lt;/li&gt;
-&lt;li&gt;Enter your MySQL password when prompted  &lt;/li&gt;
-&lt;li&gt;Enter the password that you want to use to log into phpmyadmin&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;After the installation has completed, add phpmyadmin to the apache configuration.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo nano /etc/apache2/apache2.conf  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;
-Add the phpmyadmin config to the file.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Include /etc/phpmyadmin/apache.conf  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Restart Apache2 server  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo service apache2 restart  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;br&gt;
-You can then access phpmyadmin by going to &lt;code&gt;http://youripaddress/phpmyadmin&lt;/code&gt;..&lt;/p&gt;
-
-&lt;p&gt;If you face any problem just give me a shout... to blow my eardrums!!! :-)&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;If you face any problem.. just give me a shout to blow my eardrums!!!. Good Luck!!!&lt;/p&gt;</content:encoded></item></channel></rss>
