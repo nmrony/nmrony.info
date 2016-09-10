@@ -1,4 +1,60 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Fri, 09 Sep 2016 19:14:46 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Configuring Nginx Virtual Host with PHP 7.0</title><description>&lt;p&gt;I was super excited about &lt;strong&gt;PHP 7.0&lt;/strong&gt; and started using it as soon it was getting some shape. But I also faced some problem while I was configuring &lt;strong&gt;PHP 7.0&lt;/strong&gt; with &lt;strong&gt;Nginx&lt;/strong&gt;. I was trying to configure virtual hosts in &lt;strong&gt;Nginx&lt;/strong&gt;. I need to change the following blog&lt;/p&gt;</description><link>http://blog.nmrony.docker/configuring-nginx-virtual-host-with-php-7-0/</link><guid isPermaLink="false">fb0b85cd-af92-42d5-975a-324a90919e66</guid><category>nginx</category><category>howto</category><category>php</category><category>latest</category><category>web server</category><dc:creator>Nur Rony</dc:creator><pubDate>Tue, 02 Feb 2016 19:05:00 GMT</pubDate><content:encoded>&lt;p&gt;I was super excited about &lt;strong&gt;PHP 7.0&lt;/strong&gt; and started using it as soon it was getting some shape. But I also faced some problem while I was configuring &lt;strong&gt;PHP 7.0&lt;/strong&gt; with &lt;strong&gt;Nginx&lt;/strong&gt;. I was trying to configure virtual hosts in &lt;strong&gt;Nginx&lt;/strong&gt;. I need to change the following blog things&lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Sat, 10 Sep 2016 05:28:31 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Extract Unix timestamp in Javascript</title><description>&lt;p&gt;We frequently need to calculate with unix timestamp. There are several ways to grab the timestamp. For current unix timestamp easiest and fastest way is  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = Date.now();  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+or  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = new Date().getTime();  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+To get unix&lt;/p&gt;</description><link>http://blog.nmrony.docker/extract-unix-timestamp-in-javascript/</link><guid isPermaLink="false">3cc6f694-6d73-4acd-ab39-e8419ebc6f95</guid><category>javascript</category><category>code</category><category>tips</category><dc:creator>Nur Rony</dc:creator><pubDate>Sun, 21 Feb 2016 05:22:00 GMT</pubDate><content:encoded>&lt;p&gt;We frequently need to calculate with unix timestamp. There are several ways to grab the timestamp. For current unix timestamp easiest and fastest way is  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = Date.now();  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+or  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = new Date().getTime();  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+To get unix timestamp of a specific date pass &lt;strong&gt;YYYY-MM-DD&lt;/strong&gt; or &lt;strong&gt;YYYY-MM-DDT00:00:00Z&lt;/strong&gt; as parameter of Date constructor. For example  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = new Date('2012-06-08').getTime();  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+You can just add a &lt;strong&gt;+ (unary plus)&lt;/strong&gt; sign also when declaring a Date object like below  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = +new Date();  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;br&gt;
+or for specific date  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;const dateTime = +new Date('2012-06-08');  
+const timestamp = Math.floor(dateTime / 1000);  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Under the hood the runtime calls &lt;strong&gt;valueOf&lt;/strong&gt; method of the Date object. Then the unary &lt;strong&gt;+&lt;/strong&gt; operator calls &lt;strong&gt;toNumber()&lt;/strong&gt; with that returned value. For detailed explanation please check the following links&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://es5.github.io/#x15.9.5.8"&gt;Date.prototype.valueOf&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://es5.github.io/#x11.4.6"&gt;Unary + operator&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://es5.github.io/#x9.3"&gt;toNumber()&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"&gt;Date Javascript MDN&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse"&gt;Date.parse()&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title>Configuring Nginx Virtual Host with PHP 7.0</title><description>&lt;p&gt;I was super excited about &lt;strong&gt;PHP 7.0&lt;/strong&gt; and started using it as soon it was getting some shape. But I also faced some problem while I was configuring &lt;strong&gt;PHP 7.0&lt;/strong&gt; with &lt;strong&gt;Nginx&lt;/strong&gt;. I was trying to configure virtual hosts in &lt;strong&gt;Nginx&lt;/strong&gt;. I need to change the following blog&lt;/p&gt;</description><link>http://blog.nmrony.docker/configuring-nginx-virtual-host-with-php-7-0/</link><guid isPermaLink="false">fb0b85cd-af92-42d5-975a-324a90919e66</guid><category>nginx</category><category>howto</category><category>php</category><category>latest</category><category>web server</category><dc:creator>Nur Rony</dc:creator><pubDate>Tue, 02 Feb 2016 19:05:00 GMT</pubDate><content:encoded>&lt;p&gt;I was super excited about &lt;strong&gt;PHP 7.0&lt;/strong&gt; and started using it as soon it was getting some shape. But I also faced some problem while I was configuring &lt;strong&gt;PHP 7.0&lt;/strong&gt; with &lt;strong&gt;Nginx&lt;/strong&gt;. I was trying to configure virtual hosts in &lt;strong&gt;Nginx&lt;/strong&gt;. I need to change the following blog things&lt;/p&gt;
 
 &lt;h3 id="prerequisites"&gt;Prerequisites&lt;/h3&gt;
 
@@ -674,154 +730,4 @@ php5-sqlite \
 php5-oauth  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You can remove or add extensions that is not needed by you. You may need to install &lt;code&gt;software-properties-common&lt;/code&gt; previously &lt;code&gt;python-software-properties&lt;/code&gt;&lt;/p&gt;</content:encoded></item><item><title>Vagrant: Deploy and provisioning an Amazon EC2 instance</title><description>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt;&lt;/p&gt;</description><link>http://blog.nmrony.docker/vagrant-deploy-and-provisioning-an-amazon-ec2-instance/</link><guid isPermaLink="false">015b5866-6160-4b8b-bac2-8fc176c33d03</guid><category>vagrant</category><category>devops</category><category>howto</category><category>aws</category><category>EC2</category><category>amazon web service</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 19 Mar 2015 13:21:00 GMT</pubDate><content:encoded>&lt;p&gt;Vagrant is a really powerful tool for managing virtual machines. If you’re a developer it can make it push-button simple to setup a dev box on your laptop. It manages the VMs, and uses configuration files to describe specifics of your machines. We can use &lt;strong&gt;VirtualBox&lt;/strong&gt;, &lt;strong&gt;VMWare&lt;/strong&gt;, &lt;strong&gt;AWS&lt;/strong&gt;, &lt;strong&gt;DigitalOcean&lt;/strong&gt; as provider to launch our servers and automatically provision it.&lt;/p&gt;
-
-&lt;h4 id="prerequisites"&gt;Prerequisites&lt;/h4&gt;
-
-&lt;p&gt;I am assuming you have the latest version of Vagrant installed in your dev machine and familiar with &lt;code&gt;Vagrantfile&lt;/code&gt; and its commands. If you don’t know about &lt;code&gt;Vagrant&lt;/code&gt;, you can visit the &lt;a href="https://docs.vagrantup.com/v2/"&gt;official docummentation&lt;/a&gt; of Vagrant and learn about it.&lt;/p&gt;
-
-&lt;p&gt;You need to have a AWS account and the following&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;AWS access key&lt;/li&gt;
-&lt;li&gt;AWS secret key&lt;/li&gt;
-&lt;li&gt;SSH keypair name&lt;/li&gt;
-&lt;li&gt;SSH private key file (.pem extension)&lt;/li&gt;
-&lt;li&gt;Make sure the your security group enables SSH (port 22) access from anywhere&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The EC2 instance used to deploy here may not fit in your AWS Free Tier Plan and cost your money.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id="settingenvironmentvariable"&gt;Setting Environment Variable&lt;/h4&gt;
-
-&lt;p&gt;I like to set these up as environment variables to keep them out of the &lt;code&gt;Vagrantfile&lt;/code&gt;. On Mac or Linux systems you can add this to your &lt;code&gt;$HOME/.profile&lt;/code&gt; or &lt;code&gt;$HOME/.bashrc&lt;/code&gt; file:  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export AWS_KEY='your-access-key'  
-export AWS_SECRET='your-secret-secret'  
-export AWS_KEYNAME='your-keyname'  
-export AWS_KEYPATH='your-keypath'  
-export AWS_DEFAULT_REGION='your-region'  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="installthevagrantawsplugin"&gt;Install the &lt;code&gt;vagrant-aws&lt;/code&gt; plugin&lt;/h4&gt;
-
-&lt;p&gt;To install &lt;code&gt;vagrant-aws&lt;/code&gt; plugin run the following command in terminal  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;vagrant plugin install vagrant-aws  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="fetchawsdummybox"&gt;Fetch AWS Dummy Box&lt;/h4&gt;
-
-&lt;p&gt;To fetch the Vagrant AWS dummy box run the following command in terminal  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;vagrant box add dummybox-aws https://github.com/mitchellh/vagrant-aw  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="creatingvagrantfile"&gt;Creating Vagrantfile&lt;/h4&gt;
-
-&lt;p&gt;Run the following commands in terminal to create a &lt;code&gt;Vagrantfile&lt;/code&gt;  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkdir -p /path/to/your/dir &amp;amp;&amp;amp; cd $_  
-vagrant init dummybox-aws  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;This will create a &lt;code&gt;Vagrantfile&lt;/code&gt; in current directory using &lt;code&gt;dummybox-aws&lt;/code&gt; that we added in previous step.&lt;/p&gt;
-
-&lt;h4 id="configurevagrantfile"&gt;Configure Vagrantfile&lt;/h4&gt;
-
-&lt;p&gt;Now our &lt;code&gt;Vagrantfile&lt;/code&gt; with the specifics needed for AWS. Refer to the &lt;code&gt;vagrant-aws&lt;/code&gt; documentation to understand all the options.  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-ruby"&gt;# -*- mode: ruby -*-
-# vi: set ft=ruby :
-
-# Vagrant on AWS Example
-# Nur Mohammed Rony
-
-# Adjustable settings
-# timezone, like US/Pacific, US/Eastern, UTC, Europe/Warsaw, etc.
-CFG_TZ = "US/Pacific"
-
-# Provisioning script
-provision_script = &amp;lt;&amp;lt;SCRIPT  
-#!/bin/bash
-
-# set timezone
-echo "#{CFG_TZ}" &amp;gt; /etc/timezone  
-dpkg-reconfigure -f noninteractive tzdata
-
-# install a few base packages
-apt-get update  
-apt-get install vim curl git build-essential -y  
-#long provisioning command
-echo Provisioning is complete  
-SCRIPT
-
-Vagrant.configure(2) do |config|
-
-  config.vm.box = "dummybox-aws"
-  config.vm.synced_folder ".", "/home/ubuntu/devpc", type: "rsync", rsync__exclude: ".git/"
-  config.vm.hostname = "stagingbox"
-  config.vm.provision :shell, :inline =&amp;gt; provision_script
-  config.vm.provider :aws do |aws, override|
-
-    #AWS Settings
-    aws.access_key_id = ENV['AWS_KEY']
-    aws.secret_access_key = ENV['AWS_KEYNAME']
-    aws.region = ENV['AWS_DEFAULT_REGION']
-
-    aws.tags = {
-      'Name' =&amp;gt; 'NurRony StagingBox',
-      'Team' =&amp;gt; 'devops',
-      'Status' =&amp;gt; 'active'
-    }
-
-    #Override Settings
-    override.ssh.username = "ubuntu"
-    override.ssh.private_key_path = ENV['AWS_KEYPATH']
-
-    aws.region_config "us-west-2" do |region|
-      region.ami = 'ami-35143705'
-      region.instance_type = 'c4.large'
-      region.keypair_name = ENV['AWS_KEYNAME']
-      region.security_groups = "devops"
-    end
-  end
-end  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Add or edit more options according to your need.&lt;/p&gt;
-
-&lt;h4 id="startupvagrantbox"&gt;Startup Vagrant box&lt;/h4&gt;
-
-&lt;p&gt;Run the following command to start vagrant box which will create and run an AWS EC2 instance with your provided settings in previous step  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;vagrant up —-provider=aws  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4 id="verifyintheamazondashboard"&gt;Verify in the Amazon dashboard&lt;/h4&gt;
-
-&lt;p&gt;Jump over to your amazon dashboard with &lt;a href="https://console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:"&gt;this link&lt;/a&gt;. If you’re logged in already, that will take you to your EC2 instances. You should see a new one, based on the parameters in your &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id="workingwithnewlycreatedec2instance"&gt;Working with newly created EC2 instance&lt;/h4&gt;
-
-&lt;p&gt;You can connect via SSH, stop, reload or re-provision your newly created EC2 instance with regular Vagrant command like below  &lt;/p&gt;
-
-&lt;pre&gt;&lt;code class="language-bash"&gt;#To SSH to instance
-vagrant ssh  
-#To restart the instance or re-provision
-vagrant reload reload [--provision]  
-#To stop 
-vagrant halt  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;You need to configure a specific AMI for Vagrant to use. I find the Ubuntu &lt;a href="http://cloud-images.ubuntu.com/locator/ec2/"&gt;Amazon EC2 AMI Finder&lt;/a&gt; very helpful to match the version and region I wanted to use.&lt;/li&gt;
-&lt;li&gt;A common tripping point is the default security group not allowing SSH (port 22) from any IP address. Also make sure to add any other ports depending on your application (e.g., port 80 for HTTP).&lt;/li&gt;
-&lt;li&gt;Once you have the basics working, make sure to read through the &lt;a href="https://github.com/mitchellh/vagrant-aws"&gt;vagrant-aws&lt;/a&gt; project to understand all the options available.&lt;/li&gt;
-&lt;li&gt;Make sure to &lt;code&gt;vagrant destroy&lt;/code&gt; your VMs when done, and check the AWS Console to make sure they were terminated correctly (to avoid unexpected charges).
-Good Luck!!! If you face any problem feel free to poke me.&lt;/li&gt;
-&lt;/ul&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;You can remove or add extensions that is not needed by you. You may need to install &lt;code&gt;software-properties-common&lt;/code&gt; previously &lt;code&gt;python-software-properties&lt;/code&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
