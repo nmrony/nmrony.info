@@ -1,4 +1,43 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Sat, 10 Sep 2016 05:28:31 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Extract Unix timestamp in Javascript</title><description>&lt;p&gt;We frequently need to calculate with unix timestamp. There are several ways to grab the timestamp. For current unix timestamp easiest and fastest way is  &lt;/p&gt;
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" version="2.0"><channel><title>Coding is Poetry</title><description>Thoughts, stories and ideas.</description><link>http://blog.nmrony.docker/</link><generator>Ghost 0.9</generator><lastBuildDate>Tue, 13 Sep 2016 18:16:28 GMT</lastBuildDate><atom:link href="http://blog.nmrony.docker/rss/" rel="self" type="application/rss+xml"/><ttl>60</ttl><item><title>Fixing ‘Failed to Fetch’ apt Error For Chrome on Ubuntu</title><description>&lt;p&gt;Google Chrome undoubtedly the most popular web browser in the world. Lots of user uses &lt;strong&gt;Google Chrome&lt;/strong&gt; on Linux like me. I use Ubuntu 14.04 for my primary OS. But recently if you try update your &lt;code&gt;apt&lt;/code&gt; cache with &lt;code&gt;apt-get update&lt;/code&gt; you may encounter some weird error in your&lt;/p&gt;</description><link>http://blog.nmrony.docker/fixing-failed-to-fetch-apt-error-for-chrome-on-ubuntu/</link><guid isPermaLink="false">a0717b6f-5504-42b7-a239-6bfcb8e66db6</guid><category>google chrome</category><category>ubuntu</category><dc:creator>Nur Rony</dc:creator><pubDate>Thu, 24 Mar 2016 18:08:00 GMT</pubDate><content:encoded>&lt;p&gt;Google Chrome undoubtedly the most popular web browser in the world. Lots of user uses &lt;strong&gt;Google Chrome&lt;/strong&gt; on Linux like me. I use Ubuntu 14.04 for my primary OS. But recently if you try update your &lt;code&gt;apt&lt;/code&gt; cache with &lt;code&gt;apt-get update&lt;/code&gt; you may encounter some weird error in your terminal at the end of the execution of the command. Lets dig out why this is happening and how to resolve the issue&lt;/p&gt;
+
+&lt;h3 id="theproblem"&gt;The Problem&lt;/h3&gt;
+
+&lt;p&gt;Open terminal and run &lt;strong&gt;&lt;code&gt;sudo apt-get update&lt;/code&gt;&lt;/strong&gt; and if your the command spit out these following lines before exit then this post is for you. if your command runs ok without the following error please close the post and do some fun :-)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;W: Failed to fetch http://dl.google.com/linux/chrome/deb/dists/stable/Release  Unable to find expected entry 'main/binary-i386/Packages' in Release file (Wrong sources.list entry or malformed file)
+
+E: Some index files failed to download. They have been ignored, or old ones used instead.  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Skipping acquire of configured file ‘main/binary-i386/Packages’ as repository ‘http://dl.google.com/linux/chrome/deb stable InRelease’ doesn’t support architecture ‘i386’  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="reason"&gt;Reason&lt;/h3&gt;
+
+&lt;p&gt;This annoying and weird is caused for discontinuing the support of 32-bit Google Chrome to provide the best experience in various Linux distribution Though it is announced on late November in 2015. If you missed it take a look on &lt;a href="https://groups.google.com/a/chromium.org/forum/message/raw?msg=chromium-dev/FoE6sL-p6oU/mVlwyh02AgAJ"&gt;from here&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id="fixingtheproblem"&gt;Fixing the problem&lt;/h3&gt;
+
+&lt;p&gt;Open /etc/apt/sources.list.d/google-chrome.list file by your favorite editor (I love sublime text) with following command  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$sudo subl /etc/apt/sources.list.d/google-chrome.list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the text file that opens edit the file so that the line reads:  &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;
+The only addition you need to make is entering the &lt;strong&gt;[amd64]&lt;/strong&gt; architecture after &lt;strong&gt;deb&lt;/strong&gt; but preceding the &lt;strong&gt;http&lt;/strong&gt;. Do not edit or replace any other text in this file.&lt;/p&gt;
+
+&lt;p&gt;Save the file and close it.&lt;/p&gt;
+
+&lt;p&gt;Save the file and close it.&lt;/p&gt;
+
+&lt;p&gt;Now run &lt;strong&gt;sudo apt-get update&lt;/strong&gt; in your terminal. The error should disappear and you can update Google Chrome without any problem. Please share or leave comments if you like or face any problem. I am all ears.&lt;/p&gt;</content:encoded></item><item><title>Extract Unix timestamp in Javascript</title><description>&lt;p&gt;We frequently need to calculate with unix timestamp. There are several ways to grab the timestamp. For current unix timestamp easiest and fastest way is  &lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;const dateTime = Date.now();  
 const timestamp = Math.floor(dateTime / 1000);  
@@ -677,57 +716,4 @@ exit $?
 &lt;pre&gt;&lt;code&gt;DAEMON_ARGS='${DAEMON_ARGS:--config /etc/logstash-forwarder/logstash-forwarder.conf -spool-size 100}'  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;you found the gist &lt;a href="https://gist.github.com/nmrony/c487b4b7c0235a11a112"&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title>Install latest PHP 5.6 using Ubuntu PPA</title><description>&lt;p&gt;It is very easy installing latest PHP 5.6 using PPA&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php5-5.6 -y  
-sudo apt-get update  
-sudo sudo apt-get install make php5\  
-php5-mongo \  
-php-pear \  
-php5-dev \  
-php5-mysql \  
-php5-common \  
-php5-cli \  
-php5-curl \  
-php5-fpm \  
-php5-mcrypt \  
-php5-xmlrpc \  
-php5-gd \  
-php5-json \  
-php5-readline \  
-mcrypt \  
-curl \  
-dh-make \  
-libmcrypt-dev \  
-mysql-server-5.6 \  
-mysql-client-5.6 \  
-php5-sqlite \  
-php5-oauth&lt;/code&gt;&lt;/pre&gt;</description><link>http://blog.nmrony.docker/install-latest-php-5-6-using-ubuntu-ppa/</link><guid isPermaLink="false">9e1b6d8e-4ed0-4fc1-a935-f2787e4bcb05</guid><category>ubuntu-14-04</category><category>php</category><category>howto</category><dc:creator>Nur Rony</dc:creator><pubDate>Sat, 21 Mar 2015 06:58:00 GMT</pubDate><content:encoded>&lt;p&gt;It is very easy installing latest PHP 5.6 using PPA&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;sudo add-apt-repository ppa:ondrej/php5-5.6 -y  
-sudo apt-get update  
-sudo sudo apt-get install make php5\  
-php5-mongo \  
-php-pear \  
-php5-dev \  
-php5-mysql \  
-php5-common \  
-php5-cli \  
-php5-curl \  
-php5-fpm \  
-php5-mcrypt \  
-php5-xmlrpc \  
-php5-gd \  
-php5-json \  
-php5-readline \  
-mcrypt \  
-curl \  
-dh-make \  
-libmcrypt-dev \  
-mysql-server-5.6 \  
-mysql-client-5.6 \  
-php5-sqlite \  
-php5-oauth  
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You can remove or add extensions that is not needed by you. You may need to install &lt;code&gt;software-properties-common&lt;/code&gt; previously &lt;code&gt;python-software-properties&lt;/code&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;you found the gist &lt;a href="https://gist.github.com/nmrony/c487b4b7c0235a11a112"&gt;&lt;strong&gt;here&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
